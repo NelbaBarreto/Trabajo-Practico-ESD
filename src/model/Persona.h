@@ -1,9 +1,10 @@
-#include<string>
+#include <string>
+using namespace std;
 
 class Persona {
  private:
   string nombre;
-  string apeelido;
+  string apellido;
   string fechaNacimiento;
   bool sexo;
   string nroDocumento;
@@ -11,7 +12,9 @@ class Persona {
   short estadoCivil;
   string nacionalidad;
   string email;
-  List<Direccion> direcciones;
+  //List<Direccion> direcciones;
+  string correoElectronico;
+  //List<Telefono> telefonos;
  public:
   Persona();
   ~Persona();
