@@ -1,0 +1,71 @@
+<Agenda>
+  <Persona>
+    <Nombres>CATALINA</Nombres>
+    <Apellidos>BRITEZ ORTEGA</Apellidos>
+    <FechaNacimiento>20.08.1976</FechaNacimiento>
+    <Sexo>1</Sexo>
+    <NumeroDocumento>3423422</NumeroDocumento>
+    <TipoDocumento>1</TipoDocumento>
+    <EstadoCivil>2</EstadoCivil>
+    <Nacionalidad>Paraguaya</Nacionalidad>
+    <Email>cbritez@gmail.com</Email>
+    <Direcciones>
+      <Direccion>
+        <Ciudad>CIUDAD DEL ESTE</Ciudad>
+        <Calle>AREA 4 - MANZANA 7 - LOTE 3</Calle>
+        <Numero>""</Numero>
+        <E_P_N>""</E_P_N>
+        <Pais>PY</Pais>
+        <Region>Alto Paraná</Region>
+      </Direccion>
+      <Direccion>
+        <Ciudad>ASUNCION</Ciudad>
+        <Calle>25 de Mayo</Calle>
+        <Numero>554</Numero>
+        <E_P_N>Edificio Alfa - Piso 8 - Dpto. 803 </E_P_N>
+        <Pais>PY</Pais>
+        <Region>Asuncion</Region>
+      </Direccion>
+    </Direcciones>
+    <Telefonos>
+      <Telefono>
+        <Tipo>1</Tipo>
+        <Numero>0984111111</Numero>
+        <Interno>""</Interno>
+      </Telefono>
+      <Telefono>
+        <Tipo>2</Tipo>
+        <Numero>021446544</Numero>
+        <Interno>320</Interno>
+      </Telefono>
+    </Telefonos>
+  </Persona>
+  <Persona>
+    <Nombres>JUAN CARLOS</Nombres>
+    <Apellidos>CACERES DE DELGADILLO</Apellidos>
+    <FechaNacimiento>20.08.1976</FechaNacimiento>
+    <Sexo>2</Sexo>
+    <NumeroDocumento>1148413</NumeroDocumento>
+    <TipoDocumento>1</TipoDocumento>
+    <EstadoCivil>1</EstadoCivil>
+    <Nacionalidad>Paraguaya</Nacionalidad>
+    <Email>caceres@gmail.com</Email>
+    <Direcciones>
+      <Direccion>
+        <Ciudad>LAMBARE</Ciudad>
+        <Calle>Heroes del 70</Calle>
+        <Numero>398</Numero>
+        <E_P_N>""</E_P_N>
+        <Pais>PY</Pais>
+        <Region>Central</Region>
+      </Direccion>
+    </Direcciones>
+    <Telefonos>
+      <Telefono>
+        <Tipo>1</Tipo>
+        <Numero>0981111111</Numero>
+        <Interno>""</Interno>
+      </Telefono>
+    </Telefonos>
+  </Persona>
+</Agenda>
