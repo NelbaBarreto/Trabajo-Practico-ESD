@@ -107,7 +107,8 @@ char Pila::getTop() {
 // }
 
 int main() {
-  string Agenda;
+  string agenda, etiquetas;
+  sregex_iterator i;
   ifstream archivo;
 
   archivo.open("res/agenda.xml");
@@ -116,30 +117,14 @@ int main() {
     exit(1);
   }
 
-  // while (archivo >> Agenda) {
-  //   cout << Agenda;
-  // }
-
-  cout << endl
-       << endl
-       << endl
-       << endl
-       << " HERE" << endl
-       << endl
-       << endl
-       << endl;
-  string pepe;
-  while (getline(archivo, Agenda)) {
+  while (getline(archivo, agenda)) {
     regex r("<[a-zA-Z_]*?>");
-  
-    for (sregex_iterator i = sregex_iterator(Agenda.begin(), Agenda.end(), r);
-         i != sregex_iterator(); ++i) {
-      smatch m = *i;
-      pepe = m.str();
-    }
-      cout << pepe;
-  }
 
+    for (i = sregex_iterator(agenda.begin(), agenda.end(), r); i != sregex_iterator(); ++i) {
+      smatch m = *i;
+      etiquetas = m.str();
+    }
+  }
 
   archivo.close();
 
