@@ -7,13 +7,14 @@ class Nodo {
  public:
   Nodo();
   ~Nodo(){};
-  string data;
-  Nodo *next;
-};
+  string dato;
+  Nodo *siguiente;
+  Nodo *atras;
+} * primero, *ultimo;
 
 Nodo::Nodo() {
-  data = ' ';
-  next = NULL;
+  dato = ' ';
+  siguiente = NULL;
 }
 
 class Pila {
@@ -33,26 +34,26 @@ Pila::~Pila() {
   Nodo *del;
   while (path != NULL) {
     del = path;
-    path = path->next;
+    path = path->siguiente;
     delete del;
   }
 }
 
 void Pila::push(string e) {
   Nodo *nuevo = new Nodo;
-  nuevo->data = e;
-  nuevo->next = NULL;
+  nuevo->dato = e;
+  nuevo->siguiente = NULL;
   if (top == NULL) {
     top = nuevo;
   } else {
-    nuevo->next = top;
+    nuevo->siguiente = top;
     top = nuevo;
   }
 }
 
 string Pila::pop() {
   string temp = getTop();
-  Nodo *p = top->next;
+  Nodo *p = top->siguiente;
   if (top != NULL) {
     delete top;
     top = p;
@@ -71,7 +72,7 @@ bool Pila::isEmpty() {
 
 string Pila::getTop() {
   if (top != NULL) {
-    return top->data;
+    return top->dato;
   }
   return " ";
 }
@@ -116,9 +117,23 @@ int main() {
       }
     }
   }
+  
+  archivo.close();
+  return 0;
 }
 
-archivo.close();
-
-return 0;
+void almacenarDatos() {
+  Nodo *nuevo = new Nodo();
+  // nuevo->dato = ;
+  if (primero == NULL) {
+    primero = nuevo;
+    primero->siguiente = NULL;
+    primero->atras = NULL;
+    // ultimo->primero;
+  } else {
+    ultimo->siguiente = nuevo;
+    nuevo->siguiente = NULL;
+    nuevo->atras = ultimo;
+    ultimo = nuevo;
+  }
 }
