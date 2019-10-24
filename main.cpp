@@ -7,7 +7,7 @@ class Nodo {
  public:
   Nodo();
   ~Nodo(){};
-  char data;
+  string data;
   Nodo *next;
 };
 
@@ -21,11 +21,11 @@ class Pila {
   Pila() { top = NULL; }
   ~Pila();
   Nodo *top;
-  void push(char);
-  char pop();
-  char getTop();
+  void push(string);
+  string pop();
+  string getTop();
   bool isEmpty();
-  int isBalanced(string);
+  int isBalanced();
 };
 
 Pila::~Pila() {
@@ -38,7 +38,7 @@ Pila::~Pila() {
   }
 }
 
-void Pila::push(char e) {
+void Pila::push(string e) {
   Nodo *nuevo = new Nodo;
   nuevo->data = e;
   nuevo->next = NULL;
@@ -50,8 +50,8 @@ void Pila::push(char e) {
   }
 }
 
-char Pila::pop() {
-  char temp = getTop();
+string Pila::pop() {
+  string temp = getTop();
   Nodo *p = top->next;
   if (top != NULL) {
     delete top;
@@ -69,45 +69,31 @@ bool Pila::isEmpty() {
   return true;
 }
 
-char Pila::getTop() {
+string Pila::getTop() {
   if (top != NULL) {
     return top->data;
   }
-  return ' ';
+  return " ";
 }
 
-// int Pila::isBalanced(string x) {
-//   int i = 0;
-//    regex r("<\\s+>");
-//     for(sregex_iterator i =sregex_iterator(s.begin(), s.end(), r);
-//                             i !=sregex_iterator();
-//                             ++i )
-//     {
-//        smatch m = *i;
-//        cout << m.str() << " at position " << m.position() << '\n';
-//     }
+int Pila::isBalanced() {
+  int i = 0;
+  while (i) {
+    if (i) {
+      if (!isEmpty() && getTop() == "") {
+        pop();
+      } else {
+        return 0;
+      }
+    }
+  }
 
-//   char caracter = ' ';
-//   for (i = 0; i < x.size(); i++) {
-//     caracter = x[i];
-//     if (/*etiqueta de apertura*/) {
-//       push(caracter);
-//     }
-
-//     if /*es la x para cerrar*/ {
-//       if (!isEmpty() && getTop() == /*la etiqueta actual*/) {
-//         pop();
-//       } else {
-//         return 0;
-//       }
-//     }
-//   }
-
-//   if(isEmpty()) return 1;
-// }
+  if (isEmpty()) return 1;
+}
 
 int main() {
-  string agenda, etiquetas;
+  Pila p;
+  string agenda, etiqueta;
   sregex_iterator i;
   ifstream archivo;
 
@@ -118,15 +104,21 @@ int main() {
   }
 
   while (getline(archivo, agenda)) {
-    regex r("<[a-zA-Z_]*?>");
-
-    for (i = sregex_iterator(agenda.begin(), agenda.end(), r); i != sregex_iterator(); ++i) {
-      smatch m = *i;
-      etiquetas = m.str();
+    regex r("<[/]?\\w*?>");
+    regex rp("<\\w*>");
+    smatch m = *i;
+    etiqueta = m.str();
+    if (regex_match(etiqueta, rp)) {
+      p.push(etiqueta);
+    } else {
+      if (p.getTop == "texto de etiqueta") {
+        /* code */
+      }
     }
   }
+}
 
-  archivo.close();
+archivo.close();
 
-  return 0;
+return 0;
 }
