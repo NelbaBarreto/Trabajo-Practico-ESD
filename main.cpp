@@ -2,6 +2,7 @@
 #include <iostream>
 #include <regex>
 using namespace std;
+using namespace std;
 
 class Nodo {
  public:
@@ -10,7 +11,7 @@ class Nodo {
   string dato;
   Nodo *siguiente;
   Nodo *atras;
-} * primero, *ultimo;
+}*primero,*ultimo;
 
 Nodo::Nodo() {
   dato = ' ';
@@ -122,18 +123,4 @@ int main() {
   return 0;
 }
 
-void almacenarDatos() {
-  Nodo *nuevo = new Nodo();
-  // nuevo->dato = ;
-  if (primero == NULL) {
-    primero = nuevo;
-    primero->siguiente = NULL;
-    primero->atras = NULL;
-    // ultimo->primero;
-  } else {
-    ultimo->siguiente = nuevo;
-    nuevo->siguiente = NULL;
-    nuevo->atras = ultimo;
-    ultimo = nuevo;
-  }
-}
+
