@@ -129,7 +129,7 @@ void almacenarDatos() {
     primero = nuevo;
     primero->siguiente = NULL;
     primero->atras = NULL;
-    // ultimo->primero;
+    ultimo->primero;
   } else {
     ultimo->siguiente = nuevo;
     nuevo->siguiente = NULL;
