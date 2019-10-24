@@ -6,11 +6,11 @@ Lista::Lista() {}
 
 Lista::~Lista() {}
 
-Lista::Siguiente() {}
+void Lista::Siguiente() {}
 
-Lista::Anterior() {}
+void Lista::Anterior() {}
 
-Lista::Primero() {}
+void Lista::Primero() {}
 
 void Lista::Insertar() {}
 
