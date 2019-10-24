@@ -1,8 +1,25 @@
 #include <string>
 #include "Nodo.h"
 using namespace std;
+ 
+class Lista{
+  private:
+    void Siguiente();
+    void Anterior();
+    void Primero();
+    void Insertar();
+    void Borrar();
+    void Modificar();
+    string Consultar(int);
+    void ImprimirOpciones();
+    void Navegacion();
+    void AlmacenarDatos();
+  public:
+    Lista();
+    ~Lista();
+};
 
-void almacenarDatos() {
+void Lista::AlmacenarDatos() {
   Nodo *nuevo = new Nodo();
   // nuevo->dato = ;
   if (primero == NULL) {
