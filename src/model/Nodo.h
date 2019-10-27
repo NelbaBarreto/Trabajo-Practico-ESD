@@ -3,9 +3,11 @@ using namespace std;
 
 class Nodo {
  public:
-  Nodo();
+  Nodo() {};
   ~Nodo(){};
   string dato;
-  Nodo *siguiente;
+  Nodo *sig;
   Nodo *atras;
-}*primero,*ultimo;
+  Nodo *primero;
+  Nodo *ultimo;
+};
