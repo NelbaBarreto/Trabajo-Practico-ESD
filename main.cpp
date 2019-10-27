@@ -2,9 +2,9 @@
 #include <iostream>
 #include <regex>
 
+#include "./src/model/Lista.cpp"
 #include "./src/model/Persona.cpp"
 #include "./src/model/Pila.cpp"
-#include "./src/model/Lista.cpp"
 using namespace std;
 
 string const ARCHIVO_PATH = "res/agenda.xml";
@@ -22,7 +22,17 @@ int main() {
     exit(1);
   }
 
-  cargaPersona(archivo);
+  Persona *persona = cargaPersona(archivo);
+
+  cout << persona->getNombre() << endl;
+  cout << persona->getApellido() << endl;
+  cout << persona->getFechaNacimiento() << endl;
+  cout << persona->getSexo() << endl;
+  cout << persona->getNumeroDocumento() << endl;
+  cout << persona->getTipoDocumento() << endl;
+  cout << persona->getEstadoCivil() << endl;
+  cout << persona->getNacionalidad() << endl;
+  cout << persona->getEmail() << endl;
 
   return 0;
 }
@@ -44,41 +54,29 @@ Persona *cargaPersona(ifstream &arc) {
     for (i = sregex_iterator(agenda.begin(), agenda.end(), rp_valor);
          i != std::sregex_iterator(); ++i) {
       smatch m = *i;
+
       string etiqueta = m[1];
       string valor = m[2];
 
-      cout << "k: " << etiqueta << "; v: " << valor << endl;
-
       if (etiqueta == "Nombres") {
         persona->setNombre(valor);
-        continue;
-      }
-      if (etiqueta == "Apellidos") {
+      } else if (etiqueta == "Apellidos") {
         persona->setApellido(valor);
-        continue;
-      }
-      if (etiqueta == "FechaNacimiento") {
+      } else if (etiqueta == "FechaNacimiento") {
         persona->setFechaNacimiento(valor);
-        continue;
-      }
-      if (etiqueta == "Sexo") {
-        persona->setSexo(valor == "1" ? true : false);
-        continue;
-      }
-      if (etiqueta == "NumeroDocumento") {
+      } else if (etiqueta == "Sexo") {
+        persona->setSexo(valor == "1" ? "F"
+                                      : valor == "2" ? "M" : "Non Binary");
+      } else if (etiqueta == "NumeroDocumento") {
         persona->setNumeroDocumento(valor);
-        continue;
-      }
-      if (etiqueta == "TipoDocumento") {
+      } else if (etiqueta == "TipoDocumento") {
         if (valor == "1")
           persona->setTipoDocumento("CI");
         else if (valor == "2")
           persona->setTipoDocumento("RUC");
         else
           persona->setTipoDocumento("Otro");
-        continue;
-      }
-      if (etiqueta == "EstadoCivil") {
+      } else if (etiqueta == "EstadoCivil") {
         if (valor == "1")
           persona->setEstadoCivil("Soltero/a");
         else if (valor == "2")
@@ -89,20 +87,14 @@ Persona *cargaPersona(ifstream &arc) {
           persona->setEstadoCivil("Divorciado/a");
         else if (valor == "5")
           persona->setEstadoCivil("Divorciado/a");
-        continue;
-      }
-      if (etiqueta == "Nacionalidad") {
+      } else if (etiqueta == "Nacionalidad") {
         persona->setNacionalidad(valor);
-        continue;
-      }
-      if (etiqueta == "Email") {
+      } else if (etiqueta == "Email") {
         persona->setEmail(valor);
-        continue;
       }
     }
   }
 
-  cout << endl << persona->getNombre() << endl;
   arc.close();
   return persona;
 }

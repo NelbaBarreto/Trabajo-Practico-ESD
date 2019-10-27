@@ -6,7 +6,7 @@ class Persona {
   string nombre;
   string apellido;
   string fechaNacimiento;
-  bool sexo;
+  string sexo;
   string numeroDocumento;
   string tipoDocumento;
   string estadoCivil;
@@ -20,7 +20,7 @@ class Persona {
   void setNombre(string);
   void setApellido(string);
   void setFechaNacimiento(string);
-  void setSexo(bool);
+  void setSexo(string);
   void setNumeroDocumento(string);
   void setTipoDocumento(string);
   void setEstadoCivil(string);
@@ -29,4 +29,12 @@ class Persona {
   // void setDirecciones(Lista direcciones);
   // void setTelefonos(Lista telefonos);
   string getNombre() { return nombre; };
+  string getApellido() { return apellido; };
+  string getFechaNacimiento() { return fechaNacimiento; };
+  string getSexo() { return sexo; };
+  string getNumeroDocumento() { return numeroDocumento; };
+  string getTipoDocumento() { return tipoDocumento; };
+  string getEstadoCivil() { return estadoCivil; };
+  string getNacionalidad() { return nacionalidad; };
+  string getEmail() { return email; };
 };

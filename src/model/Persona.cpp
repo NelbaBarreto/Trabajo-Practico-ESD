@@ -4,7 +4,7 @@ Persona::Persona() {
   nombre = "";
   apellido = "";
   fechaNacimiento = "";
-  sexo = false;
+  sexo = "";
   numeroDocumento = "";
   tipoDocumento = "";
   estadoCivil ="";
@@ -19,7 +19,7 @@ void Persona::setApellido(string apellido) { this->apellido = apellido; }
 void Persona::setFechaNacimiento(string fechaNacimiento) {
   this->fechaNacimiento = fechaNacimiento;
 }
-void Persona::setSexo(bool sexo) { this->sexo = sexo; }
+void Persona::setSexo(string sexo) { this->sexo = sexo; }
 void Persona::setNumeroDocumento(string numeroDocumento) {
   this->numeroDocumento = numeroDocumento;
 }
