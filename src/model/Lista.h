@@ -7,30 +7,18 @@ class Lista{
     void Siguiente();
     void Anterior();
     void Primero();
+    void Ultimo();
     void Insertar();
     void Borrar();
     void Modificar();
-    string Consultar(int);
-    void ImprimirOpciones();
+    string Consultar();
     void Navegacion();
     void AlmacenarDatos();
+
   public:
     Lista();
     ~Lista();
+    Nodo *primero;
+    Nodo *ultimo;
+    void ImprimirOpciones();
 };
-
-void Lista::AlmacenarDatos() {
-  Nodo *nuevo = new Nodo();
-  // nuevo->dato = ;
-  if (primero == NULL) {
-    primero = nuevo;
-    primero->siguiente = NULL;
-    primero->atras = NULL;
-    ultimo->primero;
-  } else {
-    ultimo->siguiente = nuevo;
-    nuevo->siguiente = NULL;
-    nuevo->atras = ultimo;
-    ultimo = nuevo;
-  }
-}

@@ -12,21 +12,38 @@ void Lista::Anterior() {}
 
 void Lista::Primero() {}
 
+void Lista::Ultimo() {}
+
 void Lista::Insertar() {}
 
 void Lista::Borrar() {}
 
 void Lista::Modificar() {}
 
-string Lista::Consultar(int codigo) {
-  Nodo *temp = cabeza;
+string Lista::Consultar() {
+  Nodo *temp = primero;
   while (temp != NULL) {
-    if (temp->dato == codigo) {
+    if (temp->dato == "codigo") {
       return temp->dato;
     }
     temp = temp->sig;
   }
-  return 0;
+}
+
+void Lista::AlmacenarDatos() {
+  Nodo *nuevo = new Nodo();
+  // nuevo->dato = ;
+  if (primero == NULL) {
+    primero = nuevo;
+    primero->sig = NULL;
+    primero->atras = NULL;
+    ultimo->primero;
+  } else {
+    ultimo->sig = nuevo;
+    nuevo->sig = NULL;
+    nuevo->atras = ultimo;
+    ultimo = nuevo;
+  }
 }
 
 void Lista::ImprimirOpciones() {
@@ -35,8 +52,8 @@ void Lista::ImprimirOpciones() {
   cout << "Anterior (A)" << endl;
   cout << "Primero (P)" << endl;
   cout << "Último (U)" << endl;
-  cout << "Siguiente (S)" << endl;
-  cout << "OPERACIONES" << endl << endl;
+  cout << "Siguiente (S)" << endl << endl;
+  cout << "OPERACIONES" << endl;
   cout << "Insertar (I)" << endl;
   cout << "Borrar (B)" << endl;
   cout << "Modificar (M)" << endl;
@@ -46,17 +63,17 @@ void Lista::ImprimirOpciones() {
 
 void Lista::Navegacion() {
   ImprimirOpciones();
-  char res = ' ';
+  string res = " ";
   while (1) {
     getline(cin, res);
-    if (res == 'S') Siguiente();
-    if (res == 'A') Anterior();
-    if (res == 'P') Primero();
-    if (res == 'U') Ultimo();
-    if (res == 'I') Insertar();
-    if (res == 'B') Borrar();
-    if (res == 'M') Modificar();
-    if (res == 'C') Consultar();
-    if (res == 'Q') break;
+    if (res == "S") Siguiente();
+    if (res == "A") Anterior();
+    if (res == "P") Primero();
+    if (res == "U") Ultimo();
+    if (res == "I") Insertar();
+    if (res == "B") Borrar();
+    if (res == "M") Modificar();
+    if (res == "C") Consultar();
+    if (res == "Q") break;
   }
 }
