@@ -3,6 +3,7 @@
 #include <regex>
 
 #include "./src/model/Pila.cpp"
+#include "./src/model/Lista.cpp"
 using namespace std;
 
 bool validarXml();

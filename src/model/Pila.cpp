@@ -1,23 +1,12 @@
 #include <string>
+#include "NodoPila.h"
 using namespace std;
-class Nodo {
- public:
-  Nodo();
-  ~Nodo(){};
-  string data;
-  Nodo *next;
-};
-
-Nodo::Nodo() {
-  data = ' ';
-  next = NULL;
-}
 
 class Pila {
  public:
   Pila() { top = NULL; }
   ~Pila();
-  Nodo *top;
+  NodoPila *top;
   void push(string);
   string pop();
   string getTop();
@@ -26,8 +15,8 @@ class Pila {
 };
 
 Pila::~Pila() {
-  Nodo *path = top;
-  Nodo *del;
+  NodoPila *path = top;
+  NodoPila *del;
   while (path != NULL) {
     del = path;
     path = path->next;
@@ -36,7 +25,7 @@ Pila::~Pila() {
 }
 
 void Pila::push(string e) {
-  Nodo *nuevo = new Nodo;
+  NodoPila *nuevo = new NodoPila;
   nuevo->data = e;
   nuevo->next = NULL;
   if (top == NULL) {
@@ -49,7 +38,7 @@ void Pila::push(string e) {
 
 string Pila::pop() {
   string temp = getTop();
-  Nodo *p = top->next;
+  NodoPila *p = top->next;
   if (top != NULL) {
     delete top;
     top = p;
