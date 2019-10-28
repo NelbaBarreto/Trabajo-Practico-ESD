@@ -75,7 +75,6 @@ void Lista::Navegacion() {
     if (res == "B") Borrar();
     if (res == "M") Modificar();
     if (res == "C") Consultar();
-    if (res == "Z") Crear();
     if (res == "Q") break;
   }
 }
