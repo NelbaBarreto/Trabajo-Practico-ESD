@@ -3,6 +3,7 @@ using namespace std;
 
 class Persona {
  private:
+  static int codigo;
   string nombre;
   string apellido;
   string fechaNacimiento;
@@ -37,4 +38,7 @@ class Persona {
   string getEstadoCivil() { return estadoCivil; };
   string getNacionalidad() { return nacionalidad; };
   string getEmail() { return email; };
+  static int getCodigo(); 
 };
+
+

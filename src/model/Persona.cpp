@@ -1,5 +1,7 @@
 #include "Persona.h"
 
+int Persona::codigo = 0;
+
 Persona::Persona() {
   nombre = "";
   apellido = "";
@@ -7,9 +9,10 @@ Persona::Persona() {
   sexo = "";
   numeroDocumento = "";
   tipoDocumento = "";
-  estadoCivil ="";
+  estadoCivil = "";
   nacionalidad = "";
   email = "";
+  codigo++;
 }
 
 Persona::~Persona() {}
@@ -33,3 +36,4 @@ void Persona::setNacionalidad(string nacionalidad) {
   this->nacionalidad = nacionalidad;
 }
 void Persona::setEmail(string email) { this->email = email; }
+int Persona::getCodigo() { return codigo; }
