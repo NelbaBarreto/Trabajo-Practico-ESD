@@ -1,4 +1,5 @@
 #include "Lista.h"
+#include "../utils/funciones.cpp"
 #include "iostream"
 using namespace std;
 
@@ -14,11 +15,13 @@ void Lista::Primero() {}
 
 void Lista::Ultimo() {}
 
-void Lista::Insertar() {}
+void Lista::Insertar() { 
+  cout << "INSERTAR" << endl; 
+}
 
-void Lista::Borrar() {}
+void Lista::Borrar() { cout << "BORRAR" << endl; }
 
-void Lista::Modificar() {}
+void Lista::Modificar() { cout << "MODIFICAR" << endl; }
 
 string Lista::Consultar() {
   Nodo *temp = primero;
@@ -48,24 +51,22 @@ void Lista::AlmacenarDatos() {
 
 void Lista::ImprimirOpciones() {
   cout << "NAVEGACIÓN" << endl;
-  cout << "Siguiente (S)" << endl;
-  cout << "Anterior (A)" << endl;
-  cout << "Primero (P)" << endl;
-  cout << "Último (U)" << endl;
-  cout << "Siguiente (S)" << endl << endl;
-  cout << "OPERACIONES" << endl;
-  cout << "Insertar (I)" << endl;
-  cout << "Borrar (B)" << endl;
-  cout << "Modificar (M)" << endl;
-  cout << "Consultar (C)" << endl << endl;
-  cout << "SALIR (Q)" << endl;
+  cout << "[S]iguiente - [A]nterior - [P]rimero - [U]ltimo";
+  cout << "\n\nOPERACIONES" << endl;
+  cout << "[I]nsertar - [B]orrar - [M]odificar - [C]onsultar";
+  cout << "\n\nSALIR <Q>" << endl;
+  system("pause");
+  system("cls");
 }
 
 void Lista::Navegacion() {
   ImprimirOpciones();
   string res = " ";
   while (1) {
+    cout << "¿Qué desea hacer?: ";
     getline(cin, res);
+    res = mayuscula(res);
+    system("cls");
     if (res == "S") Siguiente();
     if (res == "A") Anterior();
     if (res == "P") Primero();
@@ -74,6 +75,7 @@ void Lista::Navegacion() {
     if (res == "B") Borrar();
     if (res == "M") Modificar();
     if (res == "C") Consultar();
+    if (res == "Z") Crear();
     if (res == "Q") break;
   }
 }
