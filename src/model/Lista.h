@@ -11,8 +11,8 @@ class Lista{
     void Insertar();
     void Borrar();
     void Modificar();
-    string Consultar();
-    void Navegacion();
+    void Consultar();
+    void ImprimirOpciones();
     void AlmacenarDatos();
 
   public:
@@ -20,5 +20,5 @@ class Lista{
     ~Lista();
     Nodo *primero;
     Nodo *ultimo;
-    void ImprimirOpciones();
+    void Navegacion();
 };

@@ -3,7 +3,7 @@
 #include "iostream"
 using namespace std;
 
-Lista::Lista() {}
+Lista::Lista() { primero = ultimo = NULL;}
 
 Lista::~Lista() {}
 
@@ -23,14 +23,23 @@ void Lista::Borrar() { cout << "BORRAR" << endl; }
 
 void Lista::Modificar() { cout << "MODIFICAR" << endl; }
 
-string Lista::Consultar() {
+void Lista::Consultar() {
   Nodo *temp = primero;
+  int cod = 0;
+  bool ban = false;
+
+  cout << "Ingrese el código de la persona a buscar: ";
+  cin >> cod;
+
   while (temp != NULL) {
-    if (temp->dato == "codigo") {
-      return temp->dato;
+    if (temp->dato.codigo == cod) {
+      ban = true;
+      cout << temp->dato.nombre;
+      break;
     }
     temp = temp->sig;
   }
+  if(!ban) cout << "No existe ninguna persona con ese código";
 }
 
 void Lista::AlmacenarDatos() {
@@ -77,4 +86,9 @@ void Lista::Navegacion() {
     if (res == "C") Consultar();
     if (res == "Q") break;
   }
+}
+
+int main() {
+  Lista L;
+  L.Navegacion();
 }
