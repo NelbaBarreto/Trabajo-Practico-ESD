@@ -1,6 +1,5 @@
 #include "Persona.h"
-
-int Persona::codigo = 0;
+int Persona::COD_ID = 0;
 
 Persona::Persona() {
   nombre = "";
@@ -12,7 +11,7 @@ Persona::Persona() {
   estadoCivil = "";
   nacionalidad = "";
   email = "";
-  codigo++;
+  codigo = COD_ID++;
 }
 
 Persona::~Persona() {}
