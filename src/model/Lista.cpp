@@ -36,19 +36,21 @@ void Lista::Agregar(Nodo *NewNode) {
 }
 
 void Lista::Crear(string const path) {
-  ifstream arc(path);
-  string agenda;
+  string agenda, aux;
   Nodo *NewNode;
+
   sregex_iterator i;
+  ifstream arc(path);
+  regex CLOSE_TAG("</Persona>");
+  smatch m;
 
   while (getline(arc, agenda)) {
-    regex rp_valor("<Persona>(.*?)</Persona>");
-    for (i = sregex_iterator(agenda.begin(), agenda.end(), rp_valor);
-         i != sregex_iterator(); ++i) {
-      smatch m = *i;
-      string valor = m[1];
-      NewNode = ObtenerNodo(cargaPersona(valor));
+    aux += agenda + "\n";
+
+    if (regex_search (agenda, m, CLOSE_TAG)) {
+      NewNode = ObtenerNodo(cargaPersona(aux));
       Agregar(NewNode);
+      aux = " ";
     }
   }
   arc.close();
@@ -198,6 +200,7 @@ void Lista::Mostrar() {
       cout << Curr->dato.getEstadoCivil() << endl;
       cout << Curr->dato.getNacionalidad() << endl;
       cout << Curr->dato.getEmail() << endl;
+      cout << endl << endl << endl;
       Curr = Curr->sig;
     }
   cout << endl;
