@@ -3,7 +3,7 @@
 #include "iostream"
 using namespace std;
 
-Lista::Lista() { primero = ultimo = NULL;}
+Lista::Lista() { primero = ultimo = NULL; }
 
 Lista::~Lista() {}
 
@@ -15,9 +15,102 @@ void Lista::Primero() {}
 
 void Lista::Ultimo() {}
 
-void Lista::Insertar() { 
-  cout << "INSERTAR" << endl; 
+Nodo *Lista::ObtenerNodo(Persona *persona) {
+  Nodo *Newnode;
+  ifstream archivo;
+  Newnode = new Nodo;
+  Newnode->dato = *persona;
+  Newnode->sig = Newnode->ant = NULL;
+  return (Newnode);
 }
+
+void Lista::Agregar(Nodo *NewNode) {
+  if (primero == NULL) {
+    primero = NewNode;
+    ultimo = NewNode;
+  } else {
+    ultimo->sig = NewNode;
+    NewNode->ant = ultimo;
+    ultimo = NewNode;
+  }
+}
+
+void Lista::Crear(string const path) {
+  ifstream arc(path);
+  string agenda;
+  Nodo *NewNode;
+  sregex_iterator i;
+
+  while (getline(arc, agenda)) {
+    regex rp_valor("<Persona>(.*?)</Persona>");
+    for (i = sregex_iterator(agenda.begin(), agenda.end(), rp_valor);
+         i != sregex_iterator(); ++i) {
+      smatch m = *i;
+      string valor = m[1];
+      NewNode = ObtenerNodo(cargaPersona(valor));
+      Agregar(NewNode);
+    }
+  }
+  arc.close();
+}
+
+// Telefono cargaTelefonos(string);
+// Direccion cargaDirecciones(string);
+Persona * Lista::cargaPersona(string p) {
+  Persona *persona = new Persona;
+  istringstream arc(p);
+  string agenda;
+  sregex_iterator i;
+
+    while (getline(arc, agenda)) {
+    regex rp_valor("<(\\w*)>(.*)</.*>");
+    for (i = sregex_iterator(agenda.begin(), agenda.end(), rp_valor);
+         i != std::sregex_iterator(); ++i) {
+      smatch m = *i;
+
+      string etiqueta = m[1];
+      string valor = m[2];
+
+      if (etiqueta == "Nombres") {
+        persona->setNombre(valor);
+      } else if (etiqueta == "Apellidos") {
+        persona->setApellido(valor);
+      } else if (etiqueta == "FechaNacimiento") {
+        persona->setFechaNacimiento(valor);
+      } else if (etiqueta == "Sexo") {
+        persona->setSexo(valor == "1" ? "F" : valor == "2" ? "M" : "Queer");
+      } else if (etiqueta == "NumeroDocumento") {
+        persona->setNumeroDocumento(valor);
+      } else if (etiqueta == "TipoDocumento") {
+        if (valor == "1")
+          persona->setTipoDocumento("CI");
+        else if (valor == "2")
+          persona->setTipoDocumento("RUC");
+        else
+          persona->setTipoDocumento("Otro");
+      } else if (etiqueta == "EstadoCivil") {
+        if (valor == "1")
+          persona->setEstadoCivil("Soltero/a");
+        else if (valor == "2")
+          persona->setEstadoCivil("Casado/a");
+        else if (valor == "3")
+          persona->setEstadoCivil("Viudo/a");
+        else if (valor == "4")
+          persona->setEstadoCivil("Divorciado/a");
+        else if (valor == "5")
+          persona->setEstadoCivil("Divorciado/a");
+      } else if (etiqueta == "Nacionalidad") {
+        persona->setNacionalidad(valor);
+      } else if (etiqueta == "Email") {
+        persona->setEmail(valor);
+      }
+    }
+  }
+
+  return persona;
+}
+
+void Lista::Insertar() { cout << "INSERTAR" << endl; }
 
 void Lista::Borrar() { cout << "BORRAR" << endl; }
 
@@ -32,14 +125,14 @@ void Lista::Consultar() {
   cin >> cod;
 
   while (temp != NULL) {
-    if (temp->dato.codigo == cod) {
+    if (temp->dato.getCodigo() == cod) {
       ban = true;
-      cout << temp->dato.nombre;
+      cout << temp->dato.getNombre();
       break;
     }
     temp = temp->sig;
   }
-  if(!ban) cout << "No existe ninguna persona con ese código";
+  if (!ban) cout << "No existe ninguna persona con ese código";
 }
 
 void Lista::AlmacenarDatos() {
@@ -48,12 +141,12 @@ void Lista::AlmacenarDatos() {
   if (primero == NULL) {
     primero = nuevo;
     primero->sig = NULL;
-    primero->atras = NULL;
+    primero->ant = NULL;
     ultimo->primero;
   } else {
     ultimo->sig = nuevo;
     nuevo->sig = NULL;
-    nuevo->atras = ultimo;
+    nuevo->ant = ultimo;
     ultimo = nuevo;
   }
 }
@@ -88,7 +181,24 @@ void Lista::Navegacion() {
   }
 }
 
-int main() {
-  Lista L;
-  L.Navegacion();
+void Lista::Mostrar() {
+  Nodo *Curr;
+  Curr = primero;
+  if (primero == NULL)
+    cout << "La lista está vacía \n";
+  else
+    while (Curr != NULL) {
+      cout << Curr->dato.getCodigo() << endl;
+      cout << Curr->dato.getNombre() << endl;
+      cout << Curr->dato.getApellido() << endl;
+      cout << Curr->dato.getFechaNacimiento() << endl;
+      cout << Curr->dato.getSexo() << endl;
+      cout << Curr->dato.getNumeroDocumento() << endl;
+      cout << Curr->dato.getTipoDocumento() << endl;
+      cout << Curr->dato.getEstadoCivil() << endl;
+      cout << Curr->dato.getNacionalidad() << endl;
+      cout << Curr->dato.getEmail() << endl;
+      Curr = Curr->sig;
+    }
+  cout << endl;
 }

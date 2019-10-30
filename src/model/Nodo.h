@@ -1,13 +1,17 @@
-#include <string>
-using namespace std;
+#include "../model/Persona.cpp"
+
+#ifndef NODO_H
+#define NODO_H
 
 class Nodo {
  public:
   Nodo() {};
   ~Nodo(){};
-  string dato;
+  Persona dato;
   Nodo *sig;
-  Nodo *atras;
+  Nodo *ant;
   Nodo *primero;
   Nodo *ultimo;
 };
+
+#endif 

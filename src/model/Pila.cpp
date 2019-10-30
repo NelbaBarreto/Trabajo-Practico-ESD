@@ -1,6 +1,9 @@
 #include <string>
-#include "NodoPila.h"
 using namespace std;
+#include "NodoPila.h"
+
+#ifndef PILA_H
+#define PILA_H
 
 class Pila {
  public:
@@ -76,3 +79,5 @@ int Pila::isBalanced() {
 
   if (isEmpty()) return 1;
 }
+
+#endif 
