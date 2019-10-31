@@ -77,11 +77,11 @@ Direccion *Lista::cargaDirecciones(string p) {
         direccion->setCalle(valor);
       } else if (etiqueta == "Numero") {
         direccion->setNumero(valor);
-      }else if (etiqueta == "E_P_N") {
+      } else if (etiqueta == "E_P_N") {
         direccion->setEpn(valor);
-      }else if (etiqueta == "Pais") {
+      } else if (etiqueta == "Pais") {
         direccion->setPais(valor);
-      }else if (etiqueta == "Region") {
+      } else if (etiqueta == "Region") {
         direccion->setRegion(valor);
       }else{
         cout<<"Propiedad de Direccion no válida. Verifique el xml.";
@@ -167,9 +167,28 @@ Persona *Lista::cargaPersona(string p) {
         persona->setNacionalidad(valor);
       } else if (etiqueta == "Email") {
         persona->setEmail(valor);
+      } else if (etiqueta == "Direcciones") {
+        ListaGenerica<Direccion> *direcciones = new ListaGenerica<Direccion>;
+        while ()
+          Direccion d;
+          d.setNumero("1");
+          d.setCalle("Tiny road");
+          d.setPais("Froggyland");
+          d.setRegion("Ps la mejor");
+          d.setEpn("Y esto k es");
+          d.setCiudad("FroggyCity");
+          direcciones->add(d);
+      }
+      } else if (etiqueta == "Telefonos") {
+        ListaGenerica<Telefono> *telefonos = new ListaGenerica<Telefono>;
+          Telefono t;
+          t.setInterno("1");
+          t.setNumero("1231232");
+          t.setTipo("1");
+          telefonos->add(t);
       } else {
-        cout << "Propiedad de Persona no válida. Verifique el xml.";
-        exit(1);
+        // cout << "Propiedad de Persona no válida. Verifique el xml.";
+        // exit(1);
       }
     }
   }

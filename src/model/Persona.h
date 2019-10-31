@@ -45,6 +45,8 @@ class Persona {
   string getEstadoCivil() { return estadoCivil; };
   string getNacionalidad() { return nacionalidad; };
   string getEmail() { return email; };
+  ListaGenerica<Direccion> getDirecciones(){return direcciones;}
+  ListaGenerica<Telefono> getTelefonos(){return telefonos;}
   int getCodigo(); 
 };
 
