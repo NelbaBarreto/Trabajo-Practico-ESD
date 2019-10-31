@@ -47,7 +47,7 @@ void Lista::Crear(string const path) {
   while (getline(arc, agenda)) {
     aux += agenda + "\n";
 
-    if (regex_search (agenda, m, CLOSE_TAG)) {
+    if (regex_search(agenda, m, CLOSE_TAG)) {
       NewNode = ObtenerNodo(cargaPersona(aux));
       Agregar(NewNode);
       aux = " ";
@@ -56,15 +56,77 @@ void Lista::Crear(string const path) {
   arc.close();
 }
 
-// Telefono cargaTelefonos(string);
-// Direccion cargaDirecciones(string);
-Persona * Lista::cargaPersona(string p) {
+Direccion *Lista::cargaDirecciones(string p) {
+  Direccion *direccion = new Direccion;
+  istringstream arc(p);
+  string persona;
+  sregex_iterator i;
+
+  while (getline(arc, persona)) {
+    regex rp_valor("<(\\w*)>(.*)</.*>");
+    for (i = sregex_iterator(persona.begin(), persona.end(), rp_valor);
+         i != std::sregex_iterator(); ++i) {
+      smatch m = *i;
+
+      string etiqueta = m[1];
+      string valor = m[2];
+
+      if (etiqueta == "Ciudad") {
+        telefono->setNombre(valor);
+      } else if (etiqueta == "Calle") {
+        telefono->setApellido(valor);
+      } else if (etiqueta == "Numero") {
+        telefono->setFechaNacimiento(valor);
+      }else if (etiqueta == "E_P_N") {
+        telefono->setFechaNacimiento(valor);
+      }else if (etiqueta == "Pais") {
+        telefono->setFechaNacimiento(valor);
+      }else if (etiqueta == "Region") {
+        telefono->setFechaNacimiento(valor);
+      }else{
+        cout<<"Propiedad de Direccion no válida. Verifique el xml."
+      }
+    }
+  }
+
+  return direccion;
+}
+Telefono *Lista::cargaTelefonos(string p) {
+  Telefono *telefono = new Telefono;
+  istringstream arc(p);
+  string persona;
+  sregex_iterator i;
+
+  while (getline(arc, persona)) {
+    regex rp_valor("<(\\w*)>(.*)</.*>");
+    for (i = sregex_iterator(persona.begin(), persona.end(), rp_valor);
+         i != std::sregex_iterator(); ++i) {
+      smatch m = *i;
+
+      string etiqueta = m[1];
+      string valor = m[2];
+
+      if (etiqueta == "Tipo") {
+        telefono->setNombre(valor);
+      } else if (etiqueta == "Numero") {
+        telefono->setApellido(valor);
+      } else if (etiqueta == "Interno") {
+        telefono->setFechaNacimiento(valor);
+      } else {
+        cout << "Propiedad de Telefono no válida. Verifique el xml." exit(1);
+      }
+    }
+  }
+
+  return telefono;
+}
+Persona *Lista::cargaPersona(string p) {
   Persona *persona = new Persona;
   istringstream arc(p);
   string agenda;
   sregex_iterator i;
 
-    while (getline(arc, agenda)) {
+  while (getline(arc, agenda)) {
     regex rp_valor("<(\\w*)>(.*)</.*>");
     for (i = sregex_iterator(agenda.begin(), agenda.end(), rp_valor);
          i != std::sregex_iterator(); ++i) {
@@ -105,6 +167,9 @@ Persona * Lista::cargaPersona(string p) {
         persona->setNacionalidad(valor);
       } else if (etiqueta == "Email") {
         persona->setEmail(valor);
+      } else {
+        cout << "Propiedad de Persona no válida. Verifique el xml.";
+        exit(1);
       }
     }
   }

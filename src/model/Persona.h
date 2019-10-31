@@ -1,3 +1,7 @@
+#include "ListaGenerica.cpp"
+#include "Direccion.cpp"
+#include "Telefono.cpp"
+
 #include <string>
 using namespace std;
 
@@ -15,8 +19,8 @@ class Persona {
   string estadoCivil;
   string nacionalidad;
   string email;
-  // Lista direcciones;
-  // Lista telefonos;
+  ListaGenerica<Direccion> direcciones;
+  ListaGenerica<Telefono> telefonos;
  public:
   Persona();
   ~Persona();
@@ -29,8 +33,9 @@ class Persona {
   void setEstadoCivil(string);
   void setNacionalidad(string);
   void setEmail(string);
-  // void setDirecciones(Lista direcciones);
-  // void setTelefonos(Lista telefonos);
+  void setDirecciones(ListaGenerica<Direccion> direcciones);
+  void setTelefonos(ListaGenerica<Telefono> telefonos);
+  
   string getNombre() { return nombre; };
   string getApellido() { return apellido; };
   string getFechaNacimiento() { return fechaNacimiento; };

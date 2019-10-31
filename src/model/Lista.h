@@ -1,6 +1,6 @@
+#include <fstream>
 #include <string>
 #include "Nodo.h"
-#include <fstream>
 using namespace std;
 
 #ifndef LISTA_H
@@ -18,6 +18,8 @@ class Lista {
   void Consultar();
   void ImprimirOpciones();
   void AlmacenarDatos();
+  Direccion* cargaDirecciones(string);
+  Telefono* cargaTelefonos(string);
 
  public:
   Lista();
@@ -27,11 +29,11 @@ class Lista {
   Nodo* sig;
   Nodo* ant;
   Nodo* ObtenerNodo(Persona*);
-  Persona *cargaPersona(string);
+  Persona* cargaPersona(string);
   void Crear(string const);
   void Agregar(Nodo*);
   void Navegacion();
   void Mostrar();
 };
 
-#endif 
+#endif
