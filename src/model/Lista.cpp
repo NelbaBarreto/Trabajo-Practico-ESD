@@ -84,7 +84,7 @@ Direccion *Lista::cargaDirecciones(string p) {
       }else if (etiqueta == "Region") {
         direccion->setRegion(valor);
       }else{
-        cout<<"Propiedad de Direccion no válida. Verifique el xml."
+        cout<<"Propiedad de Direccion no válida. Verifique el xml.";
       }
     }
   }
@@ -113,7 +113,7 @@ Telefono *Lista::cargaTelefonos(string p) {
       } else if (etiqueta == "Interno") {
         telefono->setInterno(valor);
       } else {
-        cout << "Propiedad de Telefono no válida. Verifique el xml." exit(1);
+        cout << "Propiedad de Telefono no válida. Verifique el xml."; exit(1);
       }
     }
   }
