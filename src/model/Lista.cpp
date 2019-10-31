@@ -72,17 +72,17 @@ Direccion *Lista::cargaDirecciones(string p) {
       string valor = m[2];
 
       if (etiqueta == "Ciudad") {
-        telefono->setNombre(valor);
+        direccion->setCiudad(valor);
       } else if (etiqueta == "Calle") {
-        telefono->setApellido(valor);
+        direccion->setCalle(valor);
       } else if (etiqueta == "Numero") {
-        telefono->setFechaNacimiento(valor);
+        direccion->setNumero(valor);
       }else if (etiqueta == "E_P_N") {
-        telefono->setFechaNacimiento(valor);
+        direccion->setEpn(valor);
       }else if (etiqueta == "Pais") {
-        telefono->setFechaNacimiento(valor);
+        direccion->setPais(valor);
       }else if (etiqueta == "Region") {
-        telefono->setFechaNacimiento(valor);
+        direccion->setRegion(valor);
       }else{
         cout<<"Propiedad de Direccion no válida. Verifique el xml."
       }
@@ -107,11 +107,11 @@ Telefono *Lista::cargaTelefonos(string p) {
       string valor = m[2];
 
       if (etiqueta == "Tipo") {
-        telefono->setNombre(valor);
+        telefono->setTipo(valor);
       } else if (etiqueta == "Numero") {
-        telefono->setApellido(valor);
+        telefono->setNumero(valor);
       } else if (etiqueta == "Interno") {
-        telefono->setFechaNacimiento(valor);
+        telefono->setInterno(valor);
       } else {
         cout << "Propiedad de Telefono no válida. Verifique el xml." exit(1);
       }
