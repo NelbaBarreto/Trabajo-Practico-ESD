@@ -1,4 +1,4 @@
-#include "../model/Persona.cpp"
+#include "../model/Persona.h"
 
 #ifndef NODO_H
 #define NODO_H

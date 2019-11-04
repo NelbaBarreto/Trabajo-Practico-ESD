@@ -1,27 +1,7 @@
-#include <string>
-#include "NodoGenerico.cpp"
-using namespace std;
+#include "ListaGenerica.h"
 
 template <class T>
-class ListaGenerica {
- private:
-  int size = 0;
-
- public:
-  NodoGenerico<T> *first;
-  NodoGenerico<T> *last;
-  ListaGenerica<T>() {
-    first = NULL;
-    last = NULL;
-  }
-
-  void add(T data);
-  T get(int index);
-  int getSize() { return size; };
-};
-
-template <class T>
-void ListaGenerica<T>::add(T data) {
+void ListaGenerica<T>::add(T* data) {
   if (first == NULL) {
     first = new NodoGenerico<T>;
     first->data = data;

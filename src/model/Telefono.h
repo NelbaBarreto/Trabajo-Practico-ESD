@@ -1,5 +1,9 @@
-#include <string>
+
+#include <cstring>
 using namespace std;
+
+#ifndef TELEFONO_H
+#define TELEFONO_H
 
 class Telefono {
  private:
@@ -8,7 +12,7 @@ class Telefono {
   string interno;
 
  public:
-  Telefono(/* args */);
+  Telefono();
   ~Telefono();
   void setTipo(string);
   void setNumero(string);
@@ -19,6 +23,4 @@ class Telefono {
   string getInterno();
 };
 
-Telefono::Telefono(/* args */) {}
-
-Telefono::~Telefono() {}
+#endif

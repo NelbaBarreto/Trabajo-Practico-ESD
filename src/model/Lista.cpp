@@ -1,5 +1,6 @@
 #include "Lista.h"
 #include "../utils/funciones.cpp"
+#include "./Persona.h"
 #include "iostream"
 using namespace std;
 
@@ -36,7 +37,7 @@ void Lista::Agregar(Nodo *NewNode) {
 }
 
 void Lista::Crear(string const path) {
-  string agenda, aux;
+  string persona, aux;
   Nodo *NewNode;
 
   sregex_iterator i;
@@ -44,26 +45,26 @@ void Lista::Crear(string const path) {
   regex CLOSE_TAG("</Persona>");
   smatch m;
 
-  while (getline(arc, agenda)) {
-    aux += agenda + "\n";
+  while (getline(arc, persona)) {
+    aux += persona + "\n";
 
-    if (regex_search(agenda, m, CLOSE_TAG)) {
+    if (regex_search(persona, m, CLOSE_TAG)) {
       NewNode = ObtenerNodo(cargaPersona(aux));
       Agregar(NewNode);
-      aux = " ";
+      aux = "";
     }
   }
   arc.close();
 }
 
-Direccion *Lista::cargaDirecciones(string p) {
+Direccion *Lista::cargaDireccion(string p) {
   Direccion *direccion = new Direccion;
   istringstream arc(p);
   string persona;
   sregex_iterator i;
+  regex rp_valor("<(\\w*)>(.*)</.*>");
 
   while (getline(arc, persona)) {
-    regex rp_valor("<(\\w*)>(.*)</.*>");
     for (i = sregex_iterator(persona.begin(), persona.end(), rp_valor);
          i != std::sregex_iterator(); ++i) {
       smatch m = *i;
@@ -83,15 +84,16 @@ Direccion *Lista::cargaDirecciones(string p) {
         direccion->setPais(valor);
       } else if (etiqueta == "Region") {
         direccion->setRegion(valor);
-      }else{
-        cout<<"Propiedad de Direccion no válida. Verifique el xml.";
+      } else {
+        cout << "Propiedad de Direccion no válida. Verifique el xml.";
+        exit(1);
       }
     }
   }
 
   return direccion;
 }
-Telefono *Lista::cargaTelefonos(string p) {
+Telefono *Lista::cargaTelefono(string p) {
   Telefono *telefono = new Telefono;
   istringstream arc(p);
   string persona;
@@ -113,7 +115,8 @@ Telefono *Lista::cargaTelefonos(string p) {
       } else if (etiqueta == "Interno") {
         telefono->setInterno(valor);
       } else {
-        cout << "Propiedad de Telefono no válida. Verifique el xml."; exit(1);
+        cout << "Propiedad de Telefono no válida. Verifique el xml.";
+        exit(1);
       }
     }
   }
@@ -122,16 +125,26 @@ Telefono *Lista::cargaTelefonos(string p) {
 }
 Persona *Lista::cargaPersona(string p) {
   Persona *persona = new Persona;
+  ListaGenerica<Direccion> *direcciones;
+  Direccion *direccion;
+  ListaGenerica<Telefono> *telefonos;
+  Telefono *telefono;
   istringstream arc(p);
   string agenda;
   sregex_iterator i;
 
+  bool banDir = false;
+  bool banTel = false;
+  string strDir = "";
+  string strTel = "";
+
   while (getline(arc, agenda)) {
-    regex rp_valor("<(\\w*)>(.*)</.*>");
+    regex rp_valor("<[/]?(\\w*)>(.*)?(</.*>)?");
     for (i = sregex_iterator(agenda.begin(), agenda.end(), rp_valor);
          i != std::sregex_iterator(); ++i) {
       smatch m = *i;
 
+      string match = m[0];
       string etiqueta = m[1];
       string valor = m[2];
 
@@ -168,27 +181,31 @@ Persona *Lista::cargaPersona(string p) {
       } else if (etiqueta == "Email") {
         persona->setEmail(valor);
       } else if (etiqueta == "Direcciones") {
-        ListaGenerica<Direccion> *direcciones = new ListaGenerica<Direccion>;
-        while ()
-          Direccion d;
-          d.setNumero("1");
-          d.setCalle("Tiny road");
-          d.setPais("Froggyland");
-          d.setRegion("Ps la mejor");
-          d.setEpn("Y esto k es");
-          d.setCiudad("FroggyCity");
-          direcciones->add(d);
-      }
+        direcciones = new ListaGenerica<Direccion>;
+        banDir = true;
       } else if (etiqueta == "Telefonos") {
-        ListaGenerica<Telefono> *telefonos = new ListaGenerica<Telefono>;
-          Telefono t;
-          t.setInterno("1");
-          t.setNumero("1231232");
-          t.setTipo("1");
-          telefonos->add(t);
-      } else {
-        // cout << "Propiedad de Persona no válida. Verifique el xml.";
-        // exit(1);
+        telefonos = new ListaGenerica<Telefono>;
+      }
+
+      if (banDir) {
+
+        if( SIZE_MAX != match.find("</Direccion>") ){
+          cout << endl << strDir << endl;
+          direcciones->add(cargaDireccion(strDir));
+          strDir = "";
+        }
+        strDir = strDir + match;
+      }
+
+      if (banTel) {
+        strTel = strTel + match;
+      }
+
+      if (match == "</Direcciones>"){
+        banDir = false;
+      }
+      if (match == "</Telefonos>"){
+        banDir = false;
       }
     }
   }
@@ -284,7 +301,7 @@ void Lista::Mostrar() {
       cout << Curr->dato.getEstadoCivil() << endl;
       cout << Curr->dato.getNacionalidad() << endl;
       cout << Curr->dato.getEmail() << endl;
-      cout << endl << endl << endl;
+      cout << endl << endl;
       Curr = Curr->sig;
     }
   cout << endl;

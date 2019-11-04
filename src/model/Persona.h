@@ -1,9 +1,12 @@
-#include "ListaGenerica.cpp"
-#include "Direccion.cpp"
-#include "Telefono.cpp"
+#include "ListaGenerica.h"
+#include "Direccion.h"
+#include "Telefono.h"
 
-#include <string>
+#include <cstring>
 using namespace std;
+
+#ifndef PERSONA_H
+#define PERSONA_H
 
 class Persona {
  private:
@@ -49,5 +52,4 @@ class Persona {
   ListaGenerica<Telefono> getTelefonos(){return telefonos;}
   int getCodigo(); 
 };
-
-
+#endif

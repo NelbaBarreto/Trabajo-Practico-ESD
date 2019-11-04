@@ -11,7 +11,8 @@ Persona::Persona() {
   estadoCivil = "";
   nacionalidad = "";
   email = "";
-  codigo = COD_ID++;
+  codigo = COD_ID;
+  COD_ID = COD_ID + 1;
 }
 
 Persona::~Persona() {}

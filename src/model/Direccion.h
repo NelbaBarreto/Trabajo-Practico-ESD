@@ -1,5 +1,9 @@
-#include <string>
+
+#include <cstring>
 using namespace std;
+
+#ifndef Direccion_h
+#define Direccion_h
 
 class Direccion {
  private:
@@ -30,3 +34,5 @@ class Direccion {
 
 Direccion::Direccion() {}
 Direccion::~Direccion() {}
+
+#endif

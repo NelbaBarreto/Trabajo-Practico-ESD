@@ -1,7 +1,7 @@
 #include <iostream>  
 #include <fstream>
 #include <sstream>
-#include <string>    
+#include <cstring>    
 #include <regex>
 #include "../model/Pila.cpp"
 using namespace std;

@@ -1,5 +1,5 @@
 #include <fstream>
-#include <string>
+#include <cstring>
 #include "Nodo.h"
 using namespace std;
 
@@ -18,8 +18,8 @@ class Lista {
   void Consultar();
   void ImprimirOpciones();
   void AlmacenarDatos();
-  Direccion* cargaDirecciones(string);
-  Telefono* cargaTelefonos(string);
+  Direccion* cargaDireccion(string);
+  Telefono* cargaTelefono(string);
 
  public:
   Lista();

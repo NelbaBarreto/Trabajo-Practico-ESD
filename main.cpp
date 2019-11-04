@@ -1,22 +1,7 @@
 #include <iostream>
-#include <string>
+#include <cstring>
 #include "src/utils/funciones.cpp"
-#ifndef LISTA
 #include "src/model/Lista.cpp"
-#endif
-#ifndef DIRECCION
-#define DIRECCION
-#endif
-#ifndef TELEFONO
-#define TELEFONO
-#endif
-#ifndef PERSONA
-#define PERSONA
-#endif
-//#include "src/model/Lista.cpp"
-// #include "src/model/Direccion.cpp"
-// #include "src/model/Telefono.cpp"
-// #include "src/model/Persona.cpp"
 
 using namespace std;
 
