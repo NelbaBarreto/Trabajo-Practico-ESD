@@ -16,6 +16,7 @@ class Lista {
   void Borrar();
   void Modificar();
   void Consultar();
+  void Ordenar();
   void ImprimirOpciones();
   void AlmacenarDatos();
   Direccion* cargaDireccion(string);

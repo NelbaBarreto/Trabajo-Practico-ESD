@@ -4,7 +4,7 @@
 #include "iostream"
 using namespace std;
 
-Lista::Lista() { primero = ultimo = NULL; }
+Lista::Lista() { primero = ultimo = sig = ant = NULL; }
 
 Lista::~Lista() {}
 
@@ -34,6 +34,7 @@ void Lista::Agregar(Nodo *NewNode) {
     NewNode->ant = ultimo;
     ultimo = NewNode;
   }
+  Ordenar();
 }
 
 void Lista::Crear(string const path) {
@@ -55,6 +56,33 @@ void Lista::Crear(string const path) {
     }
   }
   arc.close();
+}
+
+void Lista::Ordenar() {
+  Nodo *temp;
+  temp = primero;
+
+  string tempdato;
+  int contador = 0;
+  while (temp) {
+    temp = temp->sig;
+    contador++;
+  }
+  temp = primero;
+
+  for (int j = 0; j < contador; j++) {
+    while (temp->sig) {
+      if (temp->dato.getApellido() > temp->sig->dato.getApellido()) {
+        tempdato = temp->dato.getApellido();
+        temp->dato.getApellido() = temp->sig->dato.getApellido();
+        temp->sig->dato.getApellido() = tempdato;
+        temp = temp->sig;
+      } else {
+        temp = temp->sig;
+      }
+    }
+    temp = primero;
+  }
 }
 
 Direccion *Lista::cargaDireccion(string p) {
@@ -188,8 +216,7 @@ Persona *Lista::cargaPersona(string p) {
       }
 
       if (banDir) {
-
-        if( SIZE_MAX != match.find("</Direccion>") ){
+        if (SIZE_MAX != match.find("</Direccion>")) {
           cout << endl << strDir << endl;
           direcciones->add(cargaDireccion(strDir));
           strDir = "";
@@ -201,10 +228,10 @@ Persona *Lista::cargaPersona(string p) {
         strTel = strTel + match;
       }
 
-      if (match == "</Direcciones>"){
+      if (match == "</Direcciones>") {
         banDir = false;
       }
-      if (match == "</Telefonos>"){
+      if (match == "</Telefonos>") {
         banDir = false;
       }
     }
