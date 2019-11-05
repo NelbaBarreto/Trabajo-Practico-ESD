@@ -102,7 +102,7 @@ Direccion *Lista::cargaDireccion(string p) {
 
       string etiqueta = m[1];
       string valor = m[2];
-
+      
       if (etiqueta == "Ciudad") {
         direccion->setCiudad(valor);
       } else if (etiqueta == "Calle") {
@@ -220,11 +220,10 @@ Persona *Lista::cargaPersona(string p) {
 
       if (banDir) {
         if (SIZE_MAX != match.find("</Direccion>")) {
-          cout << endl << strDir << endl;
           direcciones->add(cargaDireccion(strDir));
           strDir = "";
         }
-        strDir = strDir + match;
+        strDir = strDir + match + "\n";
       }
 
       if (banTel) {
