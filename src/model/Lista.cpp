@@ -1,6 +1,9 @@
 #include "Lista.h"
 #include "../utils/funciones.cpp"
-#include "./Persona.h"
+#include "./Persona.cpp"
+#include "./Telefono.cpp"
+#include "./ListaGenerica.cpp"
+#include "./Direccion.cpp"
 #include "iostream"
 using namespace std;
 
