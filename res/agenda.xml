@@ -68,4 +68,32 @@
       </Telefono>
     </Telefonos>
   </Persona>
+  <Persona>
+    <Nombres>PEPE</Nombres>
+    <Apellidos>GRILLO</Apellidos>
+    <FechaNacimiento>12.13.1666</FechaNacimiento>
+    <Sexo>3</Sexo>
+    <NumeroDocumento>5424424</NumeroDocumento>
+    <TipoDocumento>1</TipoDocumento>
+    <EstadoCivil>1</EstadoCivil>
+    <Nacionalidad>Paraguaya</Nacionalidad>
+    <Email>pepe@grillo.com</Email>
+    <Direcciones>
+      <Direccion>
+        <Ciudad>Froggyland</Ciudad>
+        <Calle>Everywhere</Calle>
+        <Numero>398</Numero>
+        <E_P_N>""</E_P_N>
+        <Pais>PY</Pais>
+        <Region>Central</Region>
+      </Direccion>
+    </Direcciones>
+    <Telefonos>
+      <Telefono>
+        <Tipo>1</Tipo>
+        <Numero>0981111111</Numero>
+        <Interno>""</Interno>
+      </Telefono>
+    </Telefonos>
+  </Persona>
 </Agenda>

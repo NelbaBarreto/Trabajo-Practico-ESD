@@ -1,5 +1,5 @@
 
-#include <cstring>
+#include <string>
 using namespace std;
 
 #ifndef Direccion_h

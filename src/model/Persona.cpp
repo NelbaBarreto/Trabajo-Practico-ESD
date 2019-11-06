@@ -12,7 +12,7 @@ Persona::Persona() {
   nacionalidad = "";
   email = "";
   codigo = COD_ID;
-  COD_ID = COD_ID + 1;
+  COD_ID++;
 }
 
 Persona::~Persona() {}
@@ -37,3 +37,5 @@ void Persona::setNacionalidad(string nacionalidad) {
 }
 void Persona::setEmail(string email) { this->email = email; }
 int Persona::getCodigo() { return codigo; }
+
+void Persona::setDirecciones(ListaGenerica<Direccion> direcciones) { this->direcciones = direcciones; }

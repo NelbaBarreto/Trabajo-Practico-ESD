@@ -48,8 +48,23 @@ class Persona {
   string getEstadoCivil() { return estadoCivil; };
   string getNacionalidad() { return nacionalidad; };
   string getEmail() { return email; };
-  ListaGenerica<Direccion> getDirecciones(){return direcciones;}
-  ListaGenerica<Telefono> getTelefonos(){return telefonos;}
+  ListaGenerica<Direccion> getDirecciones() { return direcciones; };
+  ListaGenerica<Telefono> getTelefonos() { return telefonos; }
   int getCodigo(); 
+
+  Persona operator= (const Persona &persona) {
+
+    cout << " AQUI!"
+    this->nombre = persona.nombre;
+    this->apellido = persona.apellido;
+    this->fechaNacimiento = persona.fechaNacimiento;
+    this->sexo = persona.sexo;
+    this->numeroDocumento = persona.numeroDocumento;
+    this->tipoDocumento = persona.tipoDocumento;
+    this->estadoCivil = persona.estadoCivil;
+    this->nacionalidad = persona.nacionalidad;
+    this->email = persona.email;
+    return *this;
+  }
 };
 #endif
