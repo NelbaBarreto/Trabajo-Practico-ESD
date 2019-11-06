@@ -1,7 +1,7 @@
-#include <iostream>
 #include <cstring>
-#include "src/utils/funciones.cpp"
+#include <iostream>
 #include "src/model/Lista.cpp"
+#include "src/utils/funciones.cpp"
 
 using namespace std;
 
@@ -14,6 +14,8 @@ int main() {
     cout << "Error: el archivo xml no es válido.";
     exit(1);
   }
+
+  cout<< "Ok!"<<endl;
 
   L.Crear(ARCHIVO_PATH);
   L.Mostrar();

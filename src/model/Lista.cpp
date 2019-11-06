@@ -1,9 +1,9 @@
 #include "Lista.h"
 #include "../utils/funciones.cpp"
+#include "./Direccion.cpp"
+#include "./ListaGenerica.cpp"
 #include "./Persona.cpp"
 #include "./Telefono.cpp"
-#include "./ListaGenerica.cpp"
-#include "./Direccion.cpp"
 #include "iostream"
 using namespace std;
 
@@ -19,11 +19,30 @@ void Lista::Primero() {}
 
 void Lista::Ultimo() {}
 
-Nodo *Lista::ObtenerNodo(Persona *persona) {
+void mostrarDirecciones(ListaGenerica<Direccion> direcciones) {
+  NodoGenerico<Direccion> *Curr;
+  Curr = direcciones.first;
+  if (direcciones.first == NULL)
+    cout << "No hay ninguna dirección \n";
+  else
+    while (Curr != NULL) {
+      cout << Curr->data.getCiudad() << endl;
+      cout << Curr->data.getCalle() << endl;
+      cout << Curr->data.getNumero() << endl;
+      cout << Curr->data.getEpn() << endl;
+      cout << Curr->data.getPais() << endl;
+      cout << Curr->data.getRegion() << endl;
+      cout << endl << endl;
+      Curr = Curr->next;
+    }
+  cout << endl;
+}
+
+Nodo *Lista::ObtenerNodo(string aux) {
   Nodo *Newnode;
   ifstream archivo;
   Newnode = new Nodo;
-  Newnode->dato = *persona;
+  Newnode->dato = *cargaPersona(aux);
   Newnode->sig = Newnode->ant = NULL;
   return (Newnode);
 }
@@ -53,7 +72,9 @@ void Lista::Crear(string const path) {
     aux += persona + "\n";
 
     if (regex_search(persona, m, CLOSE_TAG)) {
-      NewNode = ObtenerNodo(cargaPersona(aux));
+      // cout << "Lista->crear->cargaPersona(): " << cargaPersona(aux)->getCodigo()
+      //      << endl;
+      NewNode = ObtenerNodo(aux);
       Agregar(NewNode);
       aux = "";
     }
@@ -102,7 +123,7 @@ Direccion *Lista::cargaDireccion(string p) {
 
       string etiqueta = m[1];
       string valor = m[2];
-      
+
       if (etiqueta == "Ciudad") {
         direccion->setCiudad(valor);
       } else if (etiqueta == "Calle") {
@@ -154,8 +175,10 @@ Telefono *Lista::cargaTelefono(string p) {
 
   return telefono;
 }
-Persona *Lista::cargaPersona(string p) {
+Persona * Lista::cargaPersona(string p) {
   Persona *persona = new Persona;
+
+  cout << "Lista->cargaPersona->new Persona: " << persona->getCodigo() << endl;
   ListaGenerica<Direccion> *direcciones;
   Direccion *direccion;
   ListaGenerica<Telefono> *telefonos;
@@ -164,18 +187,12 @@ Persona *Lista::cargaPersona(string p) {
   string agenda;
   sregex_iterator i;
 
-  bool banDir = false;
-  bool banTel = false;
-  string strDir = "";
-  string strTel = "";
-
   while (getline(arc, agenda)) {
-    regex rp_valor("<[/]?(\\w*)>(.*)?(</.*>)?");
+    regex rp_valor("<(\\w*)>(.*)</.*>");
     for (i = sregex_iterator(agenda.begin(), agenda.end(), rp_valor);
          i != std::sregex_iterator(); ++i) {
       smatch m = *i;
 
-      string match = m[0];
       string etiqueta = m[1];
       string valor = m[2];
 
@@ -212,33 +229,14 @@ Persona *Lista::cargaPersona(string p) {
       } else if (etiqueta == "Email") {
         persona->setEmail(valor);
       } else if (etiqueta == "Direcciones") {
-        direcciones = new ListaGenerica<Direccion>;
-        banDir = true;
+        // direcciones = new ListaGenerica<Direccion>;
       } else if (etiqueta == "Telefonos") {
-        telefonos = new ListaGenerica<Telefono>;
-      }
-
-      if (banDir) {
-        if (SIZE_MAX != match.find("</Direccion>")) {
-          direcciones->add(cargaDireccion(strDir));
-          strDir = "";
-        }
-        strDir = strDir + match + "\n";
-      }
-
-      if (banTel) {
-        strTel = strTel + match;
-      }
-
-      if (match == "</Direcciones>") {
-        banDir = false;
-      }
-      if (match == "</Telefonos>") {
-        banDir = false;
+        // telefonos = new ListaGenerica<Telefono>;
       }
     }
   }
-
+  // mostrarDirecciones(*direcciones);
+  // persona->setDirecciones(*direcciones);
   return persona;
 }
 
@@ -318,7 +316,7 @@ void Lista::Mostrar() {
   Curr = primero;
   if (primero == NULL)
     cout << "La lista está vacía \n";
-  else
+  else {
     while (Curr != NULL) {
       cout << Curr->dato.getCodigo() << endl;
       cout << Curr->dato.getNombre() << endl;
@@ -330,8 +328,10 @@ void Lista::Mostrar() {
       cout << Curr->dato.getEstadoCivil() << endl;
       cout << Curr->dato.getNacionalidad() << endl;
       cout << Curr->dato.getEmail() << endl;
+      // mostrarDirecciones(Curr->dato.getDirecciones());
       cout << endl << endl;
       Curr = Curr->sig;
     }
+  }
   cout << endl;
 }

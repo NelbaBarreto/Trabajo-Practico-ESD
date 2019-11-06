@@ -19,6 +19,7 @@ bool validarXml(string path) {
   string agenda;
   sregex_iterator i;
 
+  cout<<"Validando..."<<endl;
   fstream arc(path);
 
   if (!arc) {
