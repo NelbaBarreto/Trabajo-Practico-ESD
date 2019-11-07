@@ -19,6 +19,8 @@ int main() {
 
   L.Crear(ARCHIVO_PATH);
   L.Mostrar();
+  L.Navegacion();
+
 
   return 0;
 }

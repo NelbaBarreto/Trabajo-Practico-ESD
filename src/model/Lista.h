@@ -29,6 +29,7 @@ class Lista {
   Nodo* ultimo;
   Nodo* sig;
   Nodo* ant;
+  Nodo* actual;
   Nodo* ObtenerNodo(string);
   Persona* cargaPersona(string);
   void Crear(string const);

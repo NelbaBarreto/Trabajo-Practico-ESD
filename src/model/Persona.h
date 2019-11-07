@@ -53,8 +53,6 @@ class Persona {
   int getCodigo(); 
 
   Persona operator= (const Persona &persona) {
-
-    cout << " AQUI!"
     this->nombre = persona.nombre;
     this->apellido = persona.apellido;
     this->fechaNacimiento = persona.fechaNacimiento;
