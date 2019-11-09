@@ -21,6 +21,13 @@ class Telefono {
   string getTipo();
   string getNumero();
   string getInterno();
+
+  Telefono operator=(const Telefono telefono) {
+    this->numero = telefono.numero;
+    this->tipo = telefono.tipo;
+    this->interno = telefono.interno;
+    return *this;
+  }
 };
 
 #endif

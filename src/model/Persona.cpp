@@ -38,4 +38,9 @@ void Persona::setNacionalidad(string nacionalidad) {
 void Persona::setEmail(string email) { this->email = email; }
 int Persona::getCodigo() { return codigo; }
 
-void Persona::setDirecciones(ListaGenerica<Direccion> direcciones) { this->direcciones = direcciones; }
+void Persona::setTelefonos(ListaGenerica<Telefono> *telefonos) {
+  this->telefonos = telefonos;
+}
+// void Persona::setDirecciones(ListaGenerica<Direccion> *direcciones) {
+//   this->direcciones = direcciones;
+// }

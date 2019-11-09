@@ -1,10 +1,10 @@
 #include "Lista.h"
+#include <iostream>
 #include "../utils/funciones.cpp"
 #include "./Direccion.cpp"
 #include "./ListaGenerica.cpp"
 #include "./Persona.cpp"
 #include "./Telefono.cpp"
-#include <iostream>
 using namespace std;
 
 Lista::Lista() { primero = ultimo = sig = ant = NULL; }
@@ -13,47 +13,59 @@ Lista::~Lista() {}
 
 void Lista::Siguiente() {
   actual = actual->sig;
-  cout<<actual;
+  cout << actual;
   system("pause");
 }
 
 void Lista::Anterior() {
   actual = actual->ant;
-  cout<<actual;
+  cout << actual;
   system("pause");
 }
 
 void Lista::Primero() {
-  Nodo* actual = new Nodo();
+  Nodo *actual = new Nodo();
   actual = primero;
   cout << actual;
   system("pause");
 }
 
 void Lista::Ultimo() {
-  Nodo* actual = new Nodo();
+  Nodo *actual = new Nodo();
   actual = ultimo;
   cout << actual;
   system("pause");
 }
 
-void mostrarDirecciones(ListaGenerica<Direccion> direcciones) {
-  NodoGenerico<Direccion> *Curr;
-  Curr = direcciones.first;
-  if (direcciones.first == NULL)
-    cout << "No hay ninguna dirección \n";
-  else
-    while (Curr != NULL) {
-      cout << Curr->data.getCiudad() << endl;
-      cout << Curr->data.getCalle() << endl;
-      cout << Curr->data.getNumero() << endl;
-      cout << Curr->data.getEpn() << endl;
-      cout << Curr->data.getPais() << endl;
-      cout << Curr->data.getRegion() << endl;
-      cout << endl << endl;
-      Curr = Curr->next;
-    }
-  cout << endl;
+// void mostrarDirecciones(ListaGenerica<Direccion> direcciones) {
+//   NodoGenerico<Direccion> *Curr;
+//   Curr = direcciones.first;
+//   if (direcciones.first == NULL)
+//     cout << "No hay ninguna dirección \n";
+//   else
+//     while (Curr != NULL) {
+//       cout << Curr->data.getCiudad() << endl;
+//       cout << Curr->data.getCalle() << endl;
+//       cout << Curr->data.getNumero() << endl;
+//       cout << Curr->data.getEpn() << endl;
+//       cout << Curr->data.getPais() << endl;
+//       cout << Curr->data.getRegion() << endl;
+//       cout << endl << endl;
+//       Curr = Curr->next;
+//     }
+//   cout << endl;
+// }
+void Lista::mostrarTelefonos(ListaGenerica<Telefono> *telefonos) {
+  cout << endl << "cuenta" << endl;
+  if (telefonos->getSize() == 0) {
+    cout << "No hay ningun telfono \n";
+    return;
+  }
+  for (int i = 0; i < telefonos->getSize(); i++) {
+    cout << telefonos->get(i)->getTipo() << endl;
+    cout << telefonos->get(i)->getNumero() << endl;
+    cout << telefonos->get(i)->getInterno() << endl;
+  }
 }
 
 Nodo *Lista::ObtenerNodo(string aux) {
@@ -90,8 +102,6 @@ void Lista::Crear(string const path) {
     aux += persona + "\n";
 
     if (regex_search(persona, m, CLOSE_TAG)) {
-      // cout << "Lista->crear->cargaPersona(): " << cargaPersona(aux)->getCodigo()
-      //      << endl;
       NewNode = ObtenerNodo(aux);
       Agregar(NewNode);
       aux = "";
@@ -163,15 +173,42 @@ Direccion *Lista::cargaDireccion(string p) {
 
   return direccion;
 }
-Telefono *Lista::cargaTelefono(string p) {
-  Telefono *telefono = new Telefono;
-  istringstream arc(p);
-  string persona;
-  sregex_iterator i;
+ListaGenerica<Telefono> *Lista::cargaTelefonos(string t) {
+  ListaGenerica<Telefono> *telefonos = new ListaGenerica<Telefono>;
+  istringstream arc(t);
 
-  while (getline(arc, persona)) {
+  string dir_buff = "";
+  string dir_found = "";
+
+  bool ban_dir = false;
+
+  while (getline(arc, dir_buff)) {
+    if (dir_buff.find("<Telefono")) {
+      ban_dir = true;
+    }
+
+    if (ban_dir) {
+      dir_found += dir_buff + "\n";
+    }
+
+    if (dir_buff.find("</Telefono>") != std::string::npos) {
+      telefonos->add(obtenerTelefono(dir_found));
+      dir_found = "";
+      ban_dir = false;
+    }
+  }
+
+  return telefonos;
+}
+
+Telefono *Lista::obtenerTelefono(string t) {
+  Telefono *telefono = new Telefono;
+  istringstream arc(t);
+  string direccion;
+  sregex_iterator i;
+  while (getline(arc, direccion)) {
     regex rp_valor("<(\\w*)>(.*)</.*>");
-    for (i = sregex_iterator(persona.begin(), persona.end(), rp_valor);
+    for (i = sregex_iterator(direccion.begin(), direccion.end(), rp_valor);
          i != std::sregex_iterator(); ++i) {
       smatch m = *i;
 
@@ -184,29 +221,24 @@ Telefono *Lista::cargaTelefono(string p) {
         telefono->setNumero(valor);
       } else if (etiqueta == "Interno") {
         telefono->setInterno(valor);
-      } else {
-        cout << "Propiedad de Telefono no válida. Verifique el xml.";
-        exit(1);
       }
     }
   }
 
   return telefono;
 }
-Persona * Lista::cargaPersona(string p) {
+
+Persona *Lista::cargaPersona(string p) {
   Persona *persona = new Persona;
 
-  cout << "Lista->cargaPersona->new Persona: " << persona->getCodigo() << endl;
-  ListaGenerica<Direccion> *direcciones;
   Direccion *direccion;
-  ListaGenerica<Telefono> *telefonos;
   Telefono *telefono;
   istringstream arc(p);
   string agenda;
   sregex_iterator i;
 
   while (getline(arc, agenda)) {
-    regex rp_valor("<(\\w*)>(.*)</.*>");
+    regex rp_valor("<(\\w*)>(.*</.*>)?");
     for (i = sregex_iterator(agenda.begin(), agenda.end(), rp_valor);
          i != std::sregex_iterator(); ++i) {
       smatch m = *i;
@@ -247,159 +279,160 @@ Persona * Lista::cargaPersona(string p) {
       } else if (etiqueta == "Email") {
         persona->setEmail(valor);
       } else if (etiqueta == "Direcciones") {
-        // direcciones = new ListaGenerica<Direccion>;
+        // persona->setDirecciones(cargaDirecciones(p));
       } else if (etiqueta == "Telefonos") {
-        // telefonos = new ListaGenerica<Telefono>;
+        persona->setTelefonos(cargaTelefonos(p));
       }
     }
   }
-  // mostrarDirecciones(*direcciones);
-  // persona->setDirecciones(*direcciones);
+
+  mostrarTelefonos(persona->getTelefonos());
+
   return persona;
 }
 
 void Lista::Insertar() { cout << "INSERTAR" << endl; }
 
-void Lista::Borrar() { 
-cout << "BORRAR" << endl; 
-  Nodo* actual = new Nodo();
-	actual = primero;
-	Nodo* ant = new Nodo();
-	ant = NULL;
-	bool encontrado = false;
-	int CodigoBuscado = 0;
-	cout << " Ingrese el id de la persona a Buscar para Eliminar: ";
-	cin >> CodigoBuscado;
-	if(primero!=NULL){
-		do{
-			if(actual->dato.getCodigo()==CodigoBuscado){
-				cout << "\n Persona encontrada";
-				
-				if(actual==primero){
-					primero = primero->sig;
-					primero->ant = ultimo;
-					ultimo->sig = primero;
-				}else if(actual==ultimo){
-					ultimo = ant;
-					ultimo->sig = primero;
-					primero->ant = ultimo;
-				}else{
-					ant->sig = actual->sig;
-					actual->sig->ant = ant;
-				}
-				cout << "\n Persona eliminada\n\n";
-				encontrado = true;				
-			}
-			ant = actual;
-			actual = actual->sig;
-		}while(actual!=primero && encontrado != true);
-		
-		if(!encontrado){
-			cout << "\n Persona no encontrado\n\n";
-		}
-		
-	}else{
-		cout << "\n La lista se Encuentra Vacia\n\n";
-	}
+void Lista::Borrar() {
+  cout << "BORRAR" << endl;
+  Nodo *actual = new Nodo();
+  actual = primero;
+  Nodo *ant = new Nodo();
+  ant = NULL;
+  bool encontrado = false;
+  int CodigoBuscado = 0;
+  cout << " Ingrese el id de la persona a Buscar para Eliminar: ";
+  cin >> CodigoBuscado;
+  if (primero != NULL) {
+    do {
+      if (actual->dato.getCodigo() == CodigoBuscado) {
+        cout << "\n Persona encontrada";
+
+        if (actual == primero) {
+          primero = primero->sig;
+          primero->ant = ultimo;
+          ultimo->sig = primero;
+        } else if (actual == ultimo) {
+          ultimo = ant;
+          ultimo->sig = primero;
+          primero->ant = ultimo;
+        } else {
+          ant->sig = actual->sig;
+          actual->sig->ant = ant;
+        }
+        cout << "\n Persona eliminada\n\n";
+        encontrado = true;
+      }
+      ant = actual;
+      actual = actual->sig;
+    } while (actual != primero && encontrado != true);
+
+    if (!encontrado) {
+      cout << "\n Persona no encontrada\n\n";
+    }
+
+  } else {
+    cout << "\n La lista se Encuentra Vacia\n\n";
+  }
   system("pause");
 }
 
-void Lista::Modificar() { 
-cout << "MODIFICAR" << endl;
-Nodo* actual = new Nodo();
-actual = primero;
-bool encontrado = false;
-int IDBuscado;
-string buscar,pasar;
-cout << " Ingrese el id de la persona a Buscar para Modificar: ";
-cin >> IDBuscado;
-	if(primero!=NULL){
-		do{
-			if(actual->dato.getCodigo()==IDBuscado){
-				cout << "\n Persona encontrada";
-				cout << "\n Ingrese el tipo de dato que desea modificar ";
-				cin >>buscar;
-				if("nombre" == buscar){
-                      cin >>pasar;
-                      actual->dato.setNombre(mayuscula(pasar));
-                }else if("apellido" == buscar){
-                      cin >>pasar;
-                      actual->dato.setApellido(mayuscula(pasar));
-                      Ordenar();
-                }else if("fechanacimiento" == buscar){
-                      cin >>pasar;
-                      actual->dato.setFechaNacimiento(mayuscula(pasar));
-                }else if("sexo" == buscar){
-                      cin >>pasar;
-                      actual->dato.setSexo(mayuscula(pasar));
-                }else if("numerodocumento" == buscar){
-                      cin >>pasar;
-                      actual->dato.setNumeroDocumento(mayuscula(pasar));
-                }else if("tipodocumento" == buscar){
-                      cin >>pasar;
-                      actual->dato.setTipoDocumento(mayuscula(pasar));
-                }else if("estadocivil" == buscar){
-                      cin >>pasar;
-                      actual->dato.setEstadoCivil(mayuscula(pasar));
-                }else if("nacionalidad" == buscar){
-                      cin >>pasar;
-                      actual->dato.setNacionalidad(mayuscula(pasar));
-                }else if("email" == buscar){
-                      cin >>pasar;
-                      actual->dato.setEmail(mayuscula(pasar));
-                /*}else if("direcciones" == buscar){
-                      cin >>pasar;
-                      actual->dato.setDirecciones(pasar);
-                }else if("telefonos" == buscar){
-                      cin >>pasar;
-                      actual->dato.setTelefonos(pasar);*/
-                }
-				cout << "\n Dato modificado\n\n";	
-				encontrado = true;				
-			}
-			actual = actual->sig;
-		}while(actual != primero && encontrado != true);
-		if(!encontrado){
-			cout << "\n Dato no encontrado\n\n";
-		}
-	}else{
-		cout << "\n La lista se Encuentra Vacia\n\n";
-	}
+void Lista::Modificar() {
+  cout << "MODIFICAR" << endl;
+  Nodo *actual = new Nodo();
+  actual = primero;
+  bool encontrado = false;
+  int IDBuscado;
+  string buscar, pasar;
+  cout << " Ingrese el id de la persona a Buscar para Modificar: ";
+  cin >> IDBuscado;
+  if (primero != NULL) {
+    do {
+      if (actual->dato.getCodigo() == IDBuscado) {
+        cout << "\n Persona encontrada";
+        cout << "\n Ingrese el tipo de dato que desea modificar ";
+        cin >> buscar;
+        if ("nombre" == buscar) {
+          cin >> pasar;
+          actual->dato.setNombre(mayuscula(pasar));
+        } else if ("apellido" == buscar) {
+          cin >> pasar;
+          actual->dato.setApellido(mayuscula(pasar));
+          Ordenar();
+        } else if ("fechanacimiento" == buscar) {
+          cin >> pasar;
+          actual->dato.setFechaNacimiento(mayuscula(pasar));
+        } else if ("sexo" == buscar) {
+          cin >> pasar;
+          actual->dato.setSexo(mayuscula(pasar));
+        } else if ("numerodocumento" == buscar) {
+          cin >> pasar;
+          actual->dato.setNumeroDocumento(mayuscula(pasar));
+        } else if ("tipodocumento" == buscar) {
+          cin >> pasar;
+          actual->dato.setTipoDocumento(mayuscula(pasar));
+        } else if ("estadocivil" == buscar) {
+          cin >> pasar;
+          actual->dato.setEstadoCivil(mayuscula(pasar));
+        } else if ("nacionalidad" == buscar) {
+          cin >> pasar;
+          actual->dato.setNacionalidad(mayuscula(pasar));
+        } else if ("email" == buscar) {
+          cin >> pasar;
+          actual->dato.setEmail(mayuscula(pasar));
+          // }else if("direcciones" == buscar){
+          //       cin >>pasar;
+          //       actual->dato.setDirecciones(pasar);
+          // }else if("telefonos" == buscar){
+          //       cin >>pasar;
+          //       actual->dato.setTelefonos(pasar);
+        }
+        cout << "\n Dato modificado\n\n";
+        encontrado = true;
+      }
+      actual = actual->sig;
+    } while (actual != primero && encontrado != true);
+    if (!encontrado) {
+      cout << "\n Dato no encontrado\n\n";
+    }
+  } else {
+    cout << "\n La lista se Encuentra Vacia\n\n";
+  }
   system("pause");
 }
 
 void Lista::Consultar() {
-  Nodo* actual = new Nodo();
-	actual = primero;
-	bool encontrado = false;
-	string NombreP;
-	cout << " Ingrese el nombre de la persona a Buscar: ";
-	cin >> NombreP;
-	if(primero!=NULL){
-		do{
-			if(actual->dato.getNombre()==mayuscula(NombreP)){
-				cout << "\n Persona encontrada\n\n";
-				cout <<actual->dato.getNombre()<<endl;
-        cout <<actual->dato.getApellido()<<endl;
-        cout <<actual->dato.getFechaNacimiento()<<endl;
-        cout <<actual->dato.getSexo()<<endl;
-        cout <<actual->dato.getNumeroDocumento()<<endl;
-        cout <<actual->dato.getTipoDocumento()<<endl;
-        cout <<actual->dato.getEstadoCivil()<<endl;
-        cout <<actual->dato.getNacionalidad()<<endl;
-        cout <<actual->dato.getEmail()<<endl;
-        /*cout <<actual->dato.getDirecciones()<<endl;
-        cout <<actual->dato.getTelefonos()<<endl;*/
-				encontrado = true;				
-			}
-			actual = actual->sig;
-		}while(actual != primero && encontrado != true);
-		if(!encontrado){
-			cout << "\n Persona no encontrada\n\n";
-		}
-	}else{
-		cout << "\n La lista se Encuentra Vacia\n\n";
-	}
+  Nodo *actual = new Nodo();
+  actual = primero;
+  bool encontrado = false;
+  string NombreP;
+  cout << " Ingrese el nombre de la persona a Buscar: ";
+  cin >> NombreP;
+  if (primero != NULL) {
+    do {
+      if (actual->dato.getNombre() == mayuscula(NombreP)) {
+        cout << "\n Persona encontrada\n\n";
+        cout << actual->dato.getNombre() << endl;
+        cout << actual->dato.getApellido() << endl;
+        cout << actual->dato.getFechaNacimiento() << endl;
+        cout << actual->dato.getSexo() << endl;
+        cout << actual->dato.getNumeroDocumento() << endl;
+        cout << actual->dato.getTipoDocumento() << endl;
+        cout << actual->dato.getEstadoCivil() << endl;
+        cout << actual->dato.getNacionalidad() << endl;
+        cout << actual->dato.getEmail() << endl;
+        // cout <<actual->dato.getDirecciones()<<endl;
+        // cout <<actual->dato.getTelefonos()<<endl;
+        encontrado = true;
+      }
+      actual = actual->sig;
+    } while (actual != primero && encontrado != true);
+    if (!encontrado) {
+      cout << "\n Persona no encontrada\n\n";
+    }
+  } else {
+    cout << "\n La lista se Encuentra Vacia\n\n";
+  }
   system("pause");
   /*Nodo *temp = primero;
   int cod = 0;
@@ -483,6 +516,8 @@ void Lista::Mostrar() {
       cout << Curr->dato.getEstadoCivil() << endl;
       cout << Curr->dato.getNacionalidad() << endl;
       cout << Curr->dato.getEmail() << endl;
+
+      mostrarTelefonos(Curr->dato.getTelefonos());
       // mostrarDirecciones(Curr->dato.getDirecciones());
       cout << endl << endl;
       Curr = Curr->sig;

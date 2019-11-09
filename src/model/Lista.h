@@ -1,5 +1,5 @@
-#include <fstream>
 #include <cstring>
+#include <fstream>
 #include "Nodo.h"
 using namespace std;
 
@@ -20,7 +20,8 @@ class Lista {
   void ImprimirOpciones();
   void AlmacenarDatos();
   Direccion* cargaDireccion(string);
-  Telefono* cargaTelefono(string);
+  ListaGenerica<Telefono>* cargaTelefonos(string);
+  Telefono* obtenerTelefono(string);
 
  public:
   Lista();
@@ -36,6 +37,7 @@ class Lista {
   void Agregar(Nodo*);
   void Navegacion();
   void Mostrar();
+  void mostrarTelefonos(ListaGenerica<Telefono>*);
 };
 
 #endif
