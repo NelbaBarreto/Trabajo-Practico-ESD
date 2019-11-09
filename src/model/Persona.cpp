@@ -1,5 +1,4 @@
 #include "Persona.h"
-int Persona::COD_ID = 0;
 
 Persona::Persona() {
   nombre = "";
@@ -11,12 +10,12 @@ Persona::Persona() {
   estadoCivil = "";
   nacionalidad = "";
   email = "";
-  codigo = COD_ID;
-  COD_ID++;
+  codigo = 0;
 }
 
 Persona::~Persona() {}
 
+void Persona::setCodigo(int codigo) { this->codigo = codigo; }
 void Persona::setNombre(string nombre) { this->nombre = nombre; }
 void Persona::setApellido(string apellido) { this->apellido = apellido; }
 void Persona::setFechaNacimiento(string fechaNacimiento) {
