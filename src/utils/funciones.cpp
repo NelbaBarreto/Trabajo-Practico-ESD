@@ -147,6 +147,25 @@ void Lista::Navegacion() {
   }
 }
 
+// void mostrarDirecciones(ListaGenerica<Direccion> direcciones) {
+//   NodoGenerico<Direccion> *Curr;
+//   Curr = direcciones.first;
+//   if (direcciones.first == NULL)
+//     cout << "No hay ninguna dirección \n";
+//   else
+//     while (Curr != NULL) {
+//       cout << Curr->data.getCiudad() << endl;
+//       cout << Curr->data.getCalle() << endl;
+//       cout << Curr->data.getNumero() << endl;
+//       cout << Curr->data.getEpn() << endl;
+//       cout << Curr->data.getPais() << endl;
+//       cout << Curr->data.getRegion() << endl;
+//       cout << endl << endl;
+//       Curr = Curr->next;
+//     }
+//   cout << endl;
+// }
+
 void Lista::Mostrar() {
   actual = primero;
   int cont = 0;
