@@ -18,6 +18,7 @@ Lista::~Lista() {}
 void Lista::Siguiente() {
   actual = actual->sig;
 <<<<<<< HEAD
+<<<<<<< HEAD
   cout << actual->dato.getNombre() << endl;
   cout << actual->dato.getApellido() << endl;
   cout << actual->dato.getFechaNacimiento() << endl;
@@ -27,6 +28,9 @@ void Lista::Siguiente() {
   cout << actual->dato.getEstadoCivil() << endl;
   cout << actual->dato.getNacionalidad() << endl;
   cout << actual->dato.getEmail() << endl;
+=======
+  mostrarPersona();
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
 =======
   mostrarPersona();
 >>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
@@ -36,6 +40,7 @@ void Lista::Siguiente() {
 void Lista::Anterior() {
   actual = actual->ant;
 <<<<<<< HEAD
+<<<<<<< HEAD
   cout << actual->dato.getNombre() << endl;
   cout << actual->dato.getApellido() << endl;
   cout << actual->dato.getFechaNacimiento() << endl;
@@ -45,6 +50,9 @@ void Lista::Anterior() {
   cout << actual->dato.getEstadoCivil() << endl;
   cout << actual->dato.getNacionalidad() << endl;
   cout << actual->dato.getEmail() << endl;
+=======
+  mostrarPersona();
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
 =======
   mostrarPersona();
 >>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
@@ -54,23 +62,6 @@ void Lista::Anterior() {
 void Lista::Primero() {
   actual = primero;
 <<<<<<< HEAD
-  cout << actual->dato.getNombre() << endl;
-  cout << actual->dato.getApellido() << endl;
-  cout << actual->dato.getFechaNacimiento() << endl;
-  cout << actual->dato.getSexo() << endl;
-  cout << actual->dato.getNumeroDocumento() << endl;
-  cout << actual->dato.getTipoDocumento() << endl;
-  cout << actual->dato.getEstadoCivil() << endl;
-  cout << actual->dato.getNacionalidad() << endl;
-  cout << actual->dato.getEmail() << endl;
-=======
-  mostrarPersona();
->>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
-  system("pause");
-}
-
-void Lista::Ultimo() {
-  actual = ultimo;
 <<<<<<< HEAD
   cout << actual->dato.getNombre() << endl;
   cout << actual->dato.getApellido() << endl;
@@ -84,12 +75,38 @@ void Lista::Ultimo() {
 =======
   mostrarPersona();
 >>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
+=======
+  mostrarPersona();
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
+  system("pause");
+}
+
+void Lista::Ultimo() {
+  actual = ultimo;
+<<<<<<< HEAD
+<<<<<<< HEAD
+  cout << actual->dato.getNombre() << endl;
+  cout << actual->dato.getApellido() << endl;
+  cout << actual->dato.getFechaNacimiento() << endl;
+  cout << actual->dato.getSexo() << endl;
+  cout << actual->dato.getNumeroDocumento() << endl;
+  cout << actual->dato.getTipoDocumento() << endl;
+  cout << actual->dato.getEstadoCivil() << endl;
+  cout << actual->dato.getNacionalidad() << endl;
+  cout << actual->dato.getEmail() << endl;
+=======
+  mostrarPersona();
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
+=======
+  mostrarPersona();
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
   system("pause");
 }
 
 /* -------- Operaciones -------- */
 void Lista::Insertar() { 
   cout << "INSERTAR" << endl; 
+<<<<<<< HEAD
 }
 
 <<<<<<< HEAD
@@ -156,6 +173,10 @@ void Lista::Insertar() {
 }
 
 =======
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
+=======
+}
+
 >>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
 void Lista::Borrar() {
   cout << "BORRAR" << endl;
