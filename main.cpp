@@ -15,8 +15,6 @@ int main() {
     exit(1);
   }
 
-  cout<< "Ok!"<<endl;
-
   L.Crear(ARCHIVO_PATH);
   L.Mostrar();
   L.Navegacion();

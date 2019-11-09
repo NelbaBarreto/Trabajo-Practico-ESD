@@ -10,8 +10,6 @@ using namespace std;
 
 class Persona {
  private:
-  static int COD_ID;
-
   int codigo;
   string nombre;
   string apellido;
@@ -27,6 +25,7 @@ class Persona {
  public:
   Persona();
   ~Persona();
+  void setCodigo(int);
   void setNombre(string);
   void setApellido(string);
   void setFechaNacimiento(string);
