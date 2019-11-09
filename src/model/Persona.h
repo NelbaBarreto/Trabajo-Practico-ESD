@@ -1,5 +1,5 @@
-#include "ListaGenerica.h"
 #include "Direccion.h"
+#include "ListaGenerica.h"
 #include "Telefono.h"
 
 #include <cstring>
@@ -21,7 +21,8 @@ class Persona {
   string nacionalidad;
   string email;
   ListaGenerica<Direccion> direcciones;
-  ListaGenerica<Telefono> telefonos;
+  ListaGenerica<Telefono>* telefonos;
+
  public:
   Persona();
   ~Persona();
@@ -35,9 +36,9 @@ class Persona {
   void setEstadoCivil(string);
   void setNacionalidad(string);
   void setEmail(string);
-  void setDirecciones(ListaGenerica<Direccion> direcciones);
-  void setTelefonos(ListaGenerica<Telefono> telefonos);
-  
+  void setDirecciones(ListaGenerica<Direccion> *);
+  void setTelefonos(ListaGenerica<Telefono> *);
+
   string getNombre() { return nombre; };
   string getApellido() { return apellido; };
   string getFechaNacimiento() { return fechaNacimiento; };
@@ -47,11 +48,11 @@ class Persona {
   string getEstadoCivil() { return estadoCivil; };
   string getNacionalidad() { return nacionalidad; };
   string getEmail() { return email; };
-  ListaGenerica<Direccion> getDirecciones() { return direcciones; };
-  ListaGenerica<Telefono> getTelefonos() { return telefonos; }
-  int getCodigo(); 
+  // ListaGenerica<Direccion> getDirecciones() { return direcciones; };
+  ListaGenerica<Telefono>* getTelefonos() { return telefonos; }
+  int getCodigo();
 
-  Persona operator= (const Persona &persona) {
+  Persona operator=(const Persona &persona) {
     this->nombre = persona.nombre;
     this->apellido = persona.apellido;
     this->fechaNacimiento = persona.fechaNacimiento;

@@ -6,7 +6,7 @@ using namespace std;
 template <class T>
 class NodoGenerico {
  public:
-  T data;
+  T* data;
   NodoGenerico<T> *next;
 };
 #endif

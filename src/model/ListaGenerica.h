@@ -19,8 +19,13 @@ class ListaGenerica {
   }
 
   void add(T* data);
-  T get(int index);
+  T* get(int index);
   int getSize() { return size; };
+
+  ListaGenerica<T> operator=(const ListaGenerica<T> a) {
+    this->first = a.first;
+    this->last = a.last;
+  }
 };
 
 #endif
