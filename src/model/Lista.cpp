@@ -7,6 +7,8 @@
 #include "./Telefono.cpp"
 using namespace std;
 
+int COD_ID = 0;
+
 Lista::Lista() { primero = ultimo = sig = ant = NULL; }
 
 Lista::~Lista() {}
@@ -73,6 +75,8 @@ Nodo *Lista::ObtenerNodo(string aux) {
   ifstream archivo;
   Newnode = new Nodo;
   Newnode->dato = *cargaPersona(aux);
+  COD_ID++;
+  Newnode->dato.setCodigo(COD_ID);
   Newnode->sig = Newnode->ant = NULL;
   return (Newnode);
 }
@@ -102,6 +106,12 @@ void Lista::Crear(string const path) {
     aux += persona + "\n";
 
     if (regex_search(persona, m, CLOSE_TAG)) {
+<<<<<<< HEAD
+=======
+      // cout << "Lista->crear->cargaPersona(): " <<
+      // cargaPersona(aux)->getCodigo()
+      //      << endl;
+>>>>>>> bf540006806cabeffca7f3b5ffc07afc34bc64c5
       NewNode = ObtenerNodo(aux);
       Agregar(NewNode);
       aux = "";
@@ -245,7 +255,6 @@ Persona *Lista::cargaPersona(string p) {
 
       string etiqueta = m[1];
       string valor = m[2];
-
       if (etiqueta == "Nombres") {
         persona->setNombre(valor);
       } else if (etiqueta == "Apellidos") {
@@ -328,7 +337,11 @@ void Lista::Borrar() {
     } while (actual != primero && encontrado != true);
 
     if (!encontrado) {
+<<<<<<< HEAD
       cout << "\n Persona no encontrada\n\n";
+=======
+      cout << "\n Persona no encontrado\n\n";
+>>>>>>> bf540006806cabeffca7f3b5ffc07afc34bc64c5
     }
 
   } else {
@@ -380,12 +393,21 @@ void Lista::Modificar() {
         } else if ("email" == buscar) {
           cin >> pasar;
           actual->dato.setEmail(mayuscula(pasar));
+<<<<<<< HEAD
           // }else if("direcciones" == buscar){
           //       cin >>pasar;
           //       actual->dato.setDirecciones(pasar);
           // }else if("telefonos" == buscar){
           //       cin >>pasar;
           //       actual->dato.setTelefonos(pasar);
+=======
+          /*}else if("direcciones" == buscar){
+                cin >>pasar;
+                actual->dato.setDirecciones(pasar);
+          }else if("telefonos" == buscar){
+                cin >>pasar;
+                actual->dato.setTelefonos(pasar);*/
+>>>>>>> bf540006806cabeffca7f3b5ffc07afc34bc64c5
         }
         cout << "\n Dato modificado\n\n";
         encontrado = true;
@@ -421,8 +443,13 @@ void Lista::Consultar() {
         cout << actual->dato.getEstadoCivil() << endl;
         cout << actual->dato.getNacionalidad() << endl;
         cout << actual->dato.getEmail() << endl;
+<<<<<<< HEAD
         // cout <<actual->dato.getDirecciones()<<endl;
         // cout <<actual->dato.getTelefonos()<<endl;
+=======
+        /*cout <<actual->dato.getDirecciones()<<endl;
+        cout <<actual->dato.getTelefonos()<<endl;*/
+>>>>>>> bf540006806cabeffca7f3b5ffc07afc34bc64c5
         encontrado = true;
       }
       actual = actual->sig;
