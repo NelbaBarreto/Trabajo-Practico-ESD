@@ -34,6 +34,7 @@ class Lista {
   Nodo* ObtenerNodo(string);
   Persona* cargaPersona(string);
   void Crear(string const);
+  void mostrarPersona();
   void Agregar(Nodo*);
   void Navegacion();
   void Mostrar();
