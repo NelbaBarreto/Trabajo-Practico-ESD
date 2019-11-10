@@ -5,10 +5,8 @@
 #include "./ListaGenerica.cpp"
 #include "./Persona.cpp"
 #include "./Telefono.cpp"
-#include "./cargarDatos.cpp"
+#include "../utils/cargarDatos.cpp"
 using namespace std;
-
-int COD_ID = 0;
 
 Lista::Lista() { primero = ultimo = sig = ant = NULL; }
 
