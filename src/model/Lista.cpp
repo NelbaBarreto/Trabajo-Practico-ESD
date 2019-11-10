@@ -1,11 +1,12 @@
 #include "Lista.h"
 #include <iostream>
+#include <regex>
+#include "../utils/cargarDatos.cpp"
 #include "../utils/funciones.cpp"
 #include "./Direccion.cpp"
 #include "./ListaGenerica.cpp"
 #include "./Persona.cpp"
 #include "./Telefono.cpp"
-#include "../utils/cargarDatos.cpp"
 using namespace std;
 
 Lista::Lista() { primero = ultimo = sig = ant = NULL; }
@@ -38,8 +39,66 @@ void Lista::Ultimo() {
 }
 
 /* -------- Operaciones -------- */
-void Lista::Insertar() { 
-  cout << "INSERTAR" << endl; 
+void Lista::Insertar() {
+  cout << "INSERTAR" << endl;
+  Nodo* nuevo = new Nodo();
+  int COMPARADOR = 0;
+  int BAND = 0;
+  string CI, nombre, apellido, estadocivil, birthday, nacionalidad, email;
+  int sexo, tipo_doc, estado_civil;
+
+  do {
+    if (nuevo->dato.getCodigo() == COMPARADOR) {
+      COMPARADOR++;
+    } else {
+      cout << "Ingrese su nombre" << endl;
+      cin >> nombre;
+      nuevo->dato.setNombre(nombre);
+      cout << "Ingrese su apellido" << endl;
+      cin >> apellido;
+      nuevo->dato.setApellido(apellido);
+      cout << "Ingrese su fecha de nacimiento" << endl;
+      cin >> birthday;
+      nuevo->dato.setFechaNacimiento(birthday);
+      cout << "Ingrese su sexo" << endl;
+      while (sexo != 1 && sexo != 2) {
+        cin >> sexo;
+      }
+      sexo ==  1 ? nuevo->dato.setSexo("FEMENINO") : nuevo->dato.setSexo("MASCULINO");
+      cout << "Ingrese su numero de documento" << endl;
+      cin >> CI;
+      nuevo->dato.setNumeroDocumento(CI);
+      cout << "Ingrese su estado civil (1-Soltero/a, 2-Casado/a, 3-Viudo/a, "
+              "4-Divorciado/a, 5-Separado/a)"
+           << endl;
+      cin >> estado_civil;
+      if(estado_civil==1) nuevo->dato.setEstadoCivil("Soltero/a");
+      if(estado_civil==2) nuevo->dato.setEstadoCivil("Casado/a");
+      if(estado_civil==3) nuevo->dato.setEstadoCivil("Viudo/a");
+      if(estado_civil==4) nuevo->dato.setEstadoCivil("Divorciado/a");
+      if(estado_civil==5) nuevo->dato.setEstadoCivil("Separado/a");
+      cout << "Ingrese su nacionalidad" << endl;
+      cin >> nacionalidad;
+      nuevo->dato.setNacionalidad(nacionalidad);
+      cout << "Ingrese su email" << endl;
+      cin >> email;
+      nuevo->dato.setEmail(email);
+      if (primero == NULL) {
+        primero = nuevo;
+        ultimo = nuevo;
+        primero->sig = primero;
+        primero->ant = ultimo;
+      } else {
+        ultimo->sig = nuevo;
+        nuevo->ant = ultimo;
+        nuevo->sig = primero;
+        ultimo = nuevo;
+        primero->ant = ultimo;
+      }
+      BAND = 1;
+    }
+
+  } while (BAND != 0);
 }
 
 void Lista::Borrar() {
@@ -85,7 +144,7 @@ void Lista::Borrar() {
 
 void Lista::Modificar() {
   cout << "MODIFICAR" << endl;
-  Nodo *actual = new Nodo();
+  Nodo* actual = new Nodo();
   actual = primero;
   bool encontrado = false;
   int IDBuscado;
