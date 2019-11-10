@@ -17,25 +17,48 @@ Lista::~Lista() {}
 void Lista::Siguiente() {
   actual = actual->sig;
   mostrarPersona();
-  system("pause");
+
+  Navegacion();
 }
 
 void Lista::Anterior() {
   actual = actual->ant;
   mostrarPersona();
-  system("pause");
+  Navegacion();
 }
 
 void Lista::Primero() {
   actual = primero;
   mostrarPersona();
-  system("pause");
+  Navegacion();
 }
 
 void Lista::Ultimo() {
   actual = ultimo;
   mostrarPersona();
-  system("pause");
+  Navegacion();
+}
+
+void Lista::Mostrar() {
+  if (primero == NULL)
+    cout << "La lista está vacía \n";
+  else if (primero == ultimo)
+    mostrarPersona();
+  else {
+    Nodo* aux = actual;
+    actual = primero;
+
+    do {
+      cout << "--------------------------------\n";
+      mostrarPersona();
+      cout << endl;
+      actual = actual->sig;
+    } while (actual->ant != ultimo);
+
+    actual = aux;
+  }
+
+  Navegacion();
 }
 
 /* -------- Operaciones -------- */
@@ -64,7 +87,8 @@ void Lista::Insertar() {
       while (sexo != 1 && sexo != 2) {
         cin >> sexo;
       }
-      sexo ==  1 ? nuevo->dato.setSexo("FEMENINO") : nuevo->dato.setSexo("MASCULINO");
+      sexo == 1 ? nuevo->dato.setSexo("FEMENINO")
+                : nuevo->dato.setSexo("MASCULINO");
       cout << "Ingrese su numero de documento" << endl;
       cin >> CI;
       nuevo->dato.setNumeroDocumento(CI);
@@ -72,11 +96,16 @@ void Lista::Insertar() {
               "4-Divorciado/a, 5-Separado/a)"
            << endl;
       cin >> estado_civil;
-      if(estado_civil==1) nuevo->dato.setEstadoCivil("Soltero/a");
-      if(estado_civil==2) nuevo->dato.setEstadoCivil("Casado/a");
-      if(estado_civil==3) nuevo->dato.setEstadoCivil("Viudo/a");
-      if(estado_civil==4) nuevo->dato.setEstadoCivil("Divorciado/a");
-      if(estado_civil==5) nuevo->dato.setEstadoCivil("Separado/a");
+      if (estado_civil == 1)
+        nuevo->dato.setEstadoCivil("Soltero/a");
+      else if (estado_civil == 2)
+        nuevo->dato.setEstadoCivil("Casado/a");
+      else if (estado_civil == 3)
+        nuevo->dato.setEstadoCivil("Viudo/a");
+      else if (estado_civil == 4)
+        nuevo->dato.setEstadoCivil("Divorciado/a");
+      else if (estado_civil == 5)
+        nuevo->dato.setEstadoCivil("Separado/a");
       cout << "Ingrese su nacionalidad" << endl;
       cin >> nacionalidad;
       nuevo->dato.setNacionalidad(nacionalidad);
@@ -139,7 +168,7 @@ void Lista::Borrar() {
   } else {
     cout << "\n La lista se Encuentra Vacia\n\n";
   }
-  system("pause");
+  // system("pause");
 }
 
 void Lista::Modificar() {
@@ -203,7 +232,7 @@ void Lista::Modificar() {
   } else {
     cout << "\n La lista se Encuentra Vacia\n\n";
   }
-  system("pause");
+  // system("pause");
 }
 
 void Lista::Consultar() {
@@ -218,7 +247,7 @@ void Lista::Consultar() {
     if (actual->dato.getCodigo() == cod) {
       ban = true;
       mostrarPersona();
-      system("pause");
+      // system("pause");
       break;
     }
     actual = actual->sig;

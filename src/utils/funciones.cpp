@@ -18,8 +18,6 @@ bool validarXml(string path) {
   string etiqueta;
   string agenda;
   sregex_iterator i;
-
-  cout << "Validando..." << endl;
   fstream arc(path);
 
   if (!arc) {
@@ -74,8 +72,7 @@ void Lista::mostrarPersona() {
   cout << actual->dato.getNacionalidad() << endl;
   cout << actual->dato.getEmail() << endl;
   mostrarTelefonos(actual->dato.getTelefonos());
-  // mostrarDirecciones(Curr->dato.getDirecciones());
-  Navegacion();
+  mostrarDirecciones(actual->dato.getDirecciones());
 }
 
 void Lista::mostrarDirecciones(ListaGenerica<Direccion> *direcciones) {
@@ -86,13 +83,13 @@ void Lista::mostrarDirecciones(ListaGenerica<Direccion> *direcciones) {
   cout << "Direcciones\n";
 
   for (int i = 0; i < direcciones->getSize(); i++) {
-    cout << "\tDireccion\n";
-    cout << "\t\t" << direcciones->get(i)->getCiudad() << endl;
-    cout << "\t\t" << direcciones->get(i)->getCalle() << endl;
-    cout << "\t\t" << direcciones->get(i)->getNumero() << endl;
-    cout << "\t\t" << direcciones->get(i)->getEpn() << endl;
-    cout << "\t\t" << direcciones->get(i)->getPais() << endl;
-    cout << "\t\t" << direcciones->get(i)->getRegion() << endl;
+    cout << "->Direccion\n";
+    cout << "-->" << direcciones->get(i)->getCiudad() << endl;
+    cout << "-->" << direcciones->get(i)->getCalle() << endl;
+    cout << "-->" << direcciones->get(i)->getNumero() << endl;
+    cout << "-->" << direcciones->get(i)->getEpn() << endl;
+    cout << "-->" << direcciones->get(i)->getPais() << endl;
+    cout << "-->" << direcciones->get(i)->getRegion() << endl;
   }
 }
 
@@ -103,10 +100,10 @@ void Lista::mostrarTelefonos(ListaGenerica<Telefono> *telefonos) {
   }
   cout << "Telefonos\n";
   for (int i = 0; i < telefonos->getSize(); i++) {
-    cout << " Telefono\n";
-    cout << "  " << telefonos->get(i)->getTipo() << endl;
-    cout << "  " << telefonos->get(i)->getNumero() << endl;
-    cout << "  " << telefonos->get(i)->getInterno() << endl;
+    cout << "->Telefono\n";
+    cout << "-->" << telefonos->get(i)->getTipo() << endl;
+    cout << "-->" << telefonos->get(i)->getNumero() << endl;
+    cout << "-->" << telefonos->get(i)->getInterno() << endl;
   }
 }
 
@@ -139,49 +136,41 @@ void Lista::Ordenar() {
 
 void Lista::ImprimirOpciones() {
   cout << "NAVEGACIÓN" << endl;
-  cout << "[S]iguiente - [A]nterior - [P]rimero - [U]ltimo";
+  cout << "[S]iguiente - [A]nterior - [P]rimero - [U]ltimo - [L]istar todo";
   cout << "\n\nOPERACIONES" << endl;
   cout << "[I]nsertar - [B]orrar - [M]odificar - [C]onsultar";
   cout << "\n\nSALIR <Q>" << endl;
-  system("pause");
-  system("cls");
 }
 
 void Lista::Navegacion() {
   ImprimirOpciones();
-  string res = " ";
+  string res = "";
   while (1) {
     cout << "¿Qué desea hacer?: ";
     getline(cin, res);
     res = mayuscula(res);
-    system("cls");
-    if (res == "S") Siguiente();
-    if (res == "A") Anterior();
-    if (res == "P") Primero();
-    if (res == "U") Ultimo();
-    if (res == "I") Insertar();
-    if (res == "B") Borrar();
-    if (res == "M") Modificar();
-    if (res == "C") Consultar();
-    if (res == "Q") break;
+    if (res == "S")
+      Siguiente();
+    else if (res == "A")
+      Anterior();
+    else if (res == "P")
+      Primero();
+    else if (res == "U")
+      Ultimo();
+    else if (res == "L")
+      Mostrar();
+    else if (res == "I")
+      Insertar();
+    else if (res == "B")
+      Borrar();
+    else if (res == "M")
+      Modificar();
+    else if (res == "C")
+      Consultar();
+    else if (res == "Q")
+      exit(0);
+    else
+      cout << "Ingrese una opcion valida.\n";
   }
 }
 
-void Lista::Mostrar() {
-  actual = primero;
-  int cont = 0;
-  bool ban = false;
-
-  if (primero == NULL)
-    cout << "La lista está vacía \n";
-  else {
-    while (!ban) {
-      mostrarPersona();
-      cout << endl << endl;
-      actual = actual->sig;
-      cont++;
-      ban = actual->dato.getCodigo() == 1 && cont != 1;
-    }
-  }
-  cout << endl;
-}

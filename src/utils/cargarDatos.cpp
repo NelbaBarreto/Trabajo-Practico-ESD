@@ -17,11 +17,28 @@ void Lista::Agregar(Nodo *NewNode) {
   if (primero == NULL) {
     primero = NewNode;
     ultimo = NewNode;
+    primero->ant = ultimo;
+    ultimo->sig = primero;
   } else {
+    // Nodo *tmp;
+    // tmp = primero;
+    // while (tmp->sig || tmp != ultimo) {
+    //   cout << endl << " ESTOY AKI ASME CASO !" << endl;
+
+    //   if (NewNode->dato.getApellido() > tmp->dato.getApellido()) {
+    //     tmp = tmp->sig;
+    //   } else {
+    //     NewNode->sig = tmp;
+    //     NewNode->ant = tmp->ant;
+    //     tmp->ant->sig = NewNode;
+    //     tmp->ant = NewNode;
+    //   }
+    // }
     ultimo->sig = NewNode;
     NewNode->ant = ultimo;
     NewNode->sig = primero;
     ultimo = NewNode;
+    primero->ant = ultimo;
   }
   // Ordenar();
 }
@@ -193,7 +210,7 @@ Persona *Lista::cargaPersona(string p) {
       } else if (etiqueta == "FechaNacimiento") {
         persona->setFechaNacimiento(valor);
       } else if (etiqueta == "Sexo") {
-        persona->setSexo(valor == "1" ? "F" : valor == "2" ? "M" : "Queer");
+        persona->setSexo(valor == "1" ? "FEMENINO" : "MASCULINO");
       } else if (etiqueta == "NumeroDocumento") {
         persona->setNumeroDocumento(valor);
       } else if (etiqueta == "TipoDocumento") {
