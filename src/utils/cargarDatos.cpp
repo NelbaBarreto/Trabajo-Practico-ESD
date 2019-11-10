@@ -46,7 +46,36 @@ void Lista::Crear(string const path) {
   }
   arc.close();
 }
-Direccion *Lista::cargaDireccion(string p) {
+
+ListaGenerica<Direccion> *Lista::cargaDirecciones(string d) {
+  ListaGenerica<Direccion> *direcciones = new ListaGenerica<Direccion>;
+  istringstream arc(d);
+
+  string dir_buff = "";
+  string dir_found = "";
+
+  bool ban_dir = false;
+
+  while (getline(arc, dir_buff)) {
+    if (dir_buff.find("<Direccion>") != std::string::npos) {
+      ban_dir = true;
+    }
+
+    if (ban_dir) {
+      dir_found += dir_buff + "\n";
+    }
+
+    if (dir_buff.find("</Direccion>") != std::string::npos) {
+      direcciones->add(obtenerDireccion(dir_found));
+      dir_found = "";
+      ban_dir = false;
+    }
+  }
+
+  return direcciones;
+}
+
+Direccion *Lista::obtenerDireccion(string p) {
   Direccion *direccion = new Direccion;
   istringstream arc(p);
   string persona;
@@ -86,24 +115,24 @@ ListaGenerica<Telefono> *Lista::cargaTelefonos(string t) {
   ListaGenerica<Telefono> *telefonos = new ListaGenerica<Telefono>;
   istringstream arc(t);
 
-  string dir_buff = "";
-  string dir_found = "";
+  string tel_buff = "";
+  string tel_found = "";
 
-  bool ban_dir = false;
+  bool ban_tel = false;
 
-  while (getline(arc, dir_buff)) {
-    if (dir_buff.find("<Telefono")) {
-      ban_dir = true;
+  while (getline(arc, tel_buff)) {
+    if (tel_buff.find("<Telefono>") != std::string::npos) {
+      ban_tel = true;
     }
 
-    if (ban_dir) {
-      dir_found += dir_buff + "\n";
+    if (ban_tel) {
+      tel_found += tel_buff + "\n";
     }
 
-    if (dir_buff.find("</Telefono>") != std::string::npos) {
-      telefonos->add(obtenerTelefono(dir_found));
-      dir_found = "";
-      ban_dir = false;
+    if (tel_buff.find("</Telefono>") != std::string::npos) {
+      telefonos->add(obtenerTelefono(tel_found));
+      tel_found = "";
+      ban_tel = false;
     }
   }
 
@@ -146,8 +175,11 @@ Persona *Lista::cargaPersona(string p) {
   string agenda;
   sregex_iterator i;
 
+  persona->setTelefonos(cargaTelefonos(p));
+  persona->setDirecciones(cargaDirecciones(p));
+
   while (getline(arc, agenda)) {
-    regex rp_valor("<(\\w*)>(.*</.*>)?");
+    regex rp_valor("<(\\w*)>(.*)</.*>");
     for (i = sregex_iterator(agenda.begin(), agenda.end(), rp_valor);
          i != std::sregex_iterator(); ++i) {
       smatch m = *i;
@@ -186,16 +218,9 @@ Persona *Lista::cargaPersona(string p) {
         persona->setNacionalidad(valor);
       } else if (etiqueta == "Email") {
         persona->setEmail(valor);
-      } else if (etiqueta == "Direcciones") {
-        // persona->setDirecciones(cargaDirecciones(p));
-      } else if (etiqueta == "Telefonos") {
-        persona->setTelefonos(cargaTelefonos(p));
       }
     }
   }
-
-  mostrarTelefonos(persona->getTelefonos());
-
   return persona;
 }
 

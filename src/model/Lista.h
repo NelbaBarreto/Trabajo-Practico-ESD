@@ -19,9 +19,10 @@ class Lista {
   void Ordenar();
   void ImprimirOpciones();
   void AlmacenarDatos();
-  Direccion* cargaDireccion(string);
-  ListaGenerica<Telefono>* cargaTelefonos(string);
+  Direccion* obtenerDireccion(string);
+  ListaGenerica<Direccion>* cargaDirecciones(string);
   Telefono* obtenerTelefono(string);
+  ListaGenerica<Telefono>* cargaTelefonos(string);
 
  public:
   Lista();
@@ -39,6 +40,7 @@ class Lista {
   void Navegacion();
   void Mostrar();
   void mostrarTelefonos(ListaGenerica<Telefono>*);
+  void mostrarDirecciones(ListaGenerica<Direccion>*);
 };
 
 #endif

@@ -20,7 +20,7 @@ class Persona {
   string estadoCivil;
   string nacionalidad;
   string email;
-  ListaGenerica<Direccion> direcciones;
+  ListaGenerica<Direccion>* direcciones;
   ListaGenerica<Telefono>* telefonos;
 
  public:
@@ -48,7 +48,7 @@ class Persona {
   string getEstadoCivil() { return estadoCivil; };
   string getNacionalidad() { return nacionalidad; };
   string getEmail() { return email; };
-  // ListaGenerica<Direccion> getDirecciones() { return direcciones; };
+  ListaGenerica<Direccion>* getDirecciones() { return direcciones; };
   ListaGenerica<Telefono>* getTelefonos() { return telefonos; }
   int getCodigo();
 
@@ -62,6 +62,8 @@ class Persona {
     this->estadoCivil = persona.estadoCivil;
     this->nacionalidad = persona.nacionalidad;
     this->email = persona.email;
+    this->direcciones = persona.direcciones;
+    this->telefonos = persona.telefonos;
     return *this;
   }
 };

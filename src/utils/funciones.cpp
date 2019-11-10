@@ -1,8 +1,8 @@
-#include <iostream>  
+#include <cstring>
 #include <fstream>
-#include <sstream>
-#include <cstring>    
+#include <iostream>
 #include <regex>
+#include <sstream>
 #include "../model/Pila.cpp"
 using namespace std;
 #pragma once
@@ -19,7 +19,7 @@ bool validarXml(string path) {
   string agenda;
   sregex_iterator i;
 
-  cout<<"Validando..."<<endl;
+  cout << "Validando..." << endl;
   fstream arc(path);
 
   if (!arc) {
@@ -73,20 +73,40 @@ void Lista::mostrarPersona() {
   cout << actual->dato.getEstadoCivil() << endl;
   cout << actual->dato.getNacionalidad() << endl;
   cout << actual->dato.getEmail() << endl;
-  //mostrarDirecciones(Curr->dato.getDirecciones());
+  mostrarTelefonos(actual->dato.getTelefonos());
+  // mostrarDirecciones(Curr->dato.getDirecciones());
   Navegacion();
 }
 
-void Lista::mostrarTelefonos(ListaGenerica<Telefono> *telefonos) {
-  cout << endl << "cuenta" << endl;
-  if (telefonos->getSize() == 0) {
-    cout << "No hay ningun telfono \n";
+void Lista::mostrarDirecciones(ListaGenerica<Direccion> *direcciones) {
+  if (direcciones->getSize() == 0) {
+    cout << "No hay ninguna direccion \n";
     return;
   }
+  cout << "Direcciones\n";
+
+  for (int i = 0; i < direcciones->getSize(); i++) {
+    cout << "\tDireccion\n";
+    cout << "\t\t" << direcciones->get(i)->getCiudad() << endl;
+    cout << "\t\t" << direcciones->get(i)->getCalle() << endl;
+    cout << "\t\t" << direcciones->get(i)->getNumero() << endl;
+    cout << "\t\t" << direcciones->get(i)->getEpn() << endl;
+    cout << "\t\t" << direcciones->get(i)->getPais() << endl;
+    cout << "\t\t" << direcciones->get(i)->getRegion() << endl;
+  }
+}
+
+void Lista::mostrarTelefonos(ListaGenerica<Telefono> *telefonos) {
+  if (telefonos->getSize() == 0) {
+    cout << "No hay ningun telfono\n";
+    return;
+  }
+  cout << "Telefonos\n";
   for (int i = 0; i < telefonos->getSize(); i++) {
-    cout << telefonos->get(i)->getTipo() << endl;
-    cout << telefonos->get(i)->getNumero() << endl;
-    cout << telefonos->get(i)->getInterno() << endl;
+    cout << " Telefono\n";
+    cout << "  " << telefonos->get(i)->getTipo() << endl;
+    cout << "  " << telefonos->get(i)->getNumero() << endl;
+    cout << "  " << telefonos->get(i)->getInterno() << endl;
   }
 }
 
@@ -146,25 +166,6 @@ void Lista::Navegacion() {
     if (res == "Q") break;
   }
 }
-
-// void mostrarDirecciones(ListaGenerica<Direccion> direcciones) {
-//   NodoGenerico<Direccion> *Curr;
-//   Curr = direcciones.first;
-//   if (direcciones.first == NULL)
-//     cout << "No hay ninguna dirección \n";
-//   else
-//     while (Curr != NULL) {
-//       cout << Curr->data.getCiudad() << endl;
-//       cout << Curr->data.getCalle() << endl;
-//       cout << Curr->data.getNumero() << endl;
-//       cout << Curr->data.getEpn() << endl;
-//       cout << Curr->data.getPais() << endl;
-//       cout << Curr->data.getRegion() << endl;
-//       cout << endl << endl;
-//       Curr = Curr->next;
-//     }
-//   cout << endl;
-// }
 
 void Lista::Mostrar() {
   actual = primero;

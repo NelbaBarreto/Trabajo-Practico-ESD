@@ -10,6 +10,8 @@ Persona::Persona() {
   estadoCivil = "";
   nacionalidad = "";
   email = "";
+  direcciones = new ListaGenerica<Direccion>;
+  telefonos = new ListaGenerica<Telefono>;
   codigo = 0;
 }
 
@@ -40,6 +42,6 @@ int Persona::getCodigo() { return codigo; }
 void Persona::setTelefonos(ListaGenerica<Telefono> *telefonos) {
   this->telefonos = telefonos;
 }
-// void Persona::setDirecciones(ListaGenerica<Direccion> *direcciones) {
-//   this->direcciones = direcciones;
-// }
+void Persona::setDirecciones(ListaGenerica<Direccion> *direcciones) {
+  this->direcciones = direcciones;
+}
