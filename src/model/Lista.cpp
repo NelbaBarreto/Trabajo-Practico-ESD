@@ -15,33 +15,167 @@ Lista::~Lista() {}
 /* -------- Navegacion -------- */
 void Lista::Siguiente() {
   actual = actual->sig;
+<<<<<<< HEAD
+<<<<<<< HEAD
+  cout << actual->dato.getNombre() << endl;
+  cout << actual->dato.getApellido() << endl;
+  cout << actual->dato.getFechaNacimiento() << endl;
+  cout << actual->dato.getSexo() << endl;
+  cout << actual->dato.getNumeroDocumento() << endl;
+  cout << actual->dato.getTipoDocumento() << endl;
+  cout << actual->dato.getEstadoCivil() << endl;
+  cout << actual->dato.getNacionalidad() << endl;
+  cout << actual->dato.getEmail() << endl;
+=======
   mostrarPersona();
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
+=======
+  mostrarPersona();
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
   system("pause");
 }
 
 void Lista::Anterior() {
   actual = actual->ant;
+<<<<<<< HEAD
+<<<<<<< HEAD
+  cout << actual->dato.getNombre() << endl;
+  cout << actual->dato.getApellido() << endl;
+  cout << actual->dato.getFechaNacimiento() << endl;
+  cout << actual->dato.getSexo() << endl;
+  cout << actual->dato.getNumeroDocumento() << endl;
+  cout << actual->dato.getTipoDocumento() << endl;
+  cout << actual->dato.getEstadoCivil() << endl;
+  cout << actual->dato.getNacionalidad() << endl;
+  cout << actual->dato.getEmail() << endl;
+=======
   mostrarPersona();
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
+=======
+  mostrarPersona();
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
   system("pause");
 }
 
 void Lista::Primero() {
   actual = primero;
+<<<<<<< HEAD
+<<<<<<< HEAD
+  cout << actual->dato.getNombre() << endl;
+  cout << actual->dato.getApellido() << endl;
+  cout << actual->dato.getFechaNacimiento() << endl;
+  cout << actual->dato.getSexo() << endl;
+  cout << actual->dato.getNumeroDocumento() << endl;
+  cout << actual->dato.getTipoDocumento() << endl;
+  cout << actual->dato.getEstadoCivil() << endl;
+  cout << actual->dato.getNacionalidad() << endl;
+  cout << actual->dato.getEmail() << endl;
+=======
   mostrarPersona();
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
+=======
+  mostrarPersona();
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
   system("pause");
 }
 
 void Lista::Ultimo() {
   actual = ultimo;
+<<<<<<< HEAD
+<<<<<<< HEAD
+  cout << actual->dato.getNombre() << endl;
+  cout << actual->dato.getApellido() << endl;
+  cout << actual->dato.getFechaNacimiento() << endl;
+  cout << actual->dato.getSexo() << endl;
+  cout << actual->dato.getNumeroDocumento() << endl;
+  cout << actual->dato.getTipoDocumento() << endl;
+  cout << actual->dato.getEstadoCivil() << endl;
+  cout << actual->dato.getNacionalidad() << endl;
+  cout << actual->dato.getEmail() << endl;
+=======
   mostrarPersona();
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
+=======
+  mostrarPersona();
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
   system("pause");
 }
 
 /* -------- Operaciones -------- */
 void Lista::Insertar() { 
   cout << "INSERTAR" << endl; 
+<<<<<<< HEAD
 }
 
+<<<<<<< HEAD
+void Lista::Insertar() { 
+  cout << "INSERTAR" << endl; 
+  Nodo* nuevo = new Nodo();
+	int COMPARADOR = 0;
+	int BAND = 0;
+	string nombre,apellido,sexo,estadocivil,nacionalidad,email,sexo;
+	int birthday,CI,sex,estadovicil;
+	do{
+		if(nuevo->dato.getCodigo() == COMPARADADOR ){
+			COMPARADOR ++ ;
+		}else{
+			cout <<"Ingrese su nombre"<<endl;
+			cin >> nombre;
+			nuevo->dato.setNombre(nombre);
+			cout <<"Ingrese su apellido"<<endl;
+			cin >> apellido;
+			nuevo->dato.setApellido(apellido);
+			cout <<"Ingrese su fecha de nacimiento"<<endl;
+			cin >> birthday;
+			nuevo->dato.setFechaNacimiento(birthday);
+			cout <<"Ingrese su sexo"<<endl;
+			cin >> sexo;
+				if(mayuscula(sexo) == "FEMENINO"){
+					sex = 1;
+				}else{
+					sex = 2;
+				}
+			nuevo->dato.setSexo(sex);
+			cout <<"Ingrese su numero de documento"<<endl;
+			cin >> CI;
+			nuevo->dato.setNumeroDocumento(CI);
+			cout <<"Ingrese su estado civil"<<endl;
+			cin >> estadocivil;
+				if(mayuscula(estadocivil) == "CASADO" || mayuscula(estadocivil) == "CASADA"){
+					estadovicil = 1;
+				}else{
+					estadovicil = 2;
+				}
+			nuevo->dato.setEstadoCivil(estadovicil);
+			cout <<"Ingrese su nacionalidad"<<endl;
+			cin >> nacionalidad;
+			nuevo->dato.setNacionalidad(nacionalidad);
+			cout <<"Ingrese su email"<<endl;
+			cin >> email;
+			nuevo->dato.setEmail(email);
+				if(primero==NULL){
+					primero = nuevo;
+					ultimo = nuevo;
+					primero->sig = primero;
+					primero->ant = ultimo;
+				}else{
+					ultimo->sig = nuevo;
+					nuevo->ant = ultimo;
+					nuevo->sig = primero;
+					ultimo = nuevo;
+					primero->ant = ultimo;
+				}
+		BAND = 1;
+		}
+	}while(BAND != 0);
+}
+
+=======
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
+=======
+}
+
+>>>>>>> b4cdcbcd73a2481448fe2950678d67c2d05fed7d
 void Lista::Borrar() {
   cout << "BORRAR" << endl;
   actual = primero;
