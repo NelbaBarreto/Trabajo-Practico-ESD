@@ -1,3 +1,5 @@
+int COD_ID = 0;
+
 Nodo *Lista::ObtenerNodo(string aux) {
   Nodo *Newnode;
   ifstream archivo;
