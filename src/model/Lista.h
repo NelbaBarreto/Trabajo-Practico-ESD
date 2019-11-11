@@ -8,6 +8,7 @@ using namespace std;
 
 class Lista {
  private:
+  int cantidad;
   void Siguiente();
   void Anterior();
   void Primero();
@@ -32,8 +33,10 @@ class Lista {
   Nodo* sig;
   Nodo* ant;
   Nodo* actual;
-  Nodo* ObtenerNodo(string);
+  Nodo* ObtenerNodo(Persona);
   Persona* cargaPersona(string);
+  void setCantidad(int cantidad) { this->cantidad = cantidad; }
+  int getCantidad() { return cantidad; }
   void Crear(string const);
   void mostrarPersona();
   void Agregar(Nodo*);

@@ -47,13 +47,15 @@ void Lista::Mostrar() {
   else {
     Nodo* aux = actual;
     actual = primero;
+    int cont = 0;
 
     do {
       cout << "--------------------------------\n";
+      cont++;
       mostrarPersona();
       cout << endl;
       actual = actual->sig;
-    } while (actual->ant != ultimo);
+    } while (cont < cantidad);
 
     actual = aux;
   }
@@ -65,69 +67,50 @@ void Lista::Mostrar() {
 void Lista::Insertar() {
   cout << "INSERTAR" << endl;
   Nodo* nuevo = new Nodo();
-  int COMPARADOR = 0;
-  int BAND = 0;
+  Persona p;
   string CI, nombre, apellido, estadocivil, birthday, nacionalidad, email;
   int sexo, tipo_doc, estado_civil;
 
-  do {
-    if (nuevo->dato.getCodigo() == COMPARADOR) {
-      COMPARADOR++;
-    } else {
-      cout << "Ingrese su nombre" << endl;
-      cin >> nombre;
-      nuevo->dato.setNombre(nombre);
-      cout << "Ingrese su apellido" << endl;
-      cin >> apellido;
-      nuevo->dato.setApellido(apellido);
-      cout << "Ingrese su fecha de nacimiento" << endl;
-      cin >> birthday;
-      nuevo->dato.setFechaNacimiento(birthday);
-      cout << "Ingrese su sexo" << endl;
-      while (sexo != 1 && sexo != 2) {
-        cin >> sexo;
-      }
-      sexo == 1 ? nuevo->dato.setSexo("FEMENINO")
-                : nuevo->dato.setSexo("MASCULINO");
-      cout << "Ingrese su numero de documento" << endl;
-      cin >> CI;
-      nuevo->dato.setNumeroDocumento(CI);
-      cout << "Ingrese su estado civil (1-Soltero/a, 2-Casado/a, 3-Viudo/a, "
-              "4-Divorciado/a, 5-Separado/a)"
-           << endl;
-      cin >> estado_civil;
-      if (estado_civil == 1)
-        nuevo->dato.setEstadoCivil("Soltero/a");
-      else if (estado_civil == 2)
-        nuevo->dato.setEstadoCivil("Casado/a");
-      else if (estado_civil == 3)
-        nuevo->dato.setEstadoCivil("Viudo/a");
-      else if (estado_civil == 4)
-        nuevo->dato.setEstadoCivil("Divorciado/a");
-      else if (estado_civil == 5)
-        nuevo->dato.setEstadoCivil("Separado/a");
-      cout << "Ingrese su nacionalidad" << endl;
-      cin >> nacionalidad;
-      nuevo->dato.setNacionalidad(nacionalidad);
-      cout << "Ingrese su email" << endl;
-      cin >> email;
-      nuevo->dato.setEmail(email);
-      if (primero == NULL) {
-        primero = nuevo;
-        ultimo = nuevo;
-        primero->sig = primero;
-        primero->ant = ultimo;
-      } else {
-        ultimo->sig = nuevo;
-        nuevo->ant = ultimo;
-        nuevo->sig = primero;
-        ultimo = nuevo;
-        primero->ant = ultimo;
-      }
-      BAND = 1;
-    }
+  cout << "Ingrese su nombre" << endl;
+  cin >> nombre;
+  p.setNombre(nombre);
+  cout << "Ingrese su apellido" << endl;
+  cin >> apellido;
+  p.setApellido(apellido);
+  cout << "Ingrese su fecha de nacimiento" << endl;
+  cin >> birthday;
+  p.setFechaNacimiento(birthday);
+  cout << "Ingrese su sexo" << endl;
+  while (sexo != 1 && sexo != 2) {
+    cin >> sexo;
+  }
+  sexo == 1 ? p.setSexo("FEMENINO") : p.setSexo("MASCULINO");
+  cout << "Ingrese su numero de documento" << endl;
+  cin >> CI;
+  p.setNumeroDocumento(CI);
+  cout << "Ingrese su estado civil (1-Soltero/a, 2-Casado/a, 3-Viudo/a, "
+          "4-Divorciado/a, 5-Separado/a)"
+       << endl;
+  cin >> estado_civil;
+  if (estado_civil == 1)
+    p.setEstadoCivil("Soltero/a");
+  else if (estado_civil == 2)
+    p.setEstadoCivil("Casado/a");
+  else if (estado_civil == 3)
+    p.setEstadoCivil("Viudo/a");
+  else if (estado_civil == 4)
+    p.setEstadoCivil("Divorciado/a");
+  else if (estado_civil == 5)
+    p.setEstadoCivil("Separado/a");
+  cout << "Ingrese su nacionalidad" << endl;
+  cin >> nacionalidad;
+  p.setNacionalidad(nacionalidad);
+  cout << "Ingrese su email" << endl;
+  cin >> email;
+  p.setEmail(email);
 
-  } while (BAND != 0);
+  nuevo = ObtenerNodo(p);
+  Agregar(nuevo);
 }
 
 void Lista::Borrar() {
@@ -237,21 +220,18 @@ void Lista::Modificar() {
 
 void Lista::Consultar() {
   actual = primero;
-  int cod = 0;
-  bool ban = false;
+  int cod = 0, cont = 0;
 
   cout << "Ingrese el código de la persona a buscar: ";
   cin >> cod;
 
-  while (actual != NULL) {
+  while (cont < cantidad) {
+    cont++;
     if (actual->dato.getCodigo() == cod) {
-      ban = true;
       mostrarPersona();
-      // system("pause");
-      break;
+      return;
     }
     actual = actual->sig;
-    actual = actual->sig;
   }
-  if (!ban) cout << "No existe ninguna persona con ese código";
+  cout << "No existe ninguna persona con ese código";
 }

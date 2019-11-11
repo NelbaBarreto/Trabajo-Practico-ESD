@@ -2,12 +2,12 @@
 
 int COD_ID = 0;
 
-Nodo *Lista::ObtenerNodo(string aux) {
+Nodo *Lista::ObtenerNodo(Persona p) {
   Nodo *Newnode;
-  ifstream archivo;
   Newnode = new Nodo;
-  Newnode->dato = *cargaPersona(aux);
+  Newnode->dato = p;
   COD_ID++;
+  setCantidad(COD_ID);
   Newnode->dato.setCodigo(COD_ID);
   Newnode->sig = Newnode->ant = NULL;
   return (Newnode);
@@ -19,28 +19,39 @@ void Lista::Agregar(Nodo *NewNode) {
     ultimo = NewNode;
     primero->ant = ultimo;
     ultimo->sig = primero;
+  } else if (primero == ultimo) {
+    if (primero->dato.getApellido() > NewNode->dato.getApellido()) {
+      NewNode->sig = primero;
+      primero->ant = NewNode;
+      ultimo = primero;
+      primero = NewNode;
+    } else {
+      primero->sig = NewNode;
+      NewNode->ant = primero;
+      NewNode->sig = primero;
+      primero->ant = NewNode;
+      ultimo = NewNode;
+    }
   } else {
-    // Nodo *tmp;
-    // tmp = primero;
-    // while (tmp->sig || tmp != ultimo) {
-    //   cout << endl << " ESTOY AKI ASME CASO !" << endl;
-
-    //   if (NewNode->dato.getApellido() > tmp->dato.getApellido()) {
-    //     tmp = tmp->sig;
-    //   } else {
-    //     NewNode->sig = tmp;
-    //     NewNode->ant = tmp->ant;
-    //     tmp->ant->sig = NewNode;
-    //     tmp->ant = NewNode;
-    //   }
-    // }
-    ultimo->sig = NewNode;
-    NewNode->ant = ultimo;
-    NewNode->sig = primero;
-    ultimo = NewNode;
-    primero->ant = ultimo;
+    Nodo *tmp;
+    tmp = primero;
+    do {
+      if (NewNode->dato.getApellido() > tmp->dato.getApellido()) {
+        tmp->ant->sig = NewNode;
+        NewNode->sig = tmp;
+        NewNode->ant = tmp->ant;
+        tmp->ant = NewNode;
+        break;
+      }
+      tmp = tmp->sig;
+    } while (tmp->ant != ultimo);
+    // ultimo->sig = NewNode;
+    // NewNode->ant = ultimo;
+    // NewNode->sig = primero;
+    // ultimo = NewNode;
+    // primero->ant = ultimo;
   }
-  // Ordenar();
+  actual = NewNode;
 }
 
 void Lista::Crear(string const path) {
@@ -56,7 +67,7 @@ void Lista::Crear(string const path) {
     aux += persona + "\n";
 
     if (regex_search(persona, m, CLOSE_TAG)) {
-      NewNode = ObtenerNodo(aux);
+      NewNode = ObtenerNodo(*cargaPersona(aux));
       Agregar(NewNode);
       aux = "";
     }
