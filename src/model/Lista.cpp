@@ -137,7 +137,7 @@ void Lista::Borrar() {
           ant->sig = actual->sig;
           actual->ant->sig = actual->sig;
         }
-        cout << "\n Persona eliminada\n\n";
+        cout << "\nPersona eliminada\n\n";
         encontrado = true;
       }
       ant = actual;
@@ -151,6 +151,7 @@ void Lista::Borrar() {
   } else {
     cout << "\n La lista se Encuentra Vacia\n\n";
   }
+  setCantidad(getCantidad()-1);
   // system("pause");
 }
 
@@ -161,13 +162,13 @@ void Lista::Modificar() {
   bool encontrado = false;
   int IDBuscado;
   string buscar, pasar;
-  cout << " Ingrese el id de la persona a Buscar para Modificar: ";
+  cout << "Ingrese el código de la persona a buscar para modificar: ";
   cin >> IDBuscado;
   if (primero != NULL) {
     do {
       if (actual->dato.getCodigo() == IDBuscado) {
-        cout << "\n Persona encontrada";
-        cout << "\n Ingrese el tipo de dato que desea modificar ";
+        cout << "\nPersona encontrada";
+        cout << "\nIngrese el tipo de dato que desea modificar ";
         cin >> buscar;
         if ("nombre" == buscar) {
           cin >> pasar;
@@ -210,10 +211,10 @@ void Lista::Modificar() {
       actual = actual->sig;
     } while (actual != primero && encontrado != true);
     if (!encontrado) {
-      cout << "\n Dato no encontrado\n\n";
+      cout << "\nDato no encontrado\n\n";
     }
   } else {
-    cout << "\n La lista se Encuentra Vacia\n\n";
+    cout << "\nLa lista se Encuentra Vacia\n\n";
   }
   // system("pause");
 }
