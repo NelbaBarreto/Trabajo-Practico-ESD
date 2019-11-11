@@ -9,7 +9,10 @@
 #include "./Telefono.cpp"
 using namespace std;
 
-Lista::Lista() { primero = ultimo = sig = ant = NULL; }
+Lista::Lista() { 
+  primero = ultimo = sig = ant = NULL; 
+  cantidad = 0;
+}
 
 Lista::~Lista() {}
 

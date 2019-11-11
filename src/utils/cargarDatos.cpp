@@ -7,7 +7,7 @@ Nodo *Lista::ObtenerNodo(Persona p) {
   Newnode = new Nodo;
   Newnode->dato = p;
   COD_ID++;
-  setCantidad(COD_ID);
+  setCantidad(getCantidad()+1);
   Newnode->dato.setCodigo(COD_ID);
   Newnode->sig = Newnode->ant = NULL;
   return (Newnode);
