@@ -19,26 +19,62 @@ Lista::~Lista() {}
 /* -------- Navegacion -------- */
 void Lista::Siguiente() {
   actual = actual->sig;
+  string r,op;
   mostrarPersona();
-  Navegacion();
+  cout << "Desea realizar una operacion con el registro actual ?";
+  cin >> r;
+  if(r == 'si'){
+    cout << "Que operacion desea realizar ([B]orrar / [M]odificar) ?";
+    cin >> op;
+    op == 'B' ? Borrar() : Modificar();
+  }else{
+    Navegacion();
+  }
 }
 
 void Lista::Anterior() {
   actual = actual->ant;
+  string r,op;
   mostrarPersona();
-  Navegacion();
+  cout << "Desea realizar una operacion con el registro actual ?";
+  cin >> r;
+  if(r == 'si'){
+    cout << "Que operacion desea realizar ([B]orrar / [M]odificar) ?";
+    cin >> op;
+    op == 'B' ? Borrar() : Modificar();
+  }else{
+    Navegacion();
+  }
 }
 
 void Lista::Primero() {
   actual = primero;
+  string r,op;
   mostrarPersona();
-  Navegacion();
+  cout << "Desea realizar una operacion con el registro actual ?";
+  cin >> r;
+  if(r == 'si'){
+    cout << "Que operacion desea realizar ([B]orrar / [M]odificar) ?";
+    cin >> op;
+    op == 'B' ? Borrar() : Modificar();
+  }else{
+    Navegacion();
+  }
 }
 
 void Lista::Ultimo() {
   actual = ultimo;
+  string r,op;
   mostrarPersona();
-  Navegacion();
+  cout << "Desea realizar una operacion con el registro actual ?";
+  cin >> r;
+  if(r == 'si'){
+    cout << "Que operacion desea realizar ([B]orrar / [M]odificar) ?";
+    cin >> op;
+    op == 'B' ? Borrar() : Modificar();
+  }else{
+    Navegacion();
+  }
 }
 
 void Lista::Mostrar() {
@@ -110,7 +146,6 @@ void Lista::Insertar() {
   cout << "Ingrese su email" << endl;
   cin >> email;
   p.setEmail(email);
-
   nuevo = ObtenerNodo(p);
   Agregar(nuevo);
  
