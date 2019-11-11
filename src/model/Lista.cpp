@@ -20,7 +20,6 @@ Lista::~Lista() {}
 void Lista::Siguiente() {
   actual = actual->sig;
   mostrarPersona();
-
   Navegacion();
 }
 
@@ -83,7 +82,7 @@ void Lista::Insertar() {
   cout << "Ingrese su fecha de nacimiento" << endl;
   cin >> birthday;
   p.setFechaNacimiento(birthday);
-  cout << "Ingrese su sexo" << endl;
+  cout << "Ingrese su sexo (Femenino = 1/Masculino = 2)" << endl;
   while (sexo != 1 && sexo != 2) {
     cin >> sexo;
   }
@@ -114,6 +113,8 @@ void Lista::Insertar() {
 
   nuevo = ObtenerNodo(p);
   Agregar(nuevo);
+ 
+  
 }
 
 void Lista::Borrar() {
@@ -174,31 +175,40 @@ void Lista::Modificar() {
         cout << "\nIngrese el tipo de dato que desea modificar ";
         cin >> buscar;
         if ("nombre" == buscar) {
+          cout << "Ingrese el nuevo nombre";
           cin >> pasar;
           actual->dato.setNombre(mayuscula(pasar));
         } else if ("apellido" == buscar) {
+          cout << "Ingrese el nuevo apellido";
           cin >> pasar;
           actual->dato.setApellido(mayuscula(pasar));
           // Ordenar();
         } else if ("fechanacimiento" == buscar) {
+          cout << "Ingrese la nueva fecha de nacimiento";
           cin >> pasar;
           actual->dato.setFechaNacimiento(mayuscula(pasar));
         } else if ("sexo" == buscar) {
+          cout << "Ingrese el nuevo sexo ";
           cin >> pasar;
           actual->dato.setSexo(mayuscula(pasar));
         } else if ("numerodocumento" == buscar) {
+          cout << "Ingrese el nuevo numero de documento";
           cin >> pasar;
           actual->dato.setNumeroDocumento(mayuscula(pasar));
         } else if ("tipodocumento" == buscar) {
+          cout << "Ingrese el nuevo tipo de documento";
           cin >> pasar;
           actual->dato.setTipoDocumento(mayuscula(pasar));
         } else if ("estadocivil" == buscar) {
+          cout << "Ingrese el nuevo estado civil";
           cin >> pasar;
           actual->dato.setEstadoCivil(mayuscula(pasar));
         } else if ("nacionalidad" == buscar) {
+          cout << "Ingrese la nueva nacionalidad ";
           cin >> pasar;
           actual->dato.setNacionalidad(mayuscula(pasar));
         } else if ("email" == buscar) {
+          cout << "Ingrese el nuevo email";
           cin >> pasar;
           actual->dato.setEmail(mayuscula(pasar));
           // }else if("direcciones" == buscar){
