@@ -127,23 +127,23 @@ void Lista::Insertar() {
     if (tolower(ans) == 'n') break;
 
     Direccion* dir = InsertarDireccion();
-
     p.getDirecciones()->add(dir);
-
-    cout << "HERE ! " << endl;
-    
   }
 
-  Telefono* t;
   while (1) {
     cout << "\n¿Agregar teléfono? (S/N): ";
     cin >> ans;
     if (tolower(ans) == 'n') break;
-    p.getTelefonos()->add(InsertarTelefono(t));
+
+    cin.ignore();
+    Telefono* tel = InsertarTelefono();
+    p.getTelefonos()->add(tel);
   }
 
   nuevo = ObtenerNodo(p);
   Agregar(nuevo);
+
+  Navegacion(1);
 }
 
 void Lista::Borrar(int tipo) {
