@@ -1,9 +1,8 @@
-
 #include <string>
 using namespace std;
 
-#ifndef Direccion_h
-#define Direccion_h
+#ifndef DIRECCION_H
+#define DIRECCION_H
 
 class Direccion {
  private:
@@ -30,9 +29,16 @@ class Direccion {
   string getEpn();
   string getPais();
   string getRegion();
-};
 
-Direccion::Direccion() {}
-Direccion::~Direccion() {}
+  Direccion operator=(const Direccion direccion) {
+    this->ciudad = direccion.ciudad;
+    this->calle = direccion.calle;
+    this->numero = direccion.numero;
+    this->epn = direccion.epn;
+    this->pais = direccion.pais;
+    this->region = direccion.region;
+    return *this;
+  }
+};
 
 #endif

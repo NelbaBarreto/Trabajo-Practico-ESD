@@ -61,16 +61,16 @@ bool validarXml(string path) {
 }
 
 void Lista::mostrarPersona() {
-  cout << actual->dato.getCodigo() << endl;
-  cout << actual->dato.getNombre() << endl;
-  cout << actual->dato.getApellido() << endl;
-  cout << actual->dato.getFechaNacimiento() << endl;
-  cout << actual->dato.getSexo() << endl;
-  cout << actual->dato.getNumeroDocumento() << endl;
-  cout << actual->dato.getTipoDocumento() << endl;
-  cout << actual->dato.getEstadoCivil() << endl;
-  cout << actual->dato.getNacionalidad() << endl;
-  cout << actual->dato.getEmail() << endl;
+  cout << "CÓDIGO: " << actual->dato.getCodigo() << endl;
+  cout << "NOMBRE: " << actual->dato.getNombre() << endl;
+  cout << "APELLIDO: " << actual->dato.getApellido() << endl;
+  cout << "FECHA NAC.: " << actual->dato.getFechaNacimiento() << endl;
+  cout << "SEXO: " << actual->dato.getSexo() << endl;
+  cout << "CI: " << actual->dato.getNumeroDocumento() << endl;
+  cout << "TIPO DOC.: " << actual->dato.getTipoDocumento() << endl;
+  cout << "ESTADO CIVIL: " << actual->dato.getEstadoCivil() << endl;
+  cout << "NACIONALIDAD: " << actual->dato.getNacionalidad() << endl;
+  cout << "EMAIL: " << actual->dato.getEmail() << endl;
   mostrarTelefonos(actual->dato.getTelefonos());
   mostrarDirecciones(actual->dato.getDirecciones());
 }
@@ -95,7 +95,7 @@ void Lista::mostrarDirecciones(ListaGenerica<Direccion> *direcciones) {
 
 void Lista::mostrarTelefonos(ListaGenerica<Telefono> *telefonos) {
   if (telefonos->getSize() == 0) {
-    cout << "No hay ningun telfono\n";
+    cout << "No hay ningun telefono\n";
     return;
   }
   cout << "Telefonos\n";
@@ -134,16 +134,25 @@ void Lista::Ordenar() {
   }
 }
 
-void Lista::ImprimirOpciones() {
+void Lista::MenuPrincipal() {
   cout << "NAVEGACIÓN" << endl;
-  cout << "[S]iguiente - [A]nterior - [P]rimero - [U]ltimo - [L]istar todo";
+  cout << "[P]rimero - [U]ltimo - [L]istar todo";
   cout << "\n\nOPERACIONES" << endl;
   cout << "[I]nsertar - [B]orrar - [M]odificar - [C]onsultar";
   cout << "\n\nSALIR <Q>" << endl;
+  Navegacion(1);
 }
 
-void Lista::Navegacion() {
-  ImprimirOpciones();
+void Lista::MenuRegistro() {
+  cout << "NAVEGACIÓN" << endl;
+  cout << "[S]iguiente - [A]nterior - [P]rimero - [U]ltimo - [L]istar todo";
+  cout << "\n\nOPERACIONES" << endl;
+  cout << "[I]nsertar - [B]orrar Actual - [M]odificar Actual - [C]onsultar";
+  cout << "\n\nSALIR <Q>\tATRÁS <Y>" << endl;
+  Navegacion(2);
+}
+
+void Lista::Navegacion(int tipo) {
   string res = "";
   while (1) {
     cout << "¿Qué desea hacer?: ";
@@ -162,15 +171,16 @@ void Lista::Navegacion() {
     else if (res == "I")
       Insertar();
     else if (res == "B")
-      Borrar();
+      Borrar(tipo);
     else if (res == "M")
-      Modificar();
+      Modificar(tipo);
     else if (res == "C")
       Consultar();
+    else if (res == "Y")
+      MenuPrincipal(); 
     else if (res == "Q")
       exit(0);
     else
       cout << "Ingrese una opcion valida.\n";
   }
 }
-

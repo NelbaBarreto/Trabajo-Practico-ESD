@@ -14,12 +14,14 @@ class Lista {
   void Primero();
   void Ultimo();
   void Insertar();
-  void Borrar();
-  void Modificar();
+  void Borrar(int);
+  void Modificar(int);
   void Consultar();
   void Ordenar();
-  void ImprimirOpciones();
-  void AlmacenarDatos();
+  void MenuRegistro();
+  void Navegacion(int);
+  Direccion* InsertarDireccion(Direccion*);
+  Telefono* InsertarTelefono(Telefono*);
   Direccion* obtenerDireccion(string);
   ListaGenerica<Direccion>* cargaDirecciones(string);
   Telefono* obtenerTelefono(string);
@@ -40,7 +42,7 @@ class Lista {
   void Crear(string const);
   void mostrarPersona();
   void Agregar(Nodo*);
-  void Navegacion();
+  void MenuPrincipal();
   void Mostrar();
   void mostrarTelefonos(ListaGenerica<Telefono>*);
   void mostrarDirecciones(ListaGenerica<Direccion>*);

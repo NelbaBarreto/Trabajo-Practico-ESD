@@ -1,7 +1,6 @@
 #include "Telefono.h"
 
-
-Telefono::Telefono(/* args */) {}
+Telefono::Telefono() {}
 Telefono::~Telefono() {}
 
 void Telefono::setTipo(string tipo) { this->tipo = tipo; }
