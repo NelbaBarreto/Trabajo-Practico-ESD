@@ -277,32 +277,32 @@ Direccion *Lista::InsertarDireccion() {
   Direccion *dir = new Direccion;
   string ciudad, calle, no_casa, epn, pais, region;
   cout << "Número de casa: ";
-  cin.ignore();
+  cin.clear();
   getline(cin, no_casa);
   dir->setNumero(no_casa);
 
   cout << "Edificio/Piso/Nro-> Dpto: ";
-  cin.ignore();
+  cin.clear();
   getline(cin, epn);
   dir->setEpn(epn);
 
   cout << "Calle: ";
-  cin.ignore();
+  cin.clear();
   getline(cin, calle);
   dir->setCalle(calle);
 
   cout << "Ciudad: ";
-  cin.ignore();
+  cin.clear();
   getline(cin, ciudad);
   dir->setCiudad(ciudad);
 
   cout << "País: ";
-  cin.ignore();
+  cin.clear();
   getline(cin, pais);
   dir->setPais(pais);
 
   cout << "Región: ";
-  cin.ignore();
+  cin.clear();
   getline(cin, region);
   dir->setRegion(region);
 
@@ -313,16 +313,17 @@ Telefono *Lista::InsertarTelefono() {
   Telefono *t = new Telefono;
   string tipo, numero, interno;
 
-  cout << "Tipo: ";
-  cin.ignore();
+  cout << "Tipo (1-Celular,2-Linea Baja, 3-Fax, 4-Otro): ";
+
+  cin.clear();
   getline(cin, tipo);
   t->setTipo(tipo);
   cout << "Número: ";
-  cin.ignore();
+  cin.clear();
   getline(cin, numero);
   t->setNumero(numero);
   cout << "Interno: ";
-  cin.ignore();
+  cin.clear();
   getline(cin, interno);
   t->setInterno(interno);
 
