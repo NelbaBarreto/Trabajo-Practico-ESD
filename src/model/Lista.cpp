@@ -208,38 +208,39 @@ void Lista::Modificar(int tipo) {
         cout << "\nPersona encontrada";
         cout << "\nIngrese el tipo de dato que desea modificar: ";
         cin >> buscar;
+        buscar = mayuscula(buscar);
 
-        if ("nombre" == buscar) {
+        if ("NOMBRE" == buscar) {
           cout << "Ingrese el nuevo nombre: ";
           cin >> pasar;
           actual->dato.setNombre(mayuscula(pasar));
-        } else if ("apellido" == buscar) {
+        } else if ("APELLIDO" == buscar) {
           cout << "Ingrese el nuevo apellido: ";
           cin >> pasar;
           actual->dato.setApellido(mayuscula(pasar));
-        } else if ("fechanacimiento" == buscar) {
+        } else if ("FECHA DE NACIMIENTO" == buscar) {
           cout << "Ingrese la nueva fecha de nacimiento: ";
           cin >> pasar;
           actual->dato.setFechaNacimiento(mayuscula(pasar));
-        } else if ("sexo" == buscar) {
+        } else if ("SEXO" == buscar) {
           cout << "Ingrese el nuevo sexo (1- Femenino, 2-Masculino): ";
           while (pasar != "1" && pasar != "2") {
             cin >> pasar;
           }
           actual->dato.setSexo(
               mayuscula(pasar == "1" ? "Femenino" : "Masculino"));
-        } else if ("numerodocumento" == buscar) {
+        } else if ("NUMERO DE DOCUMENTO" == buscar) {
           cout << "Ingrese el nuevo numero de documento: ";
           cin >> pasar;
           actual->dato.setNumeroDocumento(mayuscula(pasar));
-        } else if ("tipodocumento" == buscar) {
+        } else if ("TIPO DE DOCUMENTO" == buscar) {
           string tipo_doc[3] = {"CI", "RUC", "Otro"};
           cout << "Ingrese el nuevo tipo de documento (1-CI, 2-RUC, 3-Otro): ";
           while (pasar != "1" && pasar != "2" && pasar != "3") {
             cin >> pasar;
           }
           actual->dato.setTipoDocumento(tipo_doc[stoi(pasar)]);
-        } else if ("estadocivil" == buscar) {
+        } else if ("ESTADO CIVIL" == buscar) {
           string estado_civ[5] = {"Soltero/a", "Casado/a", "Viudo/a", "Divorciado/a", "Separado/a"};
           cout << "Ingrese el nuevo estado civil (1-Soltero/a, 2-Casado/a, 3-Viudo/a, 4-Divorciado/a, 5-Separado/a): ";
           pasar = "0";
@@ -247,11 +248,11 @@ void Lista::Modificar(int tipo) {
             cin >> pasar;
           }
           actual->dato.setEstadoCivil(estado_civ[stoi(pasar)]);
-        } else if ("nacionalidad" == buscar) {
+        } else if ("NACIONALIDAD" == buscar) {
           cout << "Ingrese la nueva nacionalidad: ";
           cin >> pasar;
           actual->dato.setNacionalidad(mayuscula(pasar));
-        } else if ("email" == buscar) {
+        } else if ("EMAIL" == buscar) {
           cout << "Ingrese el nuevo email: ";
           cin >> pasar;
           actual->dato.setEmail(mayuscula(pasar));
