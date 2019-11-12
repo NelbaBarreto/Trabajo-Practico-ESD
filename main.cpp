@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
   system("cls");
-  string const ARCHIVO_PATH = "res/agenda2.xml";
+  string const ARCHIVO_PATH = "res/agenda.xml";
   Lista L;
 
   if (!validarXml(ARCHIVO_PATH)) {

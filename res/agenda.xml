@@ -1,71 +1,155 @@
 <Agenda>
   <Persona>
-  <Nombres>CATALINA</Nombres>
-  <Apellidos>BRITEZ ORTEGA</Apellidos>
-  <FechaNacimiento>20.08.1976</FechaNacimiento>
-  <Sexo>1</Sexo>
-  <NumeroDocumento>3423422</NumeroDocumento>
-  <TipoDocumento>1</TipoDocumento>
-  <EstadoCivil>2</EstadoCivil>
-  <Nacionalidad>Paraguaya</Nacionalidad>
-  <Email>cbritez@gmail.com</Email>
-  <Direcciones>
-  <Direccion>
-  <Ciudad>CIUDAD DEL ESTE</Ciudad>
-  <Calle>AREA 4 - MANZANA 7 - LOTE 3</Calle>
-  <Numero>""</Numero>
-  <E_P_N>""</E_P_N>
-  <Pais>PY</Pais>
-  <Region>Alto Paraná</Region>
-  </Direccion>
-  <Direccion>
-  <Ciudad>ASUNCION</Ciudad>
-  <Calle>25 de Mayo</Calle>
-  <Numero>554</Numero>
-  <E_P_N>Edificio Alfa - Piso 8 - Dpto. 803 </E_P_N>
-  <Pais>PY</Pais>
-  <Region>Asuncion</Region>
-  </Direccion>
-  </Direcciones>
-  <Telefonos>
-  <Telefono>
-  <Tipo>1</Tipo>
-  <Numero>0984111111</Numero>
-  <Interno>""</Interno>
-  </Telefono>
-  <Telefono>
-  <Tipo>2</Tipo>
-  <Numero>021446544</Numero>
-  <Interno>320</Interno>
-  </Telefono>
-  </Telefonos>
+    <Nombres>CATALINA</Nombres>
+    <Apellidos>BRITEZ ORTEGA</Apellidos>
+    <FechaNacimiento>20.08.1976</FechaNacimiento>
+    <Sexo>1</Sexo>
+    <NumeroDocumento>3423422</NumeroDocumento>
+    <TipoDocumento>1</TipoDocumento>
+    <EstadoCivil>2</EstadoCivil>
+    <Nacionalidad>Paraguaya</Nacionalidad>
+    <Email>cbritez@gmail.com</Email>
+    <Direcciones>
+      <Direccion>
+        <Ciudad>CIUDAD DEL ESTE</Ciudad>
+        <Calle>AREA 4 - MANZANA 7 - LOTE 3</Calle>
+        <Numero>""</Numero>
+        <E_P_N>""</E_P_N>
+        <Pais>PY</Pais>
+        <Region>Alto Paraná</Region>
+      </Direccion>
+      <Direccion>
+        <Ciudad>ASUNCION</Ciudad>
+        <Calle>25 de Mayo</Calle>
+        <Numero>554</Numero>
+        <E_P_N>Edificio Alfa - Piso 8 - Dpto. 803 </E_P_N>
+        <Pais>PY</Pais>
+        <Region>Asuncion</Region>
+      </Direccion>
+    </Direcciones>
+    <Telefonos>
+      <Telefono>
+        <Tipo>1</Tipo>
+        <Numero>0984111111</Numero>
+        <Interno>""</Interno>
+      </Telefono>
+      <Telefono>
+        <Tipo>2</Tipo>
+        <Numero>021446544</Numero>
+        <Interno>320</Interno>
+      </Telefono>
+    </Telefonos>
   </Persona>
   <Persona>
-  <Nombres>JUAN CARLOS</Nombres>
-  <Apellidos>CACERES DE DELGADILLO</Apellidos>
-  <FechaNacimiento>20.08.1976</FechaNacimiento>
-  <Sexo>2</Sexo>
-  <NumeroDocumento>1148413</NumeroDocumento>
-  <TipoDocumento>1</TipoDocumento>
-  <EstadoCivil>1</EstadoCivil>
-  <Nacionalidad>Paraguaya</Nacionalidad>
-  <Email>caceres@gmail.com</Email>
-  <Direcciones>
-  <Direccion>
-  <Ciudad>LAMBARE</Ciudad>
-  <Calle>Heroes del 70</Calle>
-  <Numero>398</Numero>
-  <E_P_N>""</E_P_N>
-  <Pais>PY</Pais>
-  <Region>Central</Region>
-  </Direccion>
-  </Direcciones>
-  <Telefonos>
-  <Telefono>
-  <Tipo>1</Tipo>
-  <Numero>0981111111</Numero>
-  <Interno>""</Interno>
-  </Telefono>
-  </Telefonos>
+    <Nombres>JUAN CARLOS</Nombres>
+    <Apellidos>CACERES DE DELGADILLO</Apellidos>
+    <FechaNacimiento>20.08.1976</FechaNacimiento>
+    <Sexo>2</Sexo>
+    <NumeroDocumento>1148413</NumeroDocumento>
+    <TipoDocumento>1</TipoDocumento>
+    <EstadoCivil>1</EstadoCivil>
+    <Nacionalidad>Paraguaya</Nacionalidad>
+    <Email>caceres@gmail.com</Email>
+    <Direcciones>
+      <Direccion>
+        <Ciudad>LAMBARE</Ciudad>
+        <Calle>Heroes del 70</Calle>
+        <Numero>398</Numero>
+        <E_P_N>""</E_P_N>
+        <Pais>PY</Pais>
+        <Region>Central</Region>
+      </Direccion>
+    </Direcciones>
+    <Telefonos>
+      <Telefono>
+        <Tipo>1</Tipo>
+        <Numero>0981222222</Numero>
+        <Interno>""</Interno>
+      </Telefono>
+    </Telefonos>
   </Persona>
-  </Agenda>
+  <Persona>
+    <Nombres>PEPE</Nombres>
+    <Apellidos>GRILLO</Apellidos>
+    <FechaNacimiento>12.13.1666</FechaNacimiento>
+    <Sexo>2</Sexo>
+    <NumeroDocumento>5424424</NumeroDocumento>
+    <TipoDocumento>1</TipoDocumento>
+    <EstadoCivil>1</EstadoCivil>
+    <Nacionalidad>Paraguaya</Nacionalidad>
+    <Email>pepe@grillo.com</Email>
+    <Direcciones>
+      <Direccion>
+        <Ciudad>Froggyland</Ciudad>
+        <Calle>Everywhere</Calle>
+        <Numero>398</Numero>
+        <E_P_N>""</E_P_N>
+        <Pais>PY</Pais>
+        <Region>Central</Region>
+      </Direccion>
+    </Direcciones>
+    <Telefonos>
+      <Telefono>
+        <Tipo>1</Tipo>
+        <Numero>0981333333</Numero>
+        <Interno>""</Interno>
+      </Telefono>
+    </Telefonos>
+  </Persona>
+  <Persona>
+    <Nombres>ANIBAL</Nombres>
+    <Apellidos>ZARATE</Apellidos>
+    <FechaNacimiento>9.11.1982</FechaNacimiento>
+    <Sexo>2</Sexo>
+    <NumeroDocumento>1231232</NumeroDocumento>
+    <TipoDocumento>1</TipoDocumento>
+    <EstadoCivil>1</EstadoCivil>
+    <Nacionalidad>Paraguaya</Nacionalidad>
+    <Email>anibal@gmail.com</Email>
+    <Direcciones>
+      <Direccion>
+        <Ciudad>Asuncion</Ciudad>
+        <Calle>Ayolas</Calle>
+        <Numero>398</Numero>
+        <E_P_N>""</E_P_N>
+        <Pais>PY</Pais>
+        <Region>Central</Region>
+      </Direccion>
+    </Direcciones>
+    <Telefonos>
+      <Telefono>
+        <Tipo>1</Tipo>
+        <Numero>0982367276</Numero>
+        <Interno>442</Interno>
+      </Telefono>
+    </Telefonos>
+  </Persona>
+  <Persona>
+    <Nombres>ELENA</Nombres>
+    <Apellidos>AYALA</Apellidos>
+    <FechaNacimiento>17.5.1998</FechaNacimiento>
+    <Sexo>1</Sexo>
+    <NumeroDocumento>1231232</NumeroDocumento>
+    <TipoDocumento>1</TipoDocumento>
+    <EstadoCivil>1</EstadoCivil>
+    <Nacionalidad>Paraguaya</Nacionalidad>
+    <Email>elena@gmail.com</Email>
+    <Direcciones>
+      <Direccion>
+        <Ciudad>Muy muy lejano</Ciudad>
+        <Calle>666</Calle>
+        <Numero>398</Numero>
+        <E_P_N>""</E_P_N>
+        <Pais>PY</Pais>
+        <Region>Central</Region>
+      </Direccion>
+    </Direcciones>
+    <Telefonos>
+      <Telefono>
+        <Tipo>1</Tipo>
+        <Numero>0982367276</Numero>
+        <Interno>442</Interno>
+      </Telefono>
+    </Telefonos>
+  </Persona>
+</Agenda>
