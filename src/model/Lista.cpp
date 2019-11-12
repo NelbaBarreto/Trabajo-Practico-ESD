@@ -19,67 +19,31 @@ Lista::~Lista() {}
 /* -------- Navegacion -------- */
 void Lista::Siguiente() {
   actual = actual->sig;
-  string r, op;
   mostrarPersona();
-  cout << "Desea realizar una operacion con el registro actual ?";
-  cin >> r;
-  if (r == "si") {
-    cout << "Que operacion desea realizar ([B]orrar / [M]odificar) ?";
-    cin >> op;
-    op == "B" ? Borrar() : Modificar();
-  } else {
-    Navegacion();
-  }
+  MenuRegistro();
 }
 
 void Lista::Anterior() {
   actual = actual->ant;
-  string r, op;
   mostrarPersona();
-  cout << "Desea realizar una operacion con el registro actual ?";
-  cin >> r;
-  if (r == "si") {
-    cout << "Que operacion desea realizar ([B]orrar / [M]odificar) ?";
-    cin >> op;
-    op == "B" ? Borrar() : Modificar();
-  } else {
-    Navegacion();
-  }
+  MenuRegistro();
 }
 
 void Lista::Primero() {
   actual = primero;
-  string r, op;
   mostrarPersona();
-  cout << "Desea realizar una operacion con el registro actual ?";
-  cin >> r;
-  if (r == "si") {
-    cout << "Que operacion desea realizar ([B]orrar / [M]odificar) ?";
-    cin >> op;
-    op == "B" ? Borrar() : Modificar();
-  } else {
-    Navegacion();
-  }
+  MenuRegistro();
 }
 
 void Lista::Ultimo() {
   actual = ultimo;
-  string r, op;
   mostrarPersona();
-  cout << "Desea realizar una operacion con el registro actual ?";
-  cin >> r;
-  if (r == "si") {
-    cout << "Que operacion desea realizar ([B]orrar / [M]odificar) ?";
-    cin >> op;
-    op == "B" ? Borrar() : Modificar();
-  } else {
-    Navegacion();
-  }
+  MenuRegistro();
 }
 
 void Lista::Mostrar() {
   if (primero == NULL)
-    cout << "La lista está vacía \n";
+    cout << "\n\nLa lista está vacía\n\n";
   else if (primero == ultimo)
     mostrarPersona();
   else {
@@ -98,7 +62,7 @@ void Lista::Mostrar() {
     actual = aux;
   }
 
-  Navegacion();
+  MenuPrincipal();
 }
 
 /* -------- Operaciones -------- */
@@ -121,7 +85,6 @@ void Lista::Insertar() {
   cout << "Ingrese su sexo (Femenino = 1/Masculino = 2): ";
   while (sexo != 1 && sexo != 2) {
     cin >> sexo;
-
   }
   sexo == 1 ? p.setSexo("Femenino") : p.setSexo("Masculino");
   cout << "Ingrese su numero de documento: ";
@@ -168,48 +131,62 @@ void Lista::Insertar() {
   Agregar(nuevo);
 }
 
-void Lista::Borrar() {
+void Lista::Borrar(int tipo) {
   cout << "BORRAR" << endl;
-  actual = primero;
   bool encontrado = false;
-  int CodigoBuscado = 0;
-  cout << "Ingrese el código de la persona que desea eliminar: ";
-  cin >> CodigoBuscado;
-  if (primero != NULL) {
-    do {
-      if (actual->dato.getCodigo() == CodigoBuscado) {
-        cout << "\nPersona encontrada";
+  Nodo* temp;
+  temp = primero;
 
-        if (actual == primero) {
-          primero->ant = ultimo;
-          ultimo->sig = primero;
-          primero = primero->sig;
-        } else if (actual == ultimo) {
-          ultimo = ant;
-          ultimo->sig = primero;
-          primero->ant = ultimo;
-        } else {
-          ant->sig = actual->sig;
-          actual->ant->sig = actual->sig;
-        }
-        cout << "\nPersona eliminada\n\n";
-        encontrado = true;
-      }
-      ant = actual;
-      actual = actual->sig;
-    } while (actual != primero && encontrado != true);
-
-    if (!encontrado) {
-      cout << "\n Persona no encontrada\n\n";
-    }
-
-  } else {
-    cout << "\n La lista se Encuentra Vacia\n\n";
+  if (primero == NULL) {
+    cout << "\n\nLa lista está vacía" << endl;
+    return;
   }
-  setCantidad(getCantidad() - 1);
+
+  int CodigoBuscado = 0, cont = 0;
+
+  if (tipo == 1) {
+    cout << "Ingrese el código de la persona que desea eliminar: ";
+    cin >> CodigoBuscado;
+  } else {
+    CodigoBuscado = actual->dato.getCodigo();
+  }
+
+  while (cont < getCantidad()) {
+    cont++;
+    if (temp->dato.getCodigo() == CodigoBuscado) {
+      if (temp == primero) {
+        if (temp == primero && temp == ultimo) {
+          primero = NULL;
+          ultimo = NULL;
+          delete temp;
+        } else {
+          primero = primero->sig;
+          primero->ant = ultimo;
+          ultimo->sig = primero;
+          delete temp;
+        }
+      } else {
+        if (temp == ultimo) {
+          ultimo = temp->ant;
+          (temp->ant)->sig = primero;
+          primero->ant = ultimo;
+          delete temp;
+        } else {
+          (temp->ant)->sig = temp->sig;
+          (temp->sig)->ant = temp->ant;
+          delete temp;
+        }
+      }
+      encontrado = true;
+      cout << "\nPersona eliminada\n" << endl;
+      setCantidad(getCantidad() - 1);
+    }
+    temp = temp->sig;
+  }
+  if (!encontrado) cout << "No existe una persona con ese código" << endl;
 }
 
-void Lista::Modificar() {
+void Lista::Modificar(int tipo) {
   cout << "MODIFICAR" << endl;
   Nodo* actual = new Nodo();
   actual = primero;

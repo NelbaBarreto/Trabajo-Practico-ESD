@@ -134,16 +134,25 @@ void Lista::Ordenar() {
   }
 }
 
-void Lista::ImprimirOpciones() {
+void Lista::MenuPrincipal() {
   cout << "NAVEGACIÓN" << endl;
-  cout << "[S]iguiente - [A]nterior - [P]rimero - [U]ltimo - [L]istar todo";
+  cout << "[P]rimero - [U]ltimo - [L]istar todo";
   cout << "\n\nOPERACIONES" << endl;
   cout << "[I]nsertar - [B]orrar - [M]odificar - [C]onsultar";
   cout << "\n\nSALIR <Q>" << endl;
+  Navegacion(1);
 }
 
-void Lista::Navegacion() {
-  ImprimirOpciones();
+void Lista::MenuRegistro() {
+  cout << "NAVEGACIÓN" << endl;
+  cout << "[S]iguiente - [A]nterior - [P]rimero - [U]ltimo - [L]istar todo";
+  cout << "\n\nOPERACIONES" << endl;
+  cout << "[I]nsertar - [B]orrar Actual - [M]odificar Actual - [C]onsultar";
+  cout << "\n\nSALIR <Q>\tATRÁS <Y>" << endl;
+  Navegacion(2);
+}
+
+void Lista::Navegacion(int tipo) {
   string res = "";
   while (1) {
     cout << "¿Qué desea hacer?: ";
@@ -162,11 +171,13 @@ void Lista::Navegacion() {
     else if (res == "I")
       Insertar();
     else if (res == "B")
-      Borrar();
+      Borrar(tipo);
     else if (res == "M")
-      Modificar();
+      Modificar(tipo);
     else if (res == "C")
       Consultar();
+    else if (res == "Y")
+      MenuPrincipal(); 
     else if (res == "Q")
       exit(0);
     else
