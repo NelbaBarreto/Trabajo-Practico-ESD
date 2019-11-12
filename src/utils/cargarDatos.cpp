@@ -309,22 +309,18 @@ Direccion *Lista::InsertarDireccion() {
   return dir;
 }
 
-Telefono *Lista::InsertarTelefono() {
-  Telefono *t = new Telefono;
+Telefono *Lista::InsertarTelefono(Telefono *t) {
   string tipo, numero, interno;
-
   cout << "Tipo: ";
-  cin.ignore();
-  getline(cin, tipo);
+  cin >> tipo;
   t->setTipo(tipo);
-  cout << "Número: ";
-  cin.ignore();
-  getline(cin, numero);
-  t->setNumero(numero);
-  cout << "Interno: ";
-  cin.ignore();
-  getline(cin, interno);
-  t->setInterno(interno);
 
+  cout << "Número: ";
+  cin >> numero;
+  t->setNumero(numero);
+
+  cout << "Interno: ";
+  cin >> interno;
+  t->setInterno(interno);
   return t;
 }

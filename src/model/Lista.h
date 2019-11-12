@@ -20,7 +20,7 @@ class Lista {
   void MenuRegistro();
   void Navegacion(int);
   Direccion* InsertarDireccion();
-  Telefono* InsertarTelefono();
+  Telefono* InsertarTelefono(Telefono*);
   Direccion* obtenerDireccion(string);
   ListaGenerica<Direccion>* cargaDirecciones(string);
   Telefono* obtenerTelefono(string);
