@@ -146,6 +146,7 @@ void Lista::Insertar() {
   cout << "Ingrese su email" << endl;
   cin >> email;
   p.setEmail(email);
+  
   nuevo = ObtenerNodo(p);
   Agregar(nuevo);
  
