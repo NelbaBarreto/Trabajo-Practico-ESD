@@ -103,7 +103,7 @@ void Lista::Insertar() {
     p.setEstadoCivil("Divorciado/a");
   else if (estado_civil == 5)
     p.setEstadoCivil("Separado/a");
-  cout >> "Ingrese su tipo de documento: (1-CI, 2-RUC, 3-Otro): ";
+  cout << "Ingrese su tipo de documento: (1-CI, 2-RUC, 3-Otro): ";
   while (tipo_doc < 1 || tipo_doc > 3) {
     cin >> tipo_doc;
   }
