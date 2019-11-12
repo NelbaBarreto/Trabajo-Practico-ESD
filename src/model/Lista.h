@@ -15,9 +15,9 @@ class Lista {
   void Ultimo();
   void Insertar();
   void Borrar(int);
+  void Borrar(Nodo*);
   void Modificar(int);
   void Consultar();
-  void Ordenar();
   void MenuRegistro();
   void Navegacion(int);
   Direccion* InsertarDireccion(Direccion*);

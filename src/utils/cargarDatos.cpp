@@ -48,7 +48,7 @@ void Lista::Agregar(Nodo *NewNode) {
         ultimo = NewNode;
       } else if ((NewNode->dato.getApellido() + NewNode->dato.getNombre()) <
                  (primero->dato.getApellido() + primero->dato.getNombre())) {
-        Nodo *aux = primero;        
+        Nodo *aux = primero;
         aux->ant = NewNode;
         NewNode->sig = aux;
         NewNode->ant = ultimo;
@@ -62,6 +62,7 @@ void Lista::Agregar(Nodo *NewNode) {
                (tmp->dato.getApellido() + tmp->dato.getNombre())) {
           tmp = tmp->sig;
         }
+
         Nodo *ant = tmp->ant;
 
         NewNode->sig = tmp;
@@ -271,7 +272,7 @@ Persona *Lista::cargaPersona(string p) {
   return persona;
 }
 
-Direccion* Lista::InsertarDireccion(Direccion* d) {
+Direccion *Lista::InsertarDireccion(Direccion *d) {
   string ciudad, calle, no_casa, epn, pais, region;
   cout << "Número de casa: ";
   cin >> no_casa;
@@ -288,7 +289,7 @@ Direccion* Lista::InsertarDireccion(Direccion* d) {
   cout << "Ciudad: ";
   cin >> ciudad;
   d->setCiudad(ciudad);
- 
+
   cout << "País: ";
   cin >> pais;
   d->setPais(pais);
@@ -300,7 +301,7 @@ Direccion* Lista::InsertarDireccion(Direccion* d) {
   return d;
 }
 
-Telefono* Lista::InsertarTelefono(Telefono* t) {
+Telefono *Lista::InsertarTelefono(Telefono *t) {
   string tipo, numero, interno;
   cout << "Tipo: ";
   cin >> tipo;

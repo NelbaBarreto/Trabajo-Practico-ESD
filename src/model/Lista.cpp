@@ -142,7 +142,7 @@ void Lista::Insertar() {
 }
 
 void Lista::Borrar(int tipo) {
-  cout << "BORRAR" << endl;
+  if (tipo != 3) cout << "BORRAR" << endl;
   bool encontrado = false;
   Nodo* temp;
   temp = primero;
@@ -188,7 +188,7 @@ void Lista::Borrar(int tipo) {
         }
       }
       encontrado = true;
-      cout << "\nPersona eliminada\n" << endl;
+      if (tipo != 3) cout << "\nPersona eliminada\n" << endl;
       setCantidad(getCantidad() - 1);
     }
     temp = temp->sig;
@@ -198,6 +198,7 @@ void Lista::Borrar(int tipo) {
 
 void Lista::Modificar(int tipo) {
   cout << "MODIFICAR" << endl;
+
   bool encontrado = false;
   int IDBuscado = 0, cont = 0;
   string buscar, pasar;
@@ -215,7 +216,9 @@ void Lista::Modificar(int tipo) {
     do {
       cont++;
       if (actual->dato.getCodigo() == IDBuscado) {
-        cout << "\nPersona encontrada";
+        cout << "\nPersona encontrada : [" << actual->dato.getCodigo() << "] "
+             << actual->dato.getNombre() << " " << actual->dato.getApellido();
+
         cout << "\nIngrese el tipo de dato que desea modificar: ";
         cin >> buscar;
         buscar = mayuscula(buscar);
@@ -227,7 +230,24 @@ void Lista::Modificar(int tipo) {
         } else if ("APELLIDO" == buscar) {
           cout << "Ingrese el nuevo apellido: ";
           cin >> pasar;
-          actual->dato.setApellido(mayuscula(pasar));
+
+          if (actual->dato.getApellido() != mayuscula(pasar)) {
+            int banana = COD_ID;
+            Nodo* nodo = new Nodo;
+            nodo->dato = *copiaPersona(actual->dato);
+
+            nodo->dato.setCodigo(actual->dato.getCodigo());
+            nodo->dato.setApellido(mayuscula(pasar));
+
+            Borrar(3);
+            Agregar(nodo);
+
+            cantidad++;
+            COD_ID = banana;
+          } else {
+            actual->dato.setApellido(mayuscula(pasar));
+          }
+
         } else if ("FECHA DE NACIMIENTO" == buscar) {
           cout << "Ingrese la nueva fecha de nacimiento: ";
           cin >> pasar;
@@ -270,9 +290,10 @@ void Lista::Modificar(int tipo) {
           actual->dato.setEmail(mayuscula(pasar));
         } else {
           cout << "No existe ningún campo " << buscar << endl;
+          Navegacion(1);
           return;
         }
-        cout << "\n Dato modificado\n\n";
+        cout << "\nDato modificado\n\n";
         encontrado = true;
       }
       actual = actual->sig;
@@ -283,6 +304,8 @@ void Lista::Modificar(int tipo) {
   } else {
     cout << "\nLa lista se Encuentra Vacia\n\n";
   }
+
+  Navegacion(1);
 }
 
 void Lista::Consultar() {

@@ -59,6 +59,31 @@ bool validarXml(string path) {
   return true;
 }
 
+Persona *copiaPersona(Persona ori) {
+  Persona *percpy = new Persona;
+
+  percpy->setCodigo(ori.getCodigo());
+  percpy->setNombre(ori.getNombre());
+  percpy->setApellido(ori.getApellido());
+  percpy->setFechaNacimiento(ori.getFechaNacimiento());
+  percpy->setSexo(ori.getSexo());
+  percpy->setNumeroDocumento(ori.getNumeroDocumento());
+  percpy->setTipoDocumento(ori.getTipoDocumento());
+  percpy->setTipoDocumento(ori.getTipoDocumento());
+  percpy->setTipoDocumento(ori.getTipoDocumento());
+  percpy->setEstadoCivil(ori.getEstadoCivil());
+  percpy->setEstadoCivil(ori.getEstadoCivil());
+  percpy->setEstadoCivil(ori.getEstadoCivil());
+  percpy->setEstadoCivil(ori.getEstadoCivil());
+  percpy->setEstadoCivil(ori.getEstadoCivil());
+  percpy->setNacionalidad(ori.getNacionalidad());
+  percpy->setEmail(ori.getEmail());
+  percpy->setDirecciones(ori.getDirecciones());
+  percpy->setTelefonos(ori.getTelefonos());
+
+  return percpy;
+}
+
 void Lista::mostrarPersona() {
   cout << "CÓDIGO: " << actual->dato.getCodigo() << endl;
   cout << "NOMBRE: " << actual->dato.getNombre() << endl;
@@ -106,32 +131,6 @@ void Lista::mostrarTelefonos(ListaGenerica<Telefono> *telefonos) {
   }
 }
 
-void Lista::Ordenar() {
-  Nodo *temp;
-  temp = primero;
-
-  string tempdato;
-  int contador = 0;
-  while (temp) {
-    temp = temp->sig;
-    contador++;
-  }
-  temp = primero;
-
-  for (int j = 0; j < contador; j++) {
-    while (temp->sig) {
-      if (temp->dato.getApellido() > temp->sig->dato.getApellido()) {
-        tempdato = temp->dato.getApellido();
-        temp->dato.getApellido() = temp->sig->dato.getApellido();
-        temp->sig->dato.getApellido() = tempdato;
-        temp = temp->sig;
-      } else {
-        temp = temp->sig;
-      }
-    }
-    temp = primero;
-  }
-}
 
 void Lista::MenuPrincipal() {
   cout << "NAVEGACIÓN" << endl;
