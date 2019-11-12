@@ -71,7 +71,7 @@ void Lista::Insertar() {
   Nodo* nuevo = new Nodo();
   Persona p;
   string CI, nombre, apellido, estadocivil, birthday, nacionalidad, email;
-  int sexo = 0, tipo_doc, estado_civil;
+  int sexo = 0, tipo_doc = 0, estado_civil = 0;
 
   cout << "Ingrese su nombre: ";
   cin >> nombre;
@@ -103,6 +103,16 @@ void Lista::Insertar() {
     p.setEstadoCivil("Divorciado/a");
   else if (estado_civil == 5)
     p.setEstadoCivil("Separado/a");
+  cout >> "Ingrese su tipo de documento: (1-CI, 2-RUC, 3-Otro): ";
+  while (tipo_doc < 1 || tipo_doc > 3) {
+    cin >> tipo_doc;
+  }
+  if (tipo_doc == 1)
+    p.setTipoDocumento("CI");
+  else if (tipo_doc == 2)
+    p.setTipoDocumento("RUC");
+  else if (tipo_doc == 3)
+    p.setTipoDocumento("Otro");
   cout << "Ingrese su nacionalidad: ";
   cin >> nacionalidad;
   p.setNacionalidad(nacionalidad);
@@ -239,15 +249,17 @@ void Lista::Modificar(int tipo) {
           while (pasar != "1" && pasar != "2" && pasar != "3") {
             cin >> pasar;
           }
-          actual->dato.setTipoDocumento(tipo_doc[stoi(pasar)-1]);
+          actual->dato.setTipoDocumento(tipo_doc[stoi(pasar) - 1]);
         } else if ("ESTADO CIVIL" == buscar) {
-          string estado_civ[5] = {"Soltero/a", "Casado/a", "Viudo/a", "Divorciado/a", "Separado/a"};
-          cout << "Ingrese el nuevo estado civil (1-Soltero/a, 2-Casado/a, 3-Viudo/a, 4-Divorciado/a, 5-Separado/a): ";
+          string estado_civ[5] = {"Soltero/a", "Casado/a", "Viudo/a",
+                                  "Divorciado/a", "Separado/a"};
+          cout << "Ingrese el nuevo estado civil (1-Soltero/a, 2-Casado/a, "
+                  "3-Viudo/a, 4-Divorciado/a, 5-Separado/a): ";
           pasar = "0";
-          while(stoi(pasar) < 1 || stoi(pasar) > 5){
+          while (stoi(pasar) < 1 || stoi(pasar) > 5) {
             cin >> pasar;
           }
-          actual->dato.setEstadoCivil(estado_civ[stoi(pasar)-1]);
+          actual->dato.setEstadoCivil(estado_civ[stoi(pasar) - 1]);
         } else if ("NACIONALIDAD" == buscar) {
           cout << "Ingrese la nueva nacionalidad: ";
           cin >> pasar;
