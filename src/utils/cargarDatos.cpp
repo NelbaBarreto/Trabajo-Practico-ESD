@@ -272,18 +272,47 @@ Persona *Lista::cargaPersona(string p) {
   return persona;
 }
 
-void Lista::AlmacenarDatos() {
-  Nodo *nuevo = new Nodo();
-  // nuevo->dato = ;
-  if (primero == NULL) {
-    primero = nuevo;
-    primero->sig = NULL;
-    primero->ant = NULL;
-    ultimo->primero;
-  } else {
-    ultimo->sig = nuevo;
-    nuevo->sig = NULL;
-    nuevo->ant = ultimo;
-    ultimo = nuevo;
-  }
+Direccion* Lista::InsertarDireccion(Direccion* d) {
+  string ciudad, calle, no_casa, epn, pais, region;
+  cout << "Número de casa: ";
+  cin >> no_casa;
+  d->setNumero(no_casa);
+
+  cout << "Edificio/Piso/Nro-> Dpto: ";
+  cin >> epn;
+  d->setEpn(epn);
+
+  cout << "Calle: ";
+  cin >> calle;
+  d->setCalle(calle);
+
+  cout << "Ciudad: ";
+  cin >> ciudad;
+  d->setCiudad(ciudad);
+ 
+  cout << "País: ";
+  cin >> pais;
+  d->setPais(pais);
+
+  cout << "Región: ";
+  cin >> region;
+  d->setRegion(region);
+
+  return d;
+}
+
+Telefono* Lista::InsertarTelefono(Telefono* t) {
+  string tipo, numero, interno;
+  cout << "Tipo: ";
+  cin >> tipo;
+  t->setTipo(tipo);
+
+  cout << "Número: ";
+  cin >> numero;
+  t->setNumero(numero);
+
+  cout << "Interno: ";
+  cin >> interno;
+  t->setInterno(interno);
+  return t;
 }

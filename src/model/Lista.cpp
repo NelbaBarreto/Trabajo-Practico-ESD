@@ -9,8 +9,8 @@
 #include "./Telefono.cpp"
 using namespace std;
 
-Lista::Lista() { 
-  primero = ultimo = sig = ant = NULL; 
+Lista::Lista() {
+  primero = ultimo = sig = ant = NULL;
   cantidad = 0;
 }
 
@@ -19,60 +19,60 @@ Lista::~Lista() {}
 /* -------- Navegacion -------- */
 void Lista::Siguiente() {
   actual = actual->sig;
-  string r,op;
+  string r, op;
   mostrarPersona();
   cout << "Desea realizar una operacion con el registro actual ?";
   cin >> r;
-  if(r == "si"){
+  if (r == "si") {
     cout << "Que operacion desea realizar ([B]orrar / [M]odificar) ?";
     cin >> op;
     op == "B" ? Borrar() : Modificar();
-  }else{
+  } else {
     Navegacion();
   }
 }
 
 void Lista::Anterior() {
   actual = actual->ant;
-  string r,op;
+  string r, op;
   mostrarPersona();
   cout << "Desea realizar una operacion con el registro actual ?";
   cin >> r;
-  if(r == "si"){
+  if (r == "si") {
     cout << "Que operacion desea realizar ([B]orrar / [M]odificar) ?";
     cin >> op;
     op == "B" ? Borrar() : Modificar();
-  }else{
+  } else {
     Navegacion();
   }
 }
 
 void Lista::Primero() {
   actual = primero;
-  string r,op;
+  string r, op;
   mostrarPersona();
   cout << "Desea realizar una operacion con el registro actual ?";
   cin >> r;
-  if(r == "si"){
+  if (r == "si") {
     cout << "Que operacion desea realizar ([B]orrar / [M]odificar) ?";
     cin >> op;
     op == "B" ? Borrar() : Modificar();
-  }else{
+  } else {
     Navegacion();
   }
 }
 
 void Lista::Ultimo() {
   actual = ultimo;
-  string r,op;
+  string r, op;
   mostrarPersona();
   cout << "Desea realizar una operacion con el registro actual ?";
   cin >> r;
-  if(r == "si"){
+  if (r == "si") {
     cout << "Que operacion desea realizar ([B]orrar / [M]odificar) ?";
     cin >> op;
     op == "B" ? Borrar() : Modificar();
-  }else{
+  } else {
     Navegacion();
   }
 }
@@ -103,32 +103,32 @@ void Lista::Mostrar() {
 
 /* -------- Operaciones -------- */
 void Lista::Insertar() {
-  cout << "INSERTAR" << endl;
+  cout << "\nINSERTAR" << endl;
   Nodo* nuevo = new Nodo();
   Persona p;
   string CI, nombre, apellido, estadocivil, birthday, nacionalidad, email;
-  int sexo, tipo_doc, estado_civil;
+  int sexo = 0, tipo_doc, estado_civil;
 
-  cout << "Ingrese su nombre" << endl;
+  cout << "Ingrese su nombre: ";
   cin >> nombre;
-  p.setNombre(nombre);
-  cout << "Ingrese su apellido" << endl;
+  p.setNombre(mayuscula(nombre));
+  cout << "Ingrese su apellido: ";
   cin >> apellido;
-  p.setApellido(apellido);
-  cout << "Ingrese su fecha de nacimiento" << endl;
+  p.setApellido(mayuscula(apellido));
+  cout << "Ingrese su fecha de nacimiento: ";
   cin >> birthday;
   p.setFechaNacimiento(birthday);
-  cout << "Ingrese su sexo (Femenino = 1/Masculino = 2)" << endl;
+  cout << "Ingrese su sexo (Femenino = 1/Masculino = 2): ";
   while (sexo != 1 && sexo != 2) {
     cin >> sexo;
+
   }
-  sexo == 1 ? p.setSexo("FEMENINO") : p.setSexo("MASCULINO");
-  cout << "Ingrese su numero de documento" << endl;
+  sexo == 1 ? p.setSexo("Femenino") : p.setSexo("Masculino");
+  cout << "Ingrese su numero de documento: ";
   cin >> CI;
   p.setNumeroDocumento(CI);
   cout << "Ingrese su estado civil (1-Soltero/a, 2-Casado/a, 3-Viudo/a, "
-          "4-Divorciado/a, 5-Separado/a)"
-       << endl;
+          "4-Divorciado/a, 5-Separado/a): ";
   cin >> estado_civil;
   if (estado_civil == 1)
     p.setEstadoCivil("Soltero/a");
@@ -140,17 +140,32 @@ void Lista::Insertar() {
     p.setEstadoCivil("Divorciado/a");
   else if (estado_civil == 5)
     p.setEstadoCivil("Separado/a");
-  cout << "Ingrese su nacionalidad" << endl;
+  cout << "Ingrese su nacionalidad: ";
   cin >> nacionalidad;
   p.setNacionalidad(nacionalidad);
-  cout << "Ingrese su email" << endl;
+  cout << "Ingrese su email: ";
   cin >> email;
   p.setEmail(email);
-  
+
+  char ans;
+  Direccion* d;
+  while (1) {
+    cout << "\n¿Agregar dirección? (S/N): ";
+    cin >> ans;
+    if (tolower(ans) == 'n') break;
+    p.getDirecciones()->add(InsertarDireccion(d));
+  }
+
+  Telefono* t;
+  while (1) {
+    cout << "\n¿Agregar teléfono? (S/N): ";
+    cin >> ans;
+    if (tolower(ans) == 'n') break;
+    p.getTelefonos()->add(InsertarTelefono(t));
+  }
+
   nuevo = ObtenerNodo(p);
   Agregar(nuevo);
- 
-  
 }
 
 void Lista::Borrar() {
@@ -191,8 +206,7 @@ void Lista::Borrar() {
   } else {
     cout << "\n La lista se Encuentra Vacia\n\n";
   }
-  setCantidad(getCantidad()-1);
-  // system("pause");
+  setCantidad(getCantidad() - 1);
 }
 
 void Lista::Modificar() {

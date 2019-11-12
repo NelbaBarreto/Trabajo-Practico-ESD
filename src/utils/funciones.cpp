@@ -61,16 +61,16 @@ bool validarXml(string path) {
 }
 
 void Lista::mostrarPersona() {
-  cout << actual->dato.getCodigo() << endl;
-  cout << actual->dato.getNombre() << endl;
-  cout << actual->dato.getApellido() << endl;
-  cout << actual->dato.getFechaNacimiento() << endl;
-  cout << actual->dato.getSexo() << endl;
-  cout << actual->dato.getNumeroDocumento() << endl;
-  cout << actual->dato.getTipoDocumento() << endl;
-  cout << actual->dato.getEstadoCivil() << endl;
-  cout << actual->dato.getNacionalidad() << endl;
-  cout << actual->dato.getEmail() << endl;
+  cout << "CÓDIGO: " << actual->dato.getCodigo() << endl;
+  cout << "NOMBRE: " << actual->dato.getNombre() << endl;
+  cout << "APELLIDO: " << actual->dato.getApellido() << endl;
+  cout << "FECHA NAC.: " << actual->dato.getFechaNacimiento() << endl;
+  cout << "SEXO: " << actual->dato.getSexo() << endl;
+  cout << "CI: " << actual->dato.getNumeroDocumento() << endl;
+  cout << "TIPO DOC.: " << actual->dato.getTipoDocumento() << endl;
+  cout << "ESTADO CIVIL: " << actual->dato.getEstadoCivil() << endl;
+  cout << "NACIONALIDAD: " << actual->dato.getNacionalidad() << endl;
+  cout << "EMAIL: " << actual->dato.getEmail() << endl;
   mostrarTelefonos(actual->dato.getTelefonos());
   mostrarDirecciones(actual->dato.getDirecciones());
 }
@@ -95,7 +95,7 @@ void Lista::mostrarDirecciones(ListaGenerica<Direccion> *direcciones) {
 
 void Lista::mostrarTelefonos(ListaGenerica<Telefono> *telefonos) {
   if (telefonos->getSize() == 0) {
-    cout << "No hay ningun telfono\n";
+    cout << "No hay ningun telefono\n";
     return;
   }
   cout << "Telefonos\n";
@@ -173,4 +173,3 @@ void Lista::Navegacion() {
       cout << "Ingrese una opcion valida.\n";
   }
 }
-

@@ -19,7 +19,8 @@ class Lista {
   void Consultar();
   void Ordenar();
   void ImprimirOpciones();
-  void AlmacenarDatos();
+  Direccion* InsertarDireccion(Direccion*);
+  Telefono* InsertarTelefono(Telefono*);
   Direccion* obtenerDireccion(string);
   ListaGenerica<Direccion>* cargaDirecciones(string);
   Telefono* obtenerTelefono(string);

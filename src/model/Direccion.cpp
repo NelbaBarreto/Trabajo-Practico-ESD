@@ -1,5 +1,15 @@
 #include "Direccion.h"
 
+Direccion::Direccion() {
+  ciudad = "";
+  calle = "";
+  numero = "";
+  epn = "";
+  pais = "";
+  region = "";
+}
+Direccion::~Direccion() {}
+
 void Direccion::setCiudad(string ciudad) { this->ciudad = ciudad; }
 void Direccion::setCalle(string calle) { this->calle = calle; }
 void Direccion::setNumero(string numero) { this->numero = numero; }
