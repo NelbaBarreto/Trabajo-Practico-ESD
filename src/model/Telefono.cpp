@@ -1,10 +1,6 @@
 #include "Telefono.h"
 
-Telefono::Telefono() {
-  tipo = "";
-  numero = "";
-  interno = "";
-}
+Telefono::Telefono() {}
 Telefono::~Telefono() {}
 
 void Telefono::setTipo(string tipo) { this->tipo = tipo; }

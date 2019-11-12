@@ -143,7 +143,7 @@ void Lista::Insertar() {
   nuevo = ObtenerNodo(p);
   Agregar(nuevo);
 
-  MenuPrincipal();
+  Navegacion(1);
 }
 
 void Lista::Borrar(int tipo) {
@@ -154,10 +154,8 @@ void Lista::Borrar(int tipo) {
 
   if (primero == NULL) {
     cout << "\n\nLa lista está vacía" << endl;
-
     return;
   }
-  MenuPrincipal();
 
   int CodigoBuscado = 0, cont = 0;
 
@@ -201,8 +199,6 @@ void Lista::Borrar(int tipo) {
     temp = temp->sig;
   }
   if (!encontrado) cout << "No existe una persona con ese código" << endl;
-   MenuPrincipal();
-
 }
 
 void Lista::Modificar(int tipo) {
@@ -299,7 +295,7 @@ void Lista::Modificar(int tipo) {
           actual->dato.setEmail(mayuscula(pasar));
         } else {
           cout << "No existe ningún campo " << buscar << endl;
-           MenuPrincipal();
+          Navegacion(1);
           return;
         }
         cout << "\nDato modificado\n\n";
@@ -314,7 +310,7 @@ void Lista::Modificar(int tipo) {
     cout << "\nLa lista se Encuentra Vacia\n\n";
   }
 
-   MenuPrincipal();
+  Navegacion(1);
 }
 
 void Lista::Consultar() {
@@ -333,7 +329,4 @@ void Lista::Consultar() {
     actual = actual->sig;
   }
   cout << "No existe ninguna persona con ese código";
-
- MenuPrincipal();
-
 }
