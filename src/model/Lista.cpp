@@ -239,7 +239,7 @@ void Lista::Modificar(int tipo) {
           while (pasar != "1" && pasar != "2" && pasar != "3") {
             cin >> pasar;
           }
-          actual->dato.setTipoDocumento(tipo_doc[stoi(pasar)]);
+          actual->dato.setTipoDocumento(tipo_doc[stoi(pasar)-1]);
         } else if ("ESTADO CIVIL" == buscar) {
           string estado_civ[5] = {"Soltero/a", "Casado/a", "Viudo/a", "Divorciado/a", "Separado/a"};
           cout << "Ingrese el nuevo estado civil (1-Soltero/a, 2-Casado/a, 3-Viudo/a, 4-Divorciado/a, 5-Separado/a): ";
@@ -247,7 +247,7 @@ void Lista::Modificar(int tipo) {
           while(stoi(pasar) < 1 || stoi(pasar) > 5){
             cin >> pasar;
           }
-          actual->dato.setEstadoCivil(estado_civ[stoi(pasar)]);
+          actual->dato.setEstadoCivil(estado_civ[stoi(pasar)-1]);
         } else if ("NACIONALIDAD" == buscar) {
           cout << "Ingrese la nueva nacionalidad: ";
           cin >> pasar;
