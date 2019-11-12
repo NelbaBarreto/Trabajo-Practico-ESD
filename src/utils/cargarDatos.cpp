@@ -272,33 +272,41 @@ Persona *Lista::cargaPersona(string p) {
   return persona;
 }
 
-Direccion *Lista::InsertarDireccion(Direccion *d) {
+Direccion *Lista::InsertarDireccion() {
+
+  Direccion *dir = new Direccion;
   string ciudad, calle, no_casa, epn, pais, region;
   cout << "Número de casa: ";
-  cin >> no_casa;
-  d->setNumero(no_casa);
+  cin.ignore();
+  getline(cin, no_casa);
+  dir->setNumero(no_casa);
 
   cout << "Edificio/Piso/Nro-> Dpto: ";
-  cin >> epn;
-  d->setEpn(epn);
+  cin.ignore();
+  getline(cin, epn);
+  dir->setEpn(epn);
 
   cout << "Calle: ";
-  cin >> calle;
-  d->setCalle(calle);
+  cin.ignore();
+  getline(cin, calle);
+  dir->setCalle(calle);
 
   cout << "Ciudad: ";
-  cin >> ciudad;
-  d->setCiudad(ciudad);
+  cin.ignore();
+  getline(cin, ciudad);
+  dir->setCiudad(ciudad);
 
   cout << "País: ";
-  cin >> pais;
-  d->setPais(pais);
+  cin.ignore();
+  getline(cin, pais);
+  dir->setPais(pais);
 
   cout << "Región: ";
-  cin >> region;
-  d->setRegion(region);
+  cin.ignore();
+  getline(cin, region);
+  dir->setRegion(region);
 
-  return d;
+  return dir;
 }
 
 Telefono *Lista::InsertarTelefono(Telefono *t) {

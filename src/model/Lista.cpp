@@ -121,12 +121,17 @@ void Lista::Insertar() {
   p.setEmail(email);
 
   char ans;
-  Direccion* d;
   while (1) {
     cout << "\n¿Agregar dirección? (S/N): ";
     cin >> ans;
     if (tolower(ans) == 'n') break;
-    p.getDirecciones()->add(InsertarDireccion(d));
+
+    Direccion* dir = InsertarDireccion();
+
+    p.getDirecciones()->add(dir);
+
+    cout << "HERE ! " << endl;
+    
   }
 
   Telefono* t;

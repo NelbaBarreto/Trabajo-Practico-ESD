@@ -15,12 +15,11 @@ class Lista {
   void Ultimo();
   void Insertar();
   void Borrar(int);
-  void Borrar(Nodo*);
   void Modificar(int);
   void Consultar();
   void MenuRegistro();
   void Navegacion(int);
-  Direccion* InsertarDireccion(Direccion*);
+  Direccion* InsertarDireccion();
   Telefono* InsertarTelefono(Telefono*);
   Direccion* obtenerDireccion(string);
   ListaGenerica<Direccion>* cargaDirecciones(string);
