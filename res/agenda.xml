@@ -72,7 +72,7 @@
     <Nombres>PEPE</Nombres>
     <Apellidos>GRILLO</Apellidos>
     <FechaNacimiento>12.13.1666</FechaNacimiento>
-    <Sexo>3</Sexo>
+    <Sexo>2</Sexo>
     <NumeroDocumento>5424424</NumeroDocumento>
     <TipoDocumento>1</TipoDocumento>
     <EstadoCivil>1</EstadoCivil>
@@ -98,9 +98,9 @@
   </Persona>
   <Persona>
     <Nombres>ANIBAL</Nombres>
-    <Apellidos>FRANCO</Apellidos>
+    <Apellidos>ZARATE</Apellidos>
     <FechaNacimiento>9.11.1982</FechaNacimiento>
-    <Sexo>1</Sexo>
+    <Sexo>2</Sexo>
     <NumeroDocumento>1231232</NumeroDocumento>
     <TipoDocumento>1</TipoDocumento>
     <EstadoCivil>1</EstadoCivil>
@@ -110,6 +110,34 @@
       <Direccion>
         <Ciudad>Asuncion</Ciudad>
         <Calle>Ayolas</Calle>
+        <Numero>398</Numero>
+        <E_P_N>""</E_P_N>
+        <Pais>PY</Pais>
+        <Region>Central</Region>
+      </Direccion>
+    </Direcciones>
+    <Telefonos>
+      <Telefono>
+        <Tipo>1</Tipo>
+        <Numero>0982367276</Numero>
+        <Interno>442</Interno>
+      </Telefono>
+    </Telefonos>
+  </Persona>
+  <Persona>
+    <Nombres>ELENA</Nombres>
+    <Apellidos>AYALA</Apellidos>
+    <FechaNacimiento>17.5.1998</FechaNacimiento>
+    <Sexo>1</Sexo>
+    <NumeroDocumento>1231232</NumeroDocumento>
+    <TipoDocumento>1</TipoDocumento>
+    <EstadoCivil>1</EstadoCivil>
+    <Nacionalidad>Paraguaya</Nacionalidad>
+    <Email>elena@gmail.com</Email>
+    <Direcciones>
+      <Direccion>
+        <Ciudad>Muy muy lejano</Ciudad>
+        <Calle>666</Calle>
         <Numero>398</Numero>
         <E_P_N>""</E_P_N>
         <Pais>PY</Pais>

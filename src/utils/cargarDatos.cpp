@@ -48,10 +48,11 @@ void Lista::Agregar(Nodo *NewNode) {
         ultimo = NewNode;
       } else if ((NewNode->dato.getApellido() + NewNode->dato.getNombre()) <
                  (primero->dato.getApellido() + primero->dato.getNombre())) {
-        NewNode->sig = primero->sig;
-        NewNode->ant = primero;
+        Nodo *aux = primero;        
+        aux->ant = NewNode;
+        NewNode->sig = aux;
+        NewNode->ant = ultimo;
         ultimo->sig = NewNode;
-        primero->ant = NewNode;
         primero = NewNode;
       } else {
         Nodo *tmp;
@@ -61,8 +62,6 @@ void Lista::Agregar(Nodo *NewNode) {
                (tmp->dato.getApellido() + tmp->dato.getNombre())) {
           tmp = tmp->sig;
         }
-
-        cout << "asdf : " << tmp->dato.getApellido() << endl;
         Nodo *ant = tmp->ant;
 
         NewNode->sig = tmp;
