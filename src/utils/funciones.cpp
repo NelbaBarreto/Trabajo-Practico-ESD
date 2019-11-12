@@ -8,9 +8,8 @@ using namespace std;
 #pragma once
 
 string mayuscula(string cadena) {
-  char c = cadena[0];
-  string res(1, toupper(c));
-  return res;
+  for_each(cadena.begin(), cadena.end(), [](char &c) { c = toupper(c); });
+  return cadena;
 }
 
 bool validarXml(string path) {
@@ -177,7 +176,7 @@ void Lista::Navegacion(int tipo) {
     else if (res == "C")
       Consultar();
     else if (res == "Y")
-      MenuPrincipal(); 
+      MenuPrincipal();
     else if (res == "Q")
       exit(0);
     else
