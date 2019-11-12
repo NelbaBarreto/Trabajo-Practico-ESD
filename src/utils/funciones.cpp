@@ -147,7 +147,7 @@ void Lista::Navegacion() {
   string res = "";
   while (1) {
     cout << "¿Qué desea hacer?: ";
-    getline(cin, res);
+    cin >> res;
     res = mayuscula(res);
     if (res == "S")
       Siguiente();

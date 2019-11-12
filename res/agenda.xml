@@ -96,4 +96,32 @@
       </Telefono>
     </Telefonos>
   </Persona>
+  <Persona>
+    <Nombres>ANIBAL</Nombres>
+    <Apellidos>FRANCO</Apellidos>
+    <FechaNacimiento>9.11.1982</FechaNacimiento>
+    <Sexo>1</Sexo>
+    <NumeroDocumento>1231232</NumeroDocumento>
+    <TipoDocumento>1</TipoDocumento>
+    <EstadoCivil>1</EstadoCivil>
+    <Nacionalidad>Paraguaya</Nacionalidad>
+    <Email>anibal@gmail.com</Email>
+    <Direcciones>
+      <Direccion>
+        <Ciudad>Asuncion</Ciudad>
+        <Calle>Ayolas</Calle>
+        <Numero>398</Numero>
+        <E_P_N>""</E_P_N>
+        <Pais>PY</Pais>
+        <Region>Central</Region>
+      </Direccion>
+    </Direcciones>
+    <Telefonos>
+      <Telefono>
+        <Tipo>1</Tipo>
+        <Numero>0982367276</Numero>
+        <Interno>442</Interno>
+      </Telefono>
+    </Telefonos>
+  </Persona>
 </Agenda>

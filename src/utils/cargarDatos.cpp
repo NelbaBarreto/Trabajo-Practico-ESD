@@ -7,51 +7,71 @@ Nodo *Lista::ObtenerNodo(Persona p) {
   Newnode = new Nodo;
   Newnode->dato = p;
   COD_ID++;
-  setCantidad(getCantidad()+1);
+  setCantidad(getCantidad() + 1);
   Newnode->dato.setCodigo(COD_ID);
   Newnode->sig = Newnode->ant = NULL;
-  return (Newnode);
+  return Newnode;
 }
 
 void Lista::Agregar(Nodo *NewNode) {
   if (primero == NULL) {
     primero = NewNode;
-    ultimo = NewNode;
-    primero->ant = ultimo;
-    ultimo->sig = primero;
-  } else if (primero == ultimo) {
-    if (primero->dato.getApellido() > NewNode->dato.getApellido()) {
-      NewNode->sig = primero;
-      primero->ant = NewNode;
-      ultimo = primero;
-      primero = NewNode;
-    } else {
-      primero->sig = NewNode;
-      NewNode->ant = primero;
-      NewNode->sig = primero;
-      primero->ant = NewNode;
-      ultimo = NewNode;
-    }
+    primero->ant = NewNode;
+    primero->sig = NewNode;
+    actual = primero;
+
   } else {
-    Nodo *tmp;
-    tmp = primero;
-    do {
-      if (NewNode->dato.getApellido() > tmp->dato.getApellido()) {
-        tmp->ant->sig = NewNode;
+    if (getCantidad() == 2) {
+      if ((primero->dato.getApellido() + primero->dato.getNombre()) >
+          (NewNode->dato.getApellido() + NewNode->dato.getNombre())) {
+        ultimo = primero;
+        NewNode->sig = ultimo;
+        NewNode->ant = ultimo;
+        primero = NewNode;
+        ultimo->ant = primero;
+        ultimo->sig = primero;
+        actual = NewNode;
+      } else {
+        ultimo = NewNode;
+        primero->sig = ultimo;
+        primero->ant = ultimo;
+        ultimo->sig = primero;
+        ultimo->ant = primero;
+      }
+    } else {
+      if ((ultimo->dato.getApellido() + ultimo->dato.getNombre()) <
+          NewNode->dato.getApellido() + NewNode->dato.getNombre()) {
+        NewNode->sig = primero;
+        NewNode->ant = ultimo;
+        ultimo->sig = NewNode;
+        primero->ant = NewNode;
+        ultimo = NewNode;
+      } else if ((NewNode->dato.getApellido() + NewNode->dato.getNombre()) <
+                 (primero->dato.getApellido() + primero->dato.getNombre())) {
+        NewNode->sig = primero->sig;
+        NewNode->ant = primero;
+        ultimo->sig = NewNode;
+        primero->ant = NewNode;
+        primero = NewNode;
+      } else {
+        Nodo *tmp;
+        tmp = primero->sig;
+
+        while ((NewNode->dato.getApellido() + NewNode->dato.getNombre()) >
+               (tmp->dato.getApellido() + tmp->dato.getNombre())) {
+          tmp = tmp->sig;
+        }
+
+        cout << "asdf : " << tmp->dato.getApellido() << endl;
+        Nodo *ant = tmp->ant;
+
         NewNode->sig = tmp;
         NewNode->ant = tmp->ant;
+        ant->sig = NewNode;
         tmp->ant = NewNode;
-        break;
       }
-      tmp = tmp->sig;
-    } while (tmp->ant != ultimo);
-    // ultimo->sig = NewNode;
-    // NewNode->ant = ultimo;
-    // NewNode->sig = primero;
-    // ultimo = NewNode;
-    // primero->ant = ultimo;
+    }
   }
-  actual = NewNode;
 }
 
 void Lista::Crear(string const path) {
